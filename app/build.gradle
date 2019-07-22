@@ -1,0 +1,111 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'io.fabric'
+
+android {
+	compileSdkVersion 28
+	defaultConfig {
+		applicationId "ru.chernakov.rocketscienceapp"
+		minSdkVersion 21
+		targetSdkVersion 28
+		versionCode 1
+		versionName "1.0"
+		multiDexEnabled true
+		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+	}
+
+	androidExtensions {
+		experimental = true
+	}
+
+	sourceSets {
+		main.java.srcDirs += 'src/main/kotlin'
+		test.java.srcDirs += 'src/test/kotlin'
+	}
+
+	buildTypes {
+		debug {
+			signingConfig signingConfigs.debug
+		}
+
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+		}
+	}
+}
+
+configurations.all {
+	resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+		def requested = details.requested
+		if (requested.group == "com.android.support") {
+			if (!requested.name.startsWith("multidex")) {
+				details.useVersion "26.+"
+			}
+		}
+	}
+
+	all*.exclude group: 'com.google.guava', module: 'listenablefuture'
+}
+
+dependencies {
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+	// Kotlin
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+	implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutineVersion"
+	implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutineVersion"
+	testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinCoroutineVersion"
+
+	// AndroidX
+	implementation "androidx.appcompat:appcompat:$appCompatVersion"
+	implementation "com.google.android.material:material:1.1.0-alpha07"
+	implementation "androidx.core:core-ktx:$appCompatVersion"
+	implementation "androidx.constraintlayout:constraintlayout:$constraintVersion"
+
+	// Network
+	implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+	implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+	implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+	implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+	// Firebase
+	implementation "com.google.android.gms:play-services-auth:$firebaseCoreVersion"
+	implementation platform('com.google.firebase:firebase-bom:17.0.0')
+	implementation 'com.google.firebase:firebase-core'
+	implementation 'com.google.firebase:firebase-analytics'
+	implementation 'com.google.firebase:firebase-database'
+	implementation 'com.google.firebase:firebase-storage'
+	implementation 'com.google.firebase:firebase-auth'
+	implementation 'com.google.firebase:firebase-config'
+	implementation 'com.google.firebase:firebase-messaging'
+	implementation 'com.google.firebase:firebase-inappmessaging-display'
+	implementation 'com.crashlytics.sdk.android:crashlytics'
+
+	// Firebase UI
+	implementation 'com.firebaseui:firebase-ui-database:4.2.0'
+	implementation 'android.arch.core:runtime:1.1.1'
+	implementation 'android.arch.core:common:1.1.1'
+
+	// JetPack
+	implementation "androidx.lifecycle:lifecycle-extensions:$archComponentsVersion"
+
+	// Koin
+	implementation "org.koin:koin-android:$koinVersion"
+	implementation "org.koin:koin-android-viewmodel:$koinVersion"
+
+	// Glide
+	implementation "com.github.bumptech.glide:glide:4.7.1"
+
+	// Timber
+	implementation "com.jakewharton.timber:timber:$timberVersion"
+
+	debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-3'
+
+	// Test
+	testImplementation "junit:junit:$junitVersion"
+	testImplementation "org.mockito:mockito-core:$mockitoVersion"
+}
+apply plugin: 'com.google.gms.google-services'

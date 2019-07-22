@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<dimen name="default_elevation">8dp</dimen>
+	<dimen name="margin_small">8dp</dimen>
+	<dimen name="margin_medium">16dp</dimen>
+
+	<dimen name="chat_avatar_size">36dp</dimen>
+	<dimen name="chat_image_max_size">256dp</dimen>
+
+</resources>

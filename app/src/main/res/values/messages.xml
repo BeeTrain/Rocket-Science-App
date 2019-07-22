@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="msg_error_network">Нет соединения</string>
+    <string name="msg_error_unexpected">Неизвестная ошибка</string>
+</resources>
