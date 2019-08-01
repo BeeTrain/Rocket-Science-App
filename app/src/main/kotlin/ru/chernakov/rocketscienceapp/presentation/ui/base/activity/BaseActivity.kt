@@ -5,7 +5,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import ru.chernakov.rocketscienceapp.R
-import ru.chernakov.rocketscienceapp.extension.androidx.fragment.app.addFragment
+import ru.chernakov.rocketscienceapp.extension.androidx.fragment.app.replaceFragment
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -14,7 +14,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(getLayout())
         if (savedInstanceState == null) {
-            supportFragmentManager.addFragment(createFragment()).commit()
+            supportFragmentManager.replaceFragment(createFragment()).commit()
         }
     }
 

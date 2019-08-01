@@ -1,4 +1,4 @@
-package ru.chernakov.rocketscienceapp.presentation.ui.main
+package ru.chernakov.rocketscienceapp.presentation.ui
 
 import androidx.fragment.app.Fragment
 import ru.chernakov.rocketscienceapp.R

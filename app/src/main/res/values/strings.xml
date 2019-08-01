@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Rocket Science App</string>
     <string name="content_description">-</string>
+    <string name="message_hint">Enter your message</string>
+	<string name="navigation_profile">profile</string>
+	<string name="navigation_feed">feed</string>
+	<string name="title_profile">profile</string>
+	<string name="title_feed">feed</string>
 </resources>

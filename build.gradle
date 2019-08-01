@@ -5,15 +5,11 @@ buildscript {
         jcenter()
         mavenLocal()
         google()
-        maven {
-            url 'https://maven.fabric.io/public'
-        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "com.google.gms:google-services:$googleServicesVersion"
-        classpath 'io.fabric.tools:gradle:1.29.0'
     }
 }
 
