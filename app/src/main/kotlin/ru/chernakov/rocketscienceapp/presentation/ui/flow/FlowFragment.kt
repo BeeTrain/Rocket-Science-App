@@ -11,40 +11,48 @@ import ru.chernakov.rocketscienceapp.presentation.ui.base.fragment.BaseFragment
 import ru.chernakov.rocketscienceapp.presentation.ui.base.viewmodel.BaseViewModel
 import ru.chernakov.rocketscienceapp.presentation.ui.feed.FeedFragment
 import ru.chernakov.rocketscienceapp.presentation.ui.profile.ProfileFragment
+import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 
 class FlowFragment : BaseFragment() {
-    private val viewModel: FlowViewModel by viewModel()
+    private val flowViewModel: FlowViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupNavigation()
+        flowViewModel.selectedNavigationData.observe(this, SafeObserver {
+            startFlowFragment(it)
+        })
     }
 
     private fun setupNavigation() {
         navigation.setOnNavigationItemSelectedListener {
             it.isChecked = true
-            when (it.itemId) {
-                R.id.navigation_profile -> startFlowFragment(ProfileFragment.newInstance())
-                R.id.navigation_feed -> startFlowFragment(FeedFragment.newInstance())
-                R.id.navigation_organization -> {
-                }
-            }
+            flowViewModel.setSelected(it.itemId)
             false
         }
     }
 
-    private fun startFlowFragment(fragment: Fragment, isAddToBackStack: Boolean = false) {
-        activity?.let {
-            it.supportFragmentManager.replaceFragment(fragment, R.id.containerFlow).apply {
-                addToBackStack = isAddToBackStack
-                commit()
+    private fun startFlowFragment(itemId: Int) {
+        activity?.let { activity ->
+            var fragment: Fragment? = null
+            when (itemId) {
+                R.id.navigation_profile -> fragment = ProfileFragment.newInstance()
+                R.id.navigation_feed -> fragment = FeedFragment.newInstance()
+                R.id.navigation_organization -> {
+                }
+            }
+            fragment?.let {
+                activity.supportFragmentManager.replaceFragment(it, R.id.containerFlow).apply {
+                    addToBackStack = false
+                    commit()
+                }
             }
         }
     }
 
     override fun getLayout(): Int = R.layout.fragment_flow
 
-    override fun obtainViewModel(): BaseViewModel = viewModel
+    override fun obtainViewModel(): BaseViewModel = flowViewModel
 
     companion object {
 

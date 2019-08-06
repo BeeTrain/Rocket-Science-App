@@ -6,4 +6,5 @@
 	<string name="navigation_feed">feed</string>
 	<string name="title_profile">profile</string>
 	<string name="title_feed">feed</string>
+	<string name="title_settings">Settings</string>
 </resources>
