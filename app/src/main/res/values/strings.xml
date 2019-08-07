@@ -7,4 +7,11 @@
 	<string name="title_profile">profile</string>
 	<string name="title_feed">feed</string>
 	<string name="title_settings">Settings</string>
+	<string name="button_logout">Logout</string>
+	<string name="button_login">Login</string>
+	<string name="button_register">Register</string>
+	<string name="hint_username">Username</string>
+	<string name="hint_email">E-mail</string>
+	<string name="hint_password">Password</string>
+	<string name="hint_password_confirm">Confirm password</string>
 </resources>

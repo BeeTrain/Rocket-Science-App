@@ -14,5 +14,6 @@
 	<dimen name="margin_medium">16dp</dimen>
 
 	<dimen name="user_profile_photo_size">88dp</dimen>
+	<dimen name="google_sign_size">56dp</dimen>
 
 </resources>

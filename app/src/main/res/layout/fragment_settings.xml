@@ -45,10 +45,20 @@
 
 	</androidx.appcompat.widget.Toolbar>
 
-	<TextView
+	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:gravity="center"
-		android:text="@string/title_settings"/>
+		android:layout_height="match_parent">
+
+		<Button
+			android:id="@+id/btLogout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/button_logout"
+			android:layout_margin="@dimen/margin_medium"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"/>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

@@ -3,6 +3,7 @@ package ru.chernakov.rocketscienceapp.presentation.ui.login
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
@@ -12,7 +13,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import ru.chernakov.rocketscienceapp.R
 import ru.chernakov.rocketscienceapp.presentation.ui.base.fragment.BaseFragment
 import ru.chernakov.rocketscienceapp.presentation.ui.base.viewmodel.BaseViewModel
-import ru.chernakov.rocketscienceapp.presentation.ui.feed.FeedFragment
+import ru.chernakov.rocketscienceapp.presentation.ui.flow.FlowFragment
 import ru.chernakov.rocketscienceapp.util.RequestCodeGenerator
 
 
@@ -21,7 +22,11 @@ class LoginFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btSign.setOnClickListener { signIn() }
+        btSign.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(context, R.anim.rotation))
+            signIn()
+        }
+        runStartAnimation(savedInstanceState)
     }
 
     override fun getLayout(): Int = R.layout.fragment_login
@@ -46,13 +51,21 @@ class LoginFragment : BaseFragment() {
         activity?.let {
             loginViewModel.firebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(activity!!) { task ->
-                    if (task.isSuccessful) startFragment(FeedFragment.newInstance())
+                    if (task.isSuccessful) startFragment(FlowFragment.newInstance(), false)
                 }
         }
     }
 
+    private fun runStartAnimation(savedInstanceState: Bundle?) {
+        if (savedInstanceState == null) {
+            vgHeader.setAnimation(AnimationUtils.loadAnimation(context, R.anim.up_to_down))
+            vgFooter.setAnimation(AnimationUtils.loadAnimation(context, R.anim.down_to_up))
+            tilEmail.setAnimation(AnimationUtils.loadAnimation(context, R.anim.left_to_right))
+            tilPassword.setAnimation(AnimationUtils.loadAnimation(context, R.anim.right_to_left))
+        }
+    }
+
     companion object {
-        private val TAG = LoginFragment::class.java.simpleName
         private val RC_SIGN_IN = RequestCodeGenerator.next
 
         fun newInstance() = LoginFragment()

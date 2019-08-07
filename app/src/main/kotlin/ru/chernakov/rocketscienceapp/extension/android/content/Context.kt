@@ -11,10 +11,17 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
+import ru.chernakov.rocketscienceapp.presentation.ui.MainActivity
 import timber.log.Timber
 
 private const val APP_MARKET_URI = "market://details?id="
 private const val WEB_MARKET_URI = "https://play.google.com/store/apps/details?id="
+
+inline fun Context.restartMainActivity() {
+    val intent = MainActivity.makeIntent(this)
+    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+    startActivity(intent)
+}
 
 fun Context.hideKeyboard(view: View) {
     val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager

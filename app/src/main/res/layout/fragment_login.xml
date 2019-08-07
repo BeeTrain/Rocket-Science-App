@@ -1,26 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-	android:id="@+id/sign_in_layout"
+
+<LinearLayout
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:gravity="center"
-	android:orientation="vertical">
+	android:layout_height="wrap_content"
+	android:clipChildren="false"
+	android:clipToPadding="false"
+	android:orientation="vertical"
+	android:padding="16dp">
 
-	<TextView
-		android:layout_width="wrap_content"
+	<LinearLayout
+		android:id="@+id/vgHeader"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal"
-		android:layout_marginTop="40dp"
-		android:text="Login"
-		android:textSize="30sp"
-		android:textStyle="bold"/>
+		android:layout_marginBottom="132dp"
+		android:layout_marginTop="48dp"
+		android:orientation="vertical">
 
-	<com.google.android.gms.common.SignInButton
-		android:id="@+id/btSign"
-		android:layout_width="wrap_content"
+		<ImageView
+			android:id="@+id/ivLogo"
+			android:layout_width="64dp"
+			android:layout_height="64dp"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginBottom="16dp"
+			android:contentDescription="@string/content_description"
+			android:tint="?android:attr/textColorPrimary"
+			app:srcCompat="@drawable/ic_launchpad"/>
+
+		<TextView
+			android:id="@+id/tvTitle"
+			style="@style/TextAppearance.RocketScienceApp.Title"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:text="@string/app_name"
+			android:textAllCaps="true"
+			android:textSize="16sp"/>
+
+	</LinearLayout>
+
+	<com.google.android.material.textfield.TextInputLayout
+		android:id="@+id/tilEmail"
+		style="@style/Widget.RocketScienceApp.TextInputLayout"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:visibility="visible"/>
+		android:hint="@string/hint_email">
 
-</FrameLayout>
+		<com.google.android.material.textfield.TextInputEditText
+			android:id="@+id/titEmail"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:inputType="textEmailAddress"
+			android:maxLines="1"/>
+	</com.google.android.material.textfield.TextInputLayout>
+
+	<com.google.android.material.textfield.TextInputLayout
+		android:id="@+id/tilPassword"
+		style="@style/Widget.RocketScienceApp.TextInputLayout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:hint="@string/hint_password"
+		app:errorEnabled="true"
+		app:passwordToggleEnabled="true">
+
+		<com.google.android.material.textfield.TextInputEditText
+			android:id="@+id/titPassword"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:inputType="textPassword"/>
+	</com.google.android.material.textfield.TextInputLayout>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:id="@+id/vgFooter"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<ImageView
+			android:id="@+id/btSign"
+			style="@style/Widget.RocketScienceApp.Button.TextButton"
+			android:layout_width="@dimen/google_sign_size"
+			android:layout_height="@dimen/google_sign_size"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			android:contentDescription="@string/content_description"
+			android:src="@drawable/img_google"/>
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/btRegister"
+			style="@style/Widget.RocketScienceApp.Button.TextButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="12dp"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toStartOf="@+id/btLogin"
+			android:text="@string/button_register"/>
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/btLogin"
+			style="@style/Widget.RocketScienceApp.Button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			android:text="@string/button_login"/>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
