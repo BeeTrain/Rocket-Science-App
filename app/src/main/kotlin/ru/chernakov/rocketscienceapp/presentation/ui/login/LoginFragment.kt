@@ -92,12 +92,15 @@ class LoginFragment : BaseFragment() {
         if (isEmailValid && isPasswordValid) {
             activity?.hideKeyboard()
             loginViewModel.signInWithEmailAndPassword(titEmail.text.toString(), titPassword.text.toString())
-        } else if (!isEmailValid) {
-            titEmail.requestFocus()
-            tilEmail.error = getString(R.string.msg_error_email)
-        } else if (!isPasswordValid) {
-            titPassword.requestFocus()
-            tilPassword.error = getString(R.string.msg_error_password)
+        } else {
+            if (!isEmailValid) {
+                titEmail.requestFocus()
+                tilEmail.error = getString(R.string.msg_error_email)
+            }
+            if (!isPasswordValid) {
+                titPassword.requestFocus()
+                tilPassword.error = getString(R.string.msg_error_password)
+            }
         }
     }
 
