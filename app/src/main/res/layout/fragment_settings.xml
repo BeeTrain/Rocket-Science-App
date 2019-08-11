@@ -2,9 +2,10 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:orientation="vertical"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:background="@color/white_1000"
+	android:orientation="vertical">
 
 	<androidx.appcompat.widget.Toolbar
 		android:id="@+id/toolbar"
@@ -26,20 +27,20 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginStart="?android:attr/actionBarSize"
+				android:text="@string/title_settings"
 				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toTopOf="parent"
-				android:text="@string/title_settings"/>
+				app:layout_constraintTop_toTopOf="parent"/>
 
 			<ImageView
 				android:id="@+id/ivClose"
-				android:contentDescription="@string/content_description"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:src="@drawable/ic_close"
 				android:layout_marginEnd="@dimen/margin_medium"
+				android:contentDescription="@string/content_description"
+				android:src="@drawable/ic_close"
 				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintTop_toTopOf="parent"
-				app:layout_constraintEnd_toEndOf="parent"/>
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="parent"/>
 
 		</androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -53,11 +54,11 @@
 			android:id="@+id/btLogout"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/button_logout"
 			android:layout_margin="@dimen/margin_medium"
+			android:text="@string/button_logout"
 			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"/>
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"/>
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 

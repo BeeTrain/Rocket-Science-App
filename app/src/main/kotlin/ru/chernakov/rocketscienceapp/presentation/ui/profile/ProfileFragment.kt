@@ -2,12 +2,13 @@ package ru.chernakov.rocketscienceapp.presentation.ui.profile
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.toolbar_profile.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import ru.chernakov.rocketscienceapp.R
 import ru.chernakov.rocketscienceapp.presentation.ui.base.fragment.BaseFragment
 import ru.chernakov.rocketscienceapp.presentation.ui.base.viewmodel.BaseViewModel
-import ru.chernakov.rocketscienceapp.presentation.ui.profile.settings.SettingsFragment
+import ru.chernakov.rocketscienceapp.presentation.ui.settings.SettingsFragment
 
 class ProfileFragment : BaseFragment() {
     private val profileViewModel: ProfileViewModel by viewModel()
@@ -15,6 +16,7 @@ class ProfileFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ivSettings.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(context, R.anim.rotation))
             activity?.let { SettingsFragment.newInstance(it.supportFragmentManager) }
         }
     }

@@ -77,7 +77,7 @@
 		android:layout_height="wrap_content">
 
 		<ImageView
-			android:id="@+id/btSign"
+			android:id="@+id/btGoogleSign"
 			style="@style/Widget.RocketScienceApp.Button.TextButton"
 			android:layout_width="@dimen/google_sign_size"
 			android:layout_height="@dimen/google_sign_size"

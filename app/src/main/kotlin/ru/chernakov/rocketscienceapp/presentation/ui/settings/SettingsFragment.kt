@@ -1,4 +1,4 @@
-package ru.chernakov.rocketscienceapp.presentation.ui.profile.settings
+package ru.chernakov.rocketscienceapp.presentation.ui.settings
 
 import android.os.Bundle
 import android.view.View

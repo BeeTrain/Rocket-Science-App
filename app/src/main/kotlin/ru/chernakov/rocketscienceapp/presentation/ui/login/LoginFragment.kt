@@ -7,14 +7,22 @@ import android.view.animation.AnimationUtils
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuthEmailException
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.extension.android.app.hideKeyboard
+import ru.chernakov.rocketscienceapp.extension.android.widget.addTextChangedListener
 import ru.chernakov.rocketscienceapp.presentation.ui.base.fragment.BaseFragment
 import ru.chernakov.rocketscienceapp.presentation.ui.base.viewmodel.BaseViewModel
 import ru.chernakov.rocketscienceapp.presentation.ui.flow.FlowFragment
+import ru.chernakov.rocketscienceapp.presentation.ui.register.RegisterFragment
 import ru.chernakov.rocketscienceapp.util.RequestCodeGenerator
+import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 
 
 class LoginFragment : BaseFragment() {
@@ -22,11 +30,47 @@ class LoginFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btSign.setOnClickListener {
-            it.startAnimation(AnimationUtils.loadAnimation(context, R.anim.rotation))
-            signIn()
+        if (savedInstanceState == null) {
+            runStartAnimation()
         }
-        runStartAnimation(savedInstanceState)
+        btGoogleSign.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(context, R.anim.rotation))
+            googleSignIn()
+        }
+        btRegister.setOnClickListener {
+            goToRegister()
+        }
+        btLogin.setOnClickListener { onLogin() }
+        titEmail.addTextChangedListener {
+            afterTextChanged {
+                it?.let {
+                    if (loginViewModel.isEmailValid(it)) {
+                        tilEmail.error = null
+                    }
+                }
+            }
+        }
+        titPassword.addTextChangedListener {
+            afterTextChanged {
+                it?.let {
+                    if (loginViewModel.isPasswordValid(it)) {
+                        tilPassword.error = null
+                    }
+                }
+            }
+        }
+        loginViewModel.signInEvent.observe(this, SafeObserver {
+            onAuthResult(it)
+        })
+        loginViewModel.authErrorEvent.observe(this, SafeObserver {
+            val authErrorMessage = when (it) {
+                is FirebaseAuthInvalidUserException -> getString(R.string.msg_error_auth_user)
+                is FirebaseAuthEmailException -> getString(R.string.msg_error_auth_email)
+                is FirebaseAuthInvalidCredentialsException -> getString(R.string.msg_error_auth_credentials)
+                else -> it.localizedMessage
+            }
+            showAuthErrorMessage(authErrorMessage)
+        })
     }
 
     override fun getLayout(): Int = R.layout.fragment_login
@@ -42,7 +86,22 @@ class LoginFragment : BaseFragment() {
         }
     }
 
-    private fun signIn() {
+    private fun onLogin() {
+        val isEmailValid = loginViewModel.isEmailValid(titEmail.editableText)
+        val isPasswordValid = loginViewModel.isPasswordValid(titPassword.editableText)
+        if (isEmailValid && isPasswordValid) {
+            activity?.hideKeyboard()
+            loginViewModel.signInWithEmailAndPassword(titEmail.text.toString(), titPassword.text.toString())
+        } else if (!isEmailValid) {
+            titEmail.requestFocus()
+            tilEmail.error = getString(R.string.msg_error_email)
+        } else if (!isPasswordValid) {
+            titPassword.requestFocus()
+            tilPassword.error = getString(R.string.msg_error_password)
+        }
+    }
+
+    private fun googleSignIn() {
         startActivityForResult(loginViewModel.getGoogleSignInIntent(), RC_SIGN_IN)
     }
 
@@ -50,19 +109,32 @@ class LoginFragment : BaseFragment() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         activity?.let {
             loginViewModel.firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(activity!!) { task ->
-                    if (task.isSuccessful) startFragment(FlowFragment.newInstance(), false)
-                }
+                    .addOnCompleteListener(activity!!) { onAuthResult(it.isSuccessful) }
         }
     }
 
-    private fun runStartAnimation(savedInstanceState: Bundle?) {
-        if (savedInstanceState == null) {
-            vgHeader.setAnimation(AnimationUtils.loadAnimation(context, R.anim.up_to_down))
-            vgFooter.setAnimation(AnimationUtils.loadAnimation(context, R.anim.down_to_up))
-            tilEmail.setAnimation(AnimationUtils.loadAnimation(context, R.anim.left_to_right))
-            tilPassword.setAnimation(AnimationUtils.loadAnimation(context, R.anim.right_to_left))
-        }
+    private fun onAuthResult(isLogged: Boolean) {
+        if (isLogged) goToNextScreen() else showAuthErrorMessage()
+    }
+
+    private fun runStartAnimation() {
+        vgHeader.animation = AnimationUtils.loadAnimation(context, R.anim.up_to_down)
+        vgFooter.animation = AnimationUtils.loadAnimation(context, R.anim.down_to_up)
+        tilEmail.animation = AnimationUtils.loadAnimation(context, R.anim.left_to_right)
+        tilPassword.animation = AnimationUtils.loadAnimation(context, R.anim.right_to_left)
+    }
+
+    private fun showAuthErrorMessage(message: String? = null) {
+        val mes = message ?: getString(R.string.msg_error_auth)
+        view?.let { Snackbar.make(it, mes, Snackbar.LENGTH_SHORT).show() }
+    }
+
+    private fun goToNextScreen() {
+        startFragment(FlowFragment.newInstance(), false)
+    }
+
+    private fun goToRegister() {
+        activity?.let { RegisterFragment.newInstance(it.supportFragmentManager) }
     }
 
     companion object {
