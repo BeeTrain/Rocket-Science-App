@@ -13,6 +13,7 @@ class LoginViewModel(
 ) : BaseViewModel() {
 
     var signInEvent = SingleLiveEvent<Boolean>()
+    var resetPasswordEvent = SingleLiveEvent<Boolean>()
     var authErrorEvent = SingleLiveEvent<Exception>()
 
     fun getGoogleSignInIntent() = googleSignInClient.signInIntent
@@ -30,8 +31,17 @@ class LoginViewModel(
                 }
     }
 
-    fun isEmailValid(email: Editable) = email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    fun resetPassword(email: String) {
+        loading.postValue(true)
+        firebaseAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener {
+                    loading.postValue(false)
+                    resetPasswordEvent.postValue(it.isSuccessful)
+                }
+    }
 
-    fun isPasswordValid(password: Editable) = password.length >= 8
+    fun isEmailValid(email: Editable) = email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email.trim()).matches()
+
+    fun isPasswordValid(password: Editable) = password.trim().length >= 8
 
 }

@@ -41,6 +41,7 @@ class LoginFragment : BaseFragment() {
             goToRegister()
         }
         btLogin.setOnClickListener { onLogin() }
+        tvForgotPassword.setOnClickListener { onResetPasswordClick() }
         titEmail.addTextChangedListener {
             afterTextChanged {
                 it?.let {
@@ -69,7 +70,11 @@ class LoginFragment : BaseFragment() {
                 is FirebaseAuthInvalidCredentialsException -> getString(R.string.msg_error_auth_credentials)
                 else -> it.localizedMessage
             }
-            showAuthErrorMessage(authErrorMessage)
+            showMessage(authErrorMessage)
+        })
+        loginViewModel.resetPasswordEvent.observe(this, SafeObserver {
+            val message = if (it) getString(R.string.msg_reset_pass_email_sended) else getString(R.string.msg_reset_pass_error)
+            showMessage(message)
         })
     }
 
@@ -91,7 +96,7 @@ class LoginFragment : BaseFragment() {
         val isPasswordValid = loginViewModel.isPasswordValid(titPassword.editableText)
         if (isEmailValid && isPasswordValid) {
             activity?.hideKeyboard()
-            loginViewModel.signInWithEmailAndPassword(titEmail.text.toString(), titPassword.text.toString())
+            loginViewModel.signInWithEmailAndPassword(titEmail.text.toString().trim(), titPassword.text.toString().trim())
         } else {
             if (!isEmailValid) {
                 titEmail.requestFocus()
@@ -117,7 +122,17 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun onAuthResult(isLogged: Boolean) {
-        if (isLogged) goToNextScreen() else showAuthErrorMessage()
+        if (isLogged) goToNextScreen() else showMessage()
+    }
+
+    private fun onResetPasswordClick() {
+        val isEmailValid = loginViewModel.isEmailValid(titEmail.editableText)
+        if (isEmailValid) {
+            loginViewModel.resetPassword(titEmail.editableText.toString().trim())
+        } else {
+            titEmail.requestFocus()
+            tilEmail.error = getString(R.string.msg_error_email)
+        }
     }
 
     private fun runStartAnimation() {
@@ -127,9 +142,9 @@ class LoginFragment : BaseFragment() {
         tilPassword.animation = AnimationUtils.loadAnimation(context, R.anim.right_to_left)
     }
 
-    private fun showAuthErrorMessage(message: String? = null) {
+    private fun showMessage(message: String? = null) {
         val mes = message ?: getString(R.string.msg_error_auth)
-        view?.let { Snackbar.make(it, mes, Snackbar.LENGTH_SHORT).show() }
+        view?.let { Snackbar.make(it, mes, Snackbar.LENGTH_LONG).show() }
     }
 
     private fun goToNextScreen() {
