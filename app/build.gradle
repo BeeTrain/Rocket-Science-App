@@ -67,7 +67,7 @@ dependencies {
 
     // AndroidX
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
-    implementation "com.google.android.material:material:1.1.0-alpha09"
+    implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.core:core-ktx:$appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintVersion"
 
@@ -79,7 +79,7 @@ dependencies {
 
     // Firebase
     implementation "com.google.firebase:firebase-auth:$firebaseAuthVersion"
-    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation "com.google.android.gms:play-services-auth:$googleAuthVersion"
 
     // JetPack
     implementation "androidx.lifecycle:lifecycle-extensions:$archComponentsVersion"
@@ -88,8 +88,8 @@ dependencies {
     implementation "org.koin:koin-android:$koinVersion"
     implementation "org.koin:koin-android-viewmodel:$koinVersion"
 
-    // Glide
-    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    // Picasso
+    implementation "com.squareup.picasso:picasso:$picassoVersion"
 
     // Timber
     implementation "com.jakewharton.timber:timber:$timberVersion"

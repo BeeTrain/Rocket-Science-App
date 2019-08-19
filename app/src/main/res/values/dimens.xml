@@ -7,13 +7,16 @@
 	<dimen name="text_small">14sp</dimen>
 	<dimen name="text_medium">16sp</dimen>
 	<dimen name="text_large">20sp</dimen>
+	<dimen name="text_xlarge">24sp</dimen>
 
 	<!-- Default margins -->
 	<dimen name="default_elevation">8dp</dimen>
 	<dimen name="margin_small">8dp</dimen>
 	<dimen name="margin_medium">16dp</dimen>
+	<dimen name="margin_xlarge">24dp</dimen>
 
 	<dimen name="user_profile_photo_size">88dp</dimen>
 	<dimen name="google_sign_size">56dp</dimen>
+	<dimen name="corner_radius">12dp</dimen>
 
 </resources>

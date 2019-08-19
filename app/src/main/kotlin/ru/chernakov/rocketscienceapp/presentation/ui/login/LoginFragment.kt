@@ -22,6 +22,7 @@ import ru.chernakov.rocketscienceapp.presentation.ui.base.viewmodel.BaseViewMode
 import ru.chernakov.rocketscienceapp.presentation.ui.flow.FlowFragment
 import ru.chernakov.rocketscienceapp.presentation.ui.register.RegisterFragment
 import ru.chernakov.rocketscienceapp.util.RequestCodeGenerator
+import ru.chernakov.rocketscienceapp.util.animation.BounceInterpolator
 import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 
 
@@ -33,8 +34,13 @@ class LoginFragment : BaseFragment() {
         if (savedInstanceState == null) {
             runStartAnimation()
         }
-        btGoogleSign.setOnClickListener {
-            it.startAnimation(AnimationUtils.loadAnimation(context, R.anim.rotation))
+        btGoogleSign.setOnClickListener { v ->
+            context?.let {
+                val bounce = AnimationUtils.loadAnimation(it, R.anim.bounce).apply {
+                    interpolator = BounceInterpolator(0.2, 20.0)
+                }
+                v.startAnimation(bounce)
+            }
             googleSignIn()
         }
         btRegister.setOnClickListener {

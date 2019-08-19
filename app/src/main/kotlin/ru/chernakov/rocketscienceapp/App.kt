@@ -26,7 +26,7 @@ class App : Application() {
     private fun initKoin() {
         startKoin {
             androidContext(this@App)
-            modules(viewModelModule, appModule, interactorModule)
+            modules(listOf(viewModelModule, appModule, interactorModule))
         }
     }
 
