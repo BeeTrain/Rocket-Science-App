@@ -12,7 +12,6 @@ import ru.chernakov.rocketscienceapp.extension.android.content.res.dpToPx
 import ru.chernakov.rocketscienceapp.presentation.ui.base.fragment.BaseFragment
 import ru.chernakov.rocketscienceapp.presentation.ui.base.viewmodel.BaseViewModel
 import ru.chernakov.rocketscienceapp.presentation.ui.settings.SettingsFragment
-import ru.chernakov.rocketscienceapp.util.bitmap.picasso.RoundCornersTransformation
 
 class ProfileFragment : BaseFragment() {
     private val profileViewModel: ProfileViewModel by viewModel()
@@ -32,15 +31,13 @@ class ProfileFragment : BaseFragment() {
 
     private fun setUserData(user: FirebaseUser?) {
         user?.let {
-            val cropSize = dpToPx(resources.getDimension(R.dimen.user_profile_photo_size))
-            val cornerRadius = resources.getDimension(R.dimen.corner_radius)
             tvUsername.text = it.displayName
             tvUserNick.text = it.email
+            val cropSize = dpToPx(resources.getDimension(R.dimen.user_profile_photo_size))
             Picasso.get()
                     .load(it.photoUrl)
                     .resize(cropSize, cropSize)
                     .centerCrop()
-                    .transform(RoundCornersTransformation(cornerRadius))
                     .into(ivProfilePhoto)
         }
     }
