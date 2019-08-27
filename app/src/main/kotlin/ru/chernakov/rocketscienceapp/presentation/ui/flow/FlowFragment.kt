@@ -9,7 +9,7 @@ import ru.chernakov.rocketscienceapp.R
 import ru.chernakov.rocketscienceapp.extension.androidx.fragment.app.replaceFragment
 import ru.chernakov.rocketscienceapp.presentation.ui.base.fragment.BaseFragment
 import ru.chernakov.rocketscienceapp.presentation.ui.base.viewmodel.BaseViewModel
-import ru.chernakov.rocketscienceapp.presentation.ui.feed.FeedFragment
+import ru.chernakov.rocketscienceapp.presentation.ui.features.FeaturesFragment
 import ru.chernakov.rocketscienceapp.presentation.ui.profile.ProfileFragment
 import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 
@@ -37,7 +37,7 @@ class FlowFragment : BaseFragment() {
             var fragment: Fragment? = null
             when (itemId) {
                 R.id.navigation_profile -> fragment = ProfileFragment.newInstance()
-                R.id.navigation_feed -> fragment = FeedFragment.newInstance()
+                R.id.navigation_feed -> fragment = FeaturesFragment.newInstance()
                 R.id.navigation_organization -> {
                 }
             }

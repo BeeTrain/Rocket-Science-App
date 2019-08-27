@@ -19,4 +19,6 @@
 	<dimen name="google_sign_size">56dp</dimen>
 	<dimen name="corner_radius">12dp</dimen>
 
+	<dimen name="feature_image_size">60dp</dimen>
+
 </resources>
