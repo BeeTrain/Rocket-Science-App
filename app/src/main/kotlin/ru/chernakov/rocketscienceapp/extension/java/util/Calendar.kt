@@ -1,6 +1,8 @@
 package ru.chernakov.rocketscienceapp.extension.java.util
 
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.TimeZone
 
 const val TIMEZONE_UTC = "UTC"
 

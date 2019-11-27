@@ -21,7 +21,8 @@ class FeaturesFragment : BaseFragment() {
             layoutManager = LinearLayoutManager(activity)
             itemAnimator = DefaultItemAnimator()
         }
-        val features = listOf(Feature(0,"qwe"), Feature(0,"qwe"), Feature(0,"qwe"), Feature(0,"qwe"))
+        val features =
+            listOf(Feature(0, "qwe"), Feature(0, "qwe"), Feature(0, "qwe"), Feature(0, "qwe"))
         feedAdapter.setData(features)
     }
 

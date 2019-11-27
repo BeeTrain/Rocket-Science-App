@@ -9,7 +9,6 @@ import ru.chernakov.rocketscienceapp.presentation.ui.base.viewmodel.BaseViewMode
 import ru.chernakov.rocketscienceapp.presentation.ui.flow.FlowFragment
 import ru.chernakov.rocketscienceapp.presentation.ui.login.LoginFragment
 
-
 class SplashFragment : BaseFragment() {
     private val splashViewModel: SplashViewModel by viewModel()
 

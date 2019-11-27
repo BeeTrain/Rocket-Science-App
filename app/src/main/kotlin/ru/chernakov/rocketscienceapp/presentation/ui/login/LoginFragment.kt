@@ -25,7 +25,6 @@ import ru.chernakov.rocketscienceapp.util.RequestCodeGenerator
 import ru.chernakov.rocketscienceapp.util.animation.BounceInterpolator
 import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 
-
 class LoginFragment : BaseFragment() {
     private val loginViewModel: LoginViewModel by viewModel()
 

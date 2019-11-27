@@ -2,7 +2,17 @@ package ru.chernakov.rocketscienceapp.presentation.widget
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.BitmapShader
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.ColorFilter
+import android.graphics.Matrix
+import android.graphics.Outline
+import android.graphics.Paint
+import android.graphics.Rect
+import android.graphics.RectF
+import android.graphics.Shader
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
@@ -12,18 +22,17 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewOutlineProvider
-import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.AppCompatImageView
 import ru.chernakov.rocketscienceapp.R
 import ru.chernakov.rocketscienceapp.extension.android.content.getColorKtx
 import kotlin.math.min
 import kotlin.math.pow
 
-
-class CircleImageView : ImageView {
+class CircleImageView : AppCompatImageView {
     private val drawableRect = RectF()
     private val borderRect = RectF()
     private val shaderMatrix = Matrix()
@@ -259,7 +268,6 @@ class CircleImageView : ImageView {
             e.printStackTrace()
             return null
         }
-
     }
 
     private fun initializeBitmap() {

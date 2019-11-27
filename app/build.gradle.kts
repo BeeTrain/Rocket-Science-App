@@ -2,7 +2,17 @@ plugins {
     id(Plugins.application)
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinAndroidExtensions)
+    id(Plugins.kotlinKapt)
+    id(Plugins.timeTracker)
+    id(Plugins.detekt)
 }
+
+apply {
+     from("../buildSrc/quality/ktlint.gradle")
+     from("../buildSrc/quality/checkstyle.gradle")
+     from("../buildSrc/quality/jacoco.gradle")
+}
+
 android {
     compileSdkVersion(AndroidConfig.compileSdk)
 
@@ -74,4 +84,48 @@ dependencies {
     testImplementation(Libraries.Tests.junit)
     androidTestImplementation(Libraries.Tests.mockito)
 }
+
+detekt {
+    toolVersion = Versions.detekt
+    input = files("src/main/kotlin")
+    config = files("${projectDir}/../buildSrc/quality/detekt.yml")
+    reports {
+        xml {
+            enabled = true
+            destination = file("$projectDir/build/reports/detekt/detekt-report.xml")
+        }
+        html {
+            enabled = true
+            destination = file("$projectDir/build/reports/detekt/detekt-report.html")
+        }
+
+    }
+}
+
+buildtimetracker {
+    reporters {
+        register("csv") {
+            options["output"] = "build/times.csv"
+            options["append"] = "true"
+            options["header"] = "false"
+        }
+
+        register("summary") {
+            options["ordered"] = "true"
+            options["threshold"] = "50"
+            options["barstyle"] = "none"
+        }
+
+        register("csvSummary") {
+            options["csv"] = "build/times.csv"
+        }
+    }
+}
+
+tasks.register("checkBeforePush") {
+    group = "verification"
+    description = "Inspect your code before push"
+    dependsOn("checkstyle", "ktlint", "lintDebug")
+}
+
 apply(plugin = Plugins.googleServices)

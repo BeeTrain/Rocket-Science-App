@@ -4,7 +4,8 @@ import ru.chernakov.rocketscienceapp.extension.java.util.DD_MM_YYYY_HH_MM
 import timber.log.Timber
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
+import java.util.Date
 
 inline fun String.toDateLong(pattern: String = DD_MM_YYYY_HH_MM): Long {
     val simpleDateFormat = SimpleDateFormat(pattern, Locale.getDefault())

@@ -1,7 +1,10 @@
 package ru.chernakov.rocketscienceapp.extension.java.util
 
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Calendar
+import java.util.TimeZone
+import java.util.Locale
 
 const val DD_MM_YYYY = "dd.MM.yyyy"
 const val HH_MM = "HH:mm"

@@ -11,6 +11,10 @@ object Plugins {
         const val safeArgs = "androidx.navigation.safeargs.kotlin"
     }
 
+    object Url {
+        const val pluginsGradle = "https://plugins.gradle.org/m2/"
+    }
+
     const val application = "com.android.application"
     const val library = "com.android.library"
     const val kotlinAndroid = "kotlin-android"
