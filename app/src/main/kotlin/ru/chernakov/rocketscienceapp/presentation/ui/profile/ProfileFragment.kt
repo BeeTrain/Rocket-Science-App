@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import com.google.firebase.auth.FirebaseUser
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.toolbar_profile.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import ru.chernakov.rocketscienceapp.R
-import ru.chernakov.rocketscienceapp.extension.android.content.res.dpToPx
 import ru.chernakov.rocketscienceapp.presentation.ui.base.fragment.BaseFragment
 import ru.chernakov.rocketscienceapp.presentation.ui.base.viewmodel.BaseViewModel
 import ru.chernakov.rocketscienceapp.presentation.ui.settings.SettingsFragment
@@ -33,12 +31,6 @@ class ProfileFragment : BaseFragment() {
         user?.let {
             tvUsername.text = it.displayName
             tvUserNick.text = it.email
-            val cropSize = dpToPx(resources.getDimension(R.dimen.user_profile_photo_size))
-            Picasso.get()
-                    .load(it.photoUrl)
-                    .resize(cropSize, cropSize)
-                    .centerCrop()
-                    .into(ivProfilePhoto)
         }
     }
 
