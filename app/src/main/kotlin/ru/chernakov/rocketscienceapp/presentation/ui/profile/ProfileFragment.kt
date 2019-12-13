@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import com.google.firebase.auth.FirebaseUser
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.toolbar_profile.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import ru.chernakov.rocketscienceapp.R
@@ -31,6 +32,7 @@ class ProfileFragment : BaseFragment() {
         user?.let {
             tvUsername.text = it.displayName
             tvUserNick.text = it.email
+            it.photoUrl?.let { Picasso.get().load(it).into(ivProfilePhoto) }
         }
     }
 

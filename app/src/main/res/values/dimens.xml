@@ -15,10 +15,14 @@
     <dimen name="margin_medium">16dp</dimen>
     <dimen name="margin_xlarge">24dp</dimen>
 
-    <dimen name="user_profile_photo_size">88dp</dimen>
-    <dimen name="google_sign_size">56dp</dimen>
-    <dimen name="corner_radius">12dp</dimen>
-
+    <!-- Splash screen -->
+    <dimen name="logo_size">64dp</dimen>
     <dimen name="feature_image_size">60dp</dimen>
+    <dimen name="vg_header_margin_top">48dp</dimen>
+    <dimen name="vg_header_margin_bottom">132dp</dimen>
+    <dimen name="google_sign_size">56dp</dimen>
+
+    <!-- Profile screen -->
+    <dimen name="user_profile_photo_size">88dp</dimen>
 
 </resources>
