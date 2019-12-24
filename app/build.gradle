@@ -1,0 +1,65 @@
+import ru.chernakov.AndroidConfig
+import ru.chernakov.Libraries
+import ru.chernakov.Plugins
+
+apply plugin: Plugins.application
+
+apply from: '../config/config.gradle'
+
+apply from: '../config/quality/checkstyle.gradle'
+apply from: '../config/quality/ktlint.gradle'
+apply from: '../config/quality/jacoco.gradle'
+
+android {
+    defaultConfig {
+        applicationId AndroidConfig.ID
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled = false
+        }
+    }
+}
+
+dependencies {
+    implementation Libraries.Kotlin.stdLib
+    implementation Libraries.Kotlin.coroutinesCore
+    implementation Libraries.Kotlin.coroutinesAndroid
+    implementation Libraries.Kotlin.coroutinesTest
+
+    implementation Libraries.AndroidX.coreKtx
+
+    implementation Libraries.Support.appCompat
+    implementation Libraries.Support.material
+    implementation Libraries.Support.constraint
+
+    implementation Libraries.ViewModel.extensions
+
+    implementation Libraries.Retrofit.okhttp
+    implementation Libraries.Retrofit.logging
+    implementation Libraries.Retrofit.retrofit
+    implementation Libraries.Retrofit.gsonConverter
+
+    implementation Libraries.Firebase.auth
+    implementation Libraries.playServicesAuth
+
+    implementation Libraries.ViewModel.extensions
+
+    implementation Libraries.Koin.koin
+    implementation Libraries.Koin.viewModel
+
+    implementation Libraries.picasso
+
+    implementation Libraries.timber
+
+    debugImplementation Libraries.LeakCanary.canaryAndroid
+
+    testImplementation Libraries.Tests.junit
+    androidTestImplementation Libraries.Tests.mockito
+}
+apply plugin: Plugins.googleServices

@@ -1,3 +1,5 @@
+package ru.chernakov
+
 object Plugins {
     object ClassPaths {
         const val gradle = "com.android.tools.build:gradle:${Versions.gradle}"

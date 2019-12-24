@@ -1,0 +1,8 @@
+import ru.chernakov.AndroidConfig
+import ru.chernakov.Modules
+
+rootProject.name = AndroidConfig.NAME
+
+include(
+        Modules.app
+)

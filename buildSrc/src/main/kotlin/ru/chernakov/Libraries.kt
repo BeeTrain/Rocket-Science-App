@@ -1,3 +1,5 @@
+package ru.chernakov
+
 object Libraries {
     const val multidex = "androidx.multidex:multidex:${Versions.multidex}"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"

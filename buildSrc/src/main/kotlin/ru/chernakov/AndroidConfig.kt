@@ -1,4 +1,7 @@
+package ru.chernakov
+
 object AndroidConfig {
+    const val NAME = "RocketScienceApp"
     const val ID = "ru.chernakov.rocketscienceapp"
 
     const val compileSdk = 28

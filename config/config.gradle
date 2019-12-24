@@ -1,0 +1,82 @@
+import ru.chernakov.Plugins
+import ru.chernakov.Versions
+import ru.chernakov.AndroidConfig
+
+apply plugin: Plugins.kotlinAndroid
+apply plugin: Plugins.kotlinKapt
+apply plugin: Plugins.kotlinAndroidExtensions
+apply plugin: Plugins.detekt
+apply plugin: Plugins.timeTracker
+
+android {
+    compileSdkVersion AndroidConfig.targetSdk
+
+    defaultConfig {
+        minSdkVersion AndroidConfig.minSdk
+        targetSdkVersion AndroidConfig.targetSdk
+
+        versionCode AndroidConfig.versionCode
+        versionName AndroidConfig.versionName
+
+        multiDexEnabled = true
+    }
+
+    dexOptions {
+        preDexLibraries true
+        javaMaxHeapSize "2048M"
+    }
+
+    buildTypes {
+        releaseQa { }
+    }
+
+    sourceSets {
+        main.java.srcDirs += AndroidConfig.srcMain
+        test.java.srcDirs += AndroidConfig.srcTest
+    }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+detekt {
+    toolVersion = Versions.detekt
+    input = files("src/main/kotlin")
+    config = files("$projectDir/../config/quality/detekt.yml")
+    filters = ".*test.*,.*/resources/.*,.*/tmp/.*,.*/build/.*"
+    reports {
+        xml {
+            enabled = true
+            destination = file("$projectDir/build/reports/detekt/detekt-report.xml")
+        }
+        html {
+            enabled = true
+            destination = file("$projectDir/build/reports/detekt/detekt-report.html")
+        }
+    }
+}
+
+buildtimetracker {
+    reporters {
+        csv {
+            output "build/times.csv"
+            append true
+            header false
+        }
+
+        summary {
+            ordered true
+            threshold 50
+            barstyle "none"
+        }
+
+        csvSummary {
+            csv "build/times.csv"
+        }
+    }
+}

@@ -1,3 +1,5 @@
+package ru.chernakov
+
 object Versions {
 
     const val gradle = "3.5.2"
