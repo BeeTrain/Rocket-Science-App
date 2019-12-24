@@ -1,0 +1,70 @@
+import ru.chernakov.Libraries
+
+def Group(Closure closure) {
+    closure.delegate = dependencies
+    return closure
+}
+
+ext {
+    multidex = Group {
+        implementation Libraries.multidex
+    }
+
+    kotlinLib = Group {
+        implementation Libraries.Kotlin.stdLib
+        implementation Libraries.Kotlin.coroutinesCore
+        implementation Libraries.Kotlin.coroutinesAndroid
+        implementation Libraries.Kotlin.coroutinesTest
+    }
+
+    androidxCore = Group {
+        implementation Libraries.AndroidX.coreKtx
+    }
+
+    supportCore = Group {
+        implementation Libraries.Support.appCompat
+        implementation Libraries.Support.material
+        implementation Libraries.Support.constraint
+    }
+
+    network = Group {
+        implementation Libraries.Retrofit.okhttp
+        implementation Libraries.Retrofit.logging
+        implementation Libraries.Retrofit.retrofit
+        implementation Libraries.Retrofit.gsonConverter
+    }
+
+    firebase = Group {
+        implementation Libraries.Firebase.auth
+    }
+
+    playServicesAuth = Group {
+        implementation Libraries.playServicesAuth
+    }
+
+    viewModel = Group {
+        implementation Libraries.ViewModel.extensions
+    }
+
+    koin = Group {
+        implementation Libraries.Koin.koin
+        implementation Libraries.Koin.viewModel
+    }
+
+    picasso = Group {
+        implementation Libraries.picasso
+    }
+
+    timber = Group {
+        implementation Libraries.timber
+    }
+
+    leakCanary = Group {
+        debugImplementation Libraries.LeakCanary.canaryAndroid
+    }
+
+    tests = Group {
+        testImplementation Libraries.Tests.junit
+        androidTestImplementation Libraries.Tests.mockito
+    }
+}

@@ -1,10 +1,10 @@
 import ru.chernakov.AndroidConfig
-import ru.chernakov.Libraries
 import ru.chernakov.Plugins
 
 apply plugin: Plugins.application
 
 apply from: '../config/config.gradle'
+apply from: '../config/dependencies.gradle'
 
 apply from: '../config/quality/checkstyle.gradle'
 apply from: '../config/quality/ktlint.gradle'
@@ -27,39 +27,29 @@ android {
 }
 
 dependencies {
-    implementation Libraries.Kotlin.stdLib
-    implementation Libraries.Kotlin.coroutinesCore
-    implementation Libraries.Kotlin.coroutinesAndroid
-    implementation Libraries.Kotlin.coroutinesTest
 
-    implementation Libraries.AndroidX.coreKtx
+    multidex()
 
-    implementation Libraries.Support.appCompat
-    implementation Libraries.Support.material
-    implementation Libraries.Support.constraint
+    kotlinLib()
 
-    implementation Libraries.ViewModel.extensions
+    androidxCore()
+    supportCore()
 
-    implementation Libraries.Retrofit.okhttp
-    implementation Libraries.Retrofit.logging
-    implementation Libraries.Retrofit.retrofit
-    implementation Libraries.Retrofit.gsonConverter
+    viewModel()
 
-    implementation Libraries.Firebase.auth
-    implementation Libraries.playServicesAuth
+    network()
 
-    implementation Libraries.ViewModel.extensions
+    firebase()
+    playServicesAuth()
 
-    implementation Libraries.Koin.koin
-    implementation Libraries.Koin.viewModel
+    koin()
 
-    implementation Libraries.picasso
+    picasso()
 
-    implementation Libraries.timber
+    timber()
 
-    debugImplementation Libraries.LeakCanary.canaryAndroid
+    leakCanary()
 
-    testImplementation Libraries.Tests.junit
-    androidTestImplementation Libraries.Tests.mockito
+    tests()
 }
 apply plugin: Plugins.googleServices
