@@ -7,7 +7,7 @@ import org.koin.core.context.startKoin
 import ru.chernakov.rocketscienceapp.di.appModule
 import ru.chernakov.rocketscienceapp.di.interactorModule
 import ru.chernakov.rocketscienceapp.di.viewModelModule
-import ru.chernakov.rocketscienceapp.util.lifecycle.Lifecycler
+import ru.chernakov.core_base.util.lifecycle.Lifecycler
 import timber.log.Timber
 
 class App : Application() {

@@ -7,9 +7,9 @@ import com.google.firebase.auth.FirebaseUser
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.toolbar_profile.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import ru.chernakov.core_ui.presentation.fragment.BaseFragment
+import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
 import ru.chernakov.rocketscienceapp.R
-import ru.chernakov.rocketscienceapp.presentation.ui.base.fragment.BaseFragment
-import ru.chernakov.rocketscienceapp.presentation.ui.base.viewmodel.BaseViewModel
 import ru.chernakov.rocketscienceapp.presentation.ui.settings.SettingsFragment
 
 class ProfileFragment : BaseFragment() {

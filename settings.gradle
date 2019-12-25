@@ -4,5 +4,7 @@ import ru.chernakov.Modules
 rootProject.name = AndroidConfig.NAME
 
 include(
-        Modules.app
+        Modules.APP,
+        Modules.CORE_BASE,
+        Modules.CORE_UI
 )

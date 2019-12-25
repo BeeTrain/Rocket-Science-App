@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import org.koin.android.viewmodel.ext.android.viewModel
 import ru.chernakov.rocketscienceapp.R
-import ru.chernakov.rocketscienceapp.presentation.ui.base.fragment.BaseFragment
-import ru.chernakov.rocketscienceapp.presentation.ui.base.viewmodel.BaseViewModel
+import ru.chernakov.core_ui.presentation.fragment.BaseFragment
+import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
 import ru.chernakov.rocketscienceapp.presentation.ui.flow.FlowFragment
 import ru.chernakov.rocketscienceapp.presentation.ui.login.LoginFragment
 

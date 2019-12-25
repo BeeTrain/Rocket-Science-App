@@ -1,4 +1,5 @@
 import ru.chernakov.AndroidConfig
+import ru.chernakov.Modules
 import ru.chernakov.Plugins
 
 apply plugin: Plugins.application
@@ -21,12 +22,14 @@ android {
         }
 
         debug {
-            minifyEnabled = false
+            minifyEnabled false
         }
     }
 }
 
 dependencies {
+    implementation project(Modules.CORE_BASE)
+    implementation project(Modules.CORE_UI)
 
     multidex()
 
@@ -51,5 +54,30 @@ dependencies {
     leakCanary()
 
     tests()
+}
+
+buildtimetracker {
+    reporters {
+        csv {
+            output "build/times.csv"
+            append true
+            header false
+        }
+
+        summary {
+            ordered true
+            threshold 50
+            barstyle "none"
+        }
+
+        csvSummary {
+            csv "build/times.csv"
+        }
+    }
+}
+
+task checkBeforePush(group: 'verification',
+        description: 'Inspect your code before push') {
+    dependsOn 'checkstyle', 'detekt', 'ktlint', 'lintDebug'
 }
 apply plugin: Plugins.googleServices

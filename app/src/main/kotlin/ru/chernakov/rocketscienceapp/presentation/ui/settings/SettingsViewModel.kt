@@ -1,8 +1,8 @@
 package ru.chernakov.rocketscienceapp.presentation.ui.settings
 
 import com.google.firebase.auth.FirebaseAuth
-import ru.chernakov.rocketscienceapp.presentation.ui.base.viewmodel.BaseViewModel
-import ru.chernakov.rocketscienceapp.util.lifecycle.SingleLiveEvent
+import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
+import ru.chernakov.core_base.util.lifecycle.SingleLiveEvent
 
 class SettingsViewModel(private val firebaseAuth: FirebaseAuth) : BaseViewModel() {
 

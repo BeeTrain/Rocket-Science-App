@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_feed.*
 import ru.chernakov.rocketscienceapp.R
 import ru.chernakov.rocketscienceapp.data.model.Feature
-import ru.chernakov.rocketscienceapp.presentation.ui.base.fragment.BaseFragment
-import ru.chernakov.rocketscienceapp.presentation.ui.base.viewmodel.BaseViewModel
+import ru.chernakov.core_ui.presentation.fragment.BaseFragment
+import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
 import ru.chernakov.rocketscienceapp.presentation.ui.features.adapter.FeaturesAdapter
 
 class FeaturesFragment : BaseFragment() {

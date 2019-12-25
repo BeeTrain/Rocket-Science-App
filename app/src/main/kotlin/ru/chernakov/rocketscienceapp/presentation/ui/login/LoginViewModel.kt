@@ -4,8 +4,8 @@ import android.text.Editable
 import android.util.Patterns
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
-import ru.chernakov.rocketscienceapp.presentation.ui.base.viewmodel.BaseViewModel
-import ru.chernakov.rocketscienceapp.util.lifecycle.SingleLiveEvent
+import ru.chernakov.core_base.util.lifecycle.SingleLiveEvent
+import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
 
 class LoginViewModel(
     val firebaseAuth: FirebaseAuth,
@@ -43,5 +43,9 @@ class LoginViewModel(
     fun isEmailValid(email: Editable) =
         email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email.trim()).matches()
 
-    fun isPasswordValid(password: Editable) = password.trim().length >= 8
+    fun isPasswordValid(password: Editable) = password.trim().length >= PASSWORD_MIN_LENGTH
+
+    companion object {
+        private const val PASSWORD_MIN_LENGTH = 8
+    }
 }

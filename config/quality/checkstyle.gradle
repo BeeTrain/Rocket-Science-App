@@ -7,7 +7,7 @@ dependencies {
     checkstyle Libraries.checkstyle
 }
 
-def qualityConfigDir = "$project.rootDir/buildSrc/quality"
+def qualityConfigDir = "$project.rootDir/config/quality"
 def reportsDir = "$project.buildDir/reports"
 
 check.dependsOn 'checkstyle'

@@ -7,21 +7,15 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuthEmailException
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
-import kotlinx.android.synthetic.main.fragment_login.btRegister
-import kotlinx.android.synthetic.main.fragment_login.titEmail
-import kotlinx.android.synthetic.main.fragment_login.titPassword
 import kotlinx.android.synthetic.main.fragment_register.*
-import kotlinx.android.synthetic.main.fragment_register.tilEmail
-import kotlinx.android.synthetic.main.fragment_register.tilPassword
-import kotlinx.android.synthetic.main.fragment_settings.ivClose
 import org.koin.android.viewmodel.ext.android.viewModel
 import ru.chernakov.rocketscienceapp.R
-import ru.chernakov.rocketscienceapp.extension.android.widget.addTextChangedListener
-import ru.chernakov.rocketscienceapp.extension.androidx.fragment.app.replaceFragment
-import ru.chernakov.rocketscienceapp.presentation.ui.base.fragment.BaseFragment
-import ru.chernakov.rocketscienceapp.presentation.ui.base.viewmodel.BaseViewModel
+import ru.chernakov.core_ui.presentation.fragment.BaseFragment
+import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
 import ru.chernakov.rocketscienceapp.presentation.ui.flow.FlowFragment
-import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
+import ru.chernakov.core_base.util.lifecycle.SafeObserver
+import ru.chernakov.core_ui.extension.android.widget.addTextChangedListener
+import ru.chernakov.core_ui.extension.androidx.fragment.app.replaceFragment
 
 class RegisterFragment : BaseFragment() {
     private val registerViewModel: RegisterViewModel by viewModel()

@@ -3,8 +3,8 @@ package ru.chernakov.rocketscienceapp.presentation.ui.register
 import android.text.Editable
 import android.util.Patterns
 import com.google.firebase.auth.FirebaseAuth
-import ru.chernakov.rocketscienceapp.presentation.ui.base.viewmodel.BaseViewModel
-import ru.chernakov.rocketscienceapp.util.lifecycle.SingleLiveEvent
+import ru.chernakov.core_base.util.lifecycle.SingleLiveEvent
+import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
 
 class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : BaseViewModel() {
 
@@ -13,20 +13,24 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : BaseViewModel(
 
     fun isEmailValid(email: Editable) = email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
 
-    fun isPasswordValid(password: Editable) = password.length >= 8
+    fun isPasswordValid(password: Editable) = password.length >= PASSWORD_MIN_LENGTH
 
     fun isPasswordConfirmValid(password: Editable, confirm: Editable) = password.toString() == confirm.toString()
 
     fun registerUser(email: String, password: String) {
         loading.postValue(true)
         firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener {
-                    loading.postValue(false)
-                    registerSuccessEvent.postValue(it.isSuccessful)
-                }
-                .addOnFailureListener {
-                    loading.postValue(false)
-                    registerErrorEvent.postValue(it)
-                }
+            .addOnCompleteListener {
+                loading.postValue(false)
+                registerSuccessEvent.postValue(it.isSuccessful)
+            }
+            .addOnFailureListener {
+                loading.postValue(false)
+                registerErrorEvent.postValue(it)
+            }
+    }
+
+    companion object {
+        private const val PASSWORD_MIN_LENGTH = 8
     }
 }

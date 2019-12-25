@@ -60,23 +60,3 @@ detekt {
         }
     }
 }
-
-buildtimetracker {
-    reporters {
-        csv {
-            output "build/times.csv"
-            append true
-            header false
-        }
-
-        summary {
-            ordered true
-            threshold 50
-            barstyle "none"
-        }
-
-        csvSummary {
-            csv "build/times.csv"
-        }
-    }
-}

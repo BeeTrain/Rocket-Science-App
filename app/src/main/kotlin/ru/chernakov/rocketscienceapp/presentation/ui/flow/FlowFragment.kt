@@ -6,12 +6,12 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_flow.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import ru.chernakov.rocketscienceapp.R
-import ru.chernakov.rocketscienceapp.extension.androidx.fragment.app.replaceFragment
-import ru.chernakov.rocketscienceapp.presentation.ui.base.fragment.BaseFragment
-import ru.chernakov.rocketscienceapp.presentation.ui.base.viewmodel.BaseViewModel
+import ru.chernakov.core_ui.presentation.fragment.BaseFragment
+import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
 import ru.chernakov.rocketscienceapp.presentation.ui.features.FeaturesFragment
 import ru.chernakov.rocketscienceapp.presentation.ui.profile.ProfileFragment
-import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
+import ru.chernakov.core_base.util.lifecycle.SafeObserver
+import ru.chernakov.core_ui.extension.androidx.fragment.app.replaceFragment
 
 class FlowFragment : BaseFragment() {
     private val flowViewModel: FlowViewModel by viewModel()

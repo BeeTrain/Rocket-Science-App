@@ -14,16 +14,16 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import ru.chernakov.core_base.util.RequestCodeGenerator
+import ru.chernakov.core_base.util.lifecycle.SafeObserver
+import ru.chernakov.core_ui.extension.android.app.hideKeyboard
+import ru.chernakov.core_ui.extension.android.widget.addTextChangedListener
+import ru.chernakov.core_ui.presentation.fragment.BaseFragment
+import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
+import ru.chernakov.core_ui.util.animation.BounceInterpolator
 import ru.chernakov.rocketscienceapp.R
-import ru.chernakov.rocketscienceapp.extension.android.app.hideKeyboard
-import ru.chernakov.rocketscienceapp.extension.android.widget.addTextChangedListener
-import ru.chernakov.rocketscienceapp.presentation.ui.base.fragment.BaseFragment
-import ru.chernakov.rocketscienceapp.presentation.ui.base.viewmodel.BaseViewModel
 import ru.chernakov.rocketscienceapp.presentation.ui.flow.FlowFragment
 import ru.chernakov.rocketscienceapp.presentation.ui.register.RegisterFragment
-import ru.chernakov.rocketscienceapp.util.RequestCodeGenerator
-import ru.chernakov.rocketscienceapp.util.animation.BounceInterpolator
-import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 
 class LoginFragment : BaseFragment() {
     private val loginViewModel: LoginViewModel by viewModel()
@@ -36,7 +36,7 @@ class LoginFragment : BaseFragment() {
         btGoogleSign.setOnClickListener { v ->
             context?.let {
                 val bounce = AnimationUtils.loadAnimation(it, R.anim.bounce).apply {
-                    interpolator = BounceInterpolator(0.2, 20.0)
+                    interpolator = BounceInterpolator(GOOGLE_SIGN_AMPLITUDE, GOOGLE_SIGN_FREQUENCY)
                 }
                 v.startAnimation(bounce)
             }
@@ -78,7 +78,11 @@ class LoginFragment : BaseFragment() {
             showMessage(authErrorMessage)
         })
         loginViewModel.resetPasswordEvent.observe(this, SafeObserver {
-            val message = if (it) getString(R.string.msg_reset_pass_email_sended) else getString(R.string.msg_reset_pass_error)
+            val message = if (it) {
+                getString(R.string.msg_reset_pass_email_sended)
+            } else {
+                getString(R.string.msg_reset_pass_error)
+            }
             showMessage(message)
         })
     }
@@ -101,7 +105,10 @@ class LoginFragment : BaseFragment() {
         val isPasswordValid = loginViewModel.isPasswordValid(titPassword.editableText)
         if (isEmailValid && isPasswordValid) {
             activity?.hideKeyboard()
-            loginViewModel.signInWithEmailAndPassword(titEmail.text.toString().trim(), titPassword.text.toString().trim())
+            loginViewModel.signInWithEmailAndPassword(
+                titEmail.text.toString().trim(),
+                titPassword.text.toString().trim()
+            )
         } else {
             if (!isEmailValid) {
                 titEmail.requestFocus()
@@ -122,7 +129,7 @@ class LoginFragment : BaseFragment() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         activity?.let {
             loginViewModel.firebaseAuth.signInWithCredential(credential)
-                    .addOnCompleteListener(activity!!) { onAuthResult(it.isSuccessful) }
+                .addOnCompleteListener(activity!!) { onAuthResult(it.isSuccessful) }
         }
     }
 
@@ -161,6 +168,9 @@ class LoginFragment : BaseFragment() {
     }
 
     companion object {
+        private const val GOOGLE_SIGN_AMPLITUDE = 0.2
+        private const val GOOGLE_SIGN_FREQUENCY = 20.0
+
         private val RC_SIGN_IN = RequestCodeGenerator.next
 
         fun newInstance() = LoginFragment()
