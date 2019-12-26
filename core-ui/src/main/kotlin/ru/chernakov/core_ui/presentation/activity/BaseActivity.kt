@@ -19,8 +19,4 @@ abstract class BaseActivity : AppCompatActivity() {
 
     @LayoutRes
     protected abstract fun getLayout(): Int
-
-    companion object {
-        fun makeIntent(context: Context) = Intent(context, BaseActivity::class.java)
-    }
 }
