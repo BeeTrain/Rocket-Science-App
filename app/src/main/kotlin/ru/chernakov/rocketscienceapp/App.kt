@@ -4,10 +4,14 @@ import android.app.Application
 import leakcanary.LeakSentry
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
-import ru.chernakov.rocketscienceapp.di.appModule
-import ru.chernakov.rocketscienceapp.di.interactorModule
-import ru.chernakov.rocketscienceapp.di.viewModelModule
 import ru.chernakov.core_base.util.lifecycle.Lifecycler
+import ru.chernakov.feature_login.presentation.di.loginModule
+import ru.chernakov.feature_register.di.registerModule
+import ru.chernakov.feature_splash.di.splashModule
+import ru.chernakov.rocketscienceapp.di.appModule
+import ru.chernakov.rocketscienceapp.di.firebaseModule
+import ru.chernakov.rocketscienceapp.di.navigationModule
+import ru.chernakov.rocketscienceapp.di.viewModelModule
 import timber.log.Timber
 
 class App : Application() {
@@ -26,7 +30,17 @@ class App : Application() {
     private fun initKoin() {
         startKoin {
             androidContext(this@App)
-            modules(listOf(viewModelModule, appModule, interactorModule))
+            modules(
+                listOf(
+                    appModule,
+                    firebaseModule,
+                    navigationModule,
+                    viewModelModule,
+                    splashModule,
+                    loginModule,
+                    registerModule
+                )
+            )
         }
     }
 

@@ -6,5 +6,8 @@ rootProject.name = AndroidConfig.NAME
 include(
         Modules.APP,
         Modules.CORE_BASE,
-        Modules.CORE_UI
+        Modules.CORE_UI,
+        Modules.FEATURE_SPLASH,
+        Modules.FEATURE_LOGIN,
+        Modules.FEATURE_REGISTER
 )

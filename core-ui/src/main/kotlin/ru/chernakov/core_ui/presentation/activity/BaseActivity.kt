@@ -15,12 +15,7 @@ abstract class BaseActivity : AppCompatActivity() {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(getLayout())
-        if (savedInstanceState == null) {
-            supportFragmentManager.replaceFragment(createFragment()).commit()
-        }
     }
-
-    abstract fun createFragment(): Fragment
 
     @LayoutRes
     protected abstract fun getLayout(): Int
