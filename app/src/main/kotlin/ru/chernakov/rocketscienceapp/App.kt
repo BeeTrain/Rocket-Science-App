@@ -5,6 +5,7 @@ import leakcanary.LeakSentry
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import ru.chernakov.core_base.util.lifecycle.Lifecycler
+import ru.chernakov.feature_app_bubblegame.di.bubbleGameModule
 import ru.chernakov.feature_flow.di.flowViewModule
 import ru.chernakov.feature_login.presentation.di.loginModule
 import ru.chernakov.feature_profile.di.profileModule
@@ -44,7 +45,8 @@ class App : Application() {
                     flowViewModule,
                     profileModule,
                     settingsModule,
-                    servicesModule
+                    servicesModule,
+                    bubbleGameModule
                 )
             )
         }

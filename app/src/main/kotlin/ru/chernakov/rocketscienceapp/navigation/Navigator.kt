@@ -1,6 +1,8 @@
 package ru.chernakov.rocketscienceapp.navigation
 
 import androidx.appcompat.app.AppCompatActivity
+import ru.chernakov.feature_app_bubblegame.navigation.BubbleGameNavigation
+import ru.chernakov.feature_app_bubblegame.presentation.BubbleGameMenuFragment
 import ru.chernakov.feature_appfeatures.navigation.AppFeaturesNavigation
 import ru.chernakov.feature_appfeatures.presentation.AppFeaturesFragment
 import ru.chernakov.feature_flow.navigation.FlowNavigation
@@ -17,7 +19,7 @@ import ru.chernakov.feature_splash.presentation.SplashFragment
 import ru.chernakov.rocketscienceapp.R
 
 class Navigator : SplashNavigation, LoginNavigation, RegisterNavigation, FlowNavigation, ProfileNavigation,
-    SettingsNavigation, AppFeaturesNavigation {
+    SettingsNavigation, AppFeaturesNavigation, BubbleGameNavigation {
 
     private var navController: NavigationController? = null
 
@@ -83,5 +85,9 @@ class Navigator : SplashNavigation, LoginNavigation, RegisterNavigation, FlowNav
 
     override fun logoutFromSettings() {
         navController?.restartHost()
+    }
+
+    override fun openBubbleGame() {
+        navController?.navigate(BubbleGameMenuFragment.newInstance())
     }
 }

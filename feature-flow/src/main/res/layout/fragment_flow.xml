@@ -19,6 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@color/colorSecondary"
-        app:menu="@menu/menu_navigation"/>
+        app:menu="@menu/menu_flow"/>
 
 </LinearLayout>

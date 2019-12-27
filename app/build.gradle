@@ -39,6 +39,8 @@ dependencies {
     implementation project(Modules.FEATURE_SETTINGS)
     implementation project(Modules.FEATURE_APPFEATURES)
 
+    implementation project(Modules.FEATURE_APP_BUBBLEGAME)
+
     multidex()
 
     kotlinLib()

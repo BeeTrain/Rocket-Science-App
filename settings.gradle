@@ -7,11 +7,14 @@ include(
         Modules.APP,
         Modules.CORE_BASE,
         Modules.CORE_UI,
+
         Modules.FEATURE_SPLASH,
         Modules.FEATURE_LOGIN,
         Modules.FEATURE_REGISTER,
         Modules.FEATURE_FLOW,
         Modules.FEATURE_PROFILE,
         Modules.FEATURE_SETTINGS,
-        Modules.FEATURE_APPFEATURES
+        Modules.FEATURE_APPFEATURES,
+
+        Modules.FEATURE_APP_BUBBLEGAME
 )

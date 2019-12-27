@@ -5,25 +5,43 @@ import android.view.View
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_appfeatures.*
+import org.koin.android.ext.android.inject
 import ru.chernakov.core_ui.presentation.fragment.BaseFragment
 import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
 import ru.chernakov.feature_appfeatures.R
 import ru.chernakov.feature_appfeatures.data.model.AppFeature
+import ru.chernakov.feature_appfeatures.navigation.AppFeaturesNavigation
 import ru.chernakov.feature_appfeatures.presentation.adapter.AppFeaturesAdapter
 
 class AppFeaturesFragment : BaseFragment() {
+    private val navigator: AppFeaturesNavigation by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val feedAdapter = AppFeaturesAdapter()
+        val feedAdapter = AppFeaturesAdapter().apply {
+            onClickListener = {
+                navigateToAppFeature(it)
+            }
+        }
         rvFeed.apply {
             adapter = feedAdapter
             layoutManager = LinearLayoutManager(activity)
             itemAnimator = DefaultItemAnimator()
         }
         val features =
-            listOf(AppFeature(0, "qwe"), AppFeature(0, "qwe"), AppFeature(0, "qwe"), AppFeature(0, "qwe"))
+            listOf(
+                AppFeature(AppFeature.BUBBLE_GAME_ID, "Bubble game"),
+                AppFeature(1, "qwe"),
+                AppFeature(2, "asd"),
+                AppFeature(3, "zxc")
+            )
         feedAdapter.setData(features)
+    }
+
+    private fun navigateToAppFeature(appFeature: AppFeature) {
+        when (appFeature.id) {
+            AppFeature.BUBBLE_GAME_ID -> navigator.openBubbleGame()
+        }
     }
 
     override fun getLayout(): Int = R.layout.fragment_appfeatures

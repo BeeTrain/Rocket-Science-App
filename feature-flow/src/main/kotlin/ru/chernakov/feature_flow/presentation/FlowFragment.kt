@@ -18,9 +18,13 @@ class FlowFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupNavigation()
-        flowViewModel.selectedNavigationData.observe(this, SafeObserver {
+        flowViewModel.selectedNavigationData.observe(viewLifecycleOwner, SafeObserver {
             startFlowFragment(it)
         })
+
+        if (savedInstanceState == null) {
+            navigation.selectedItemId = R.id.navigation_appfeatures
+        }
     }
 
     private fun setupNavigation() {
@@ -32,12 +36,10 @@ class FlowFragment : BaseFragment() {
     }
 
     private fun startFlowFragment(itemId: Int) {
-        activity?.let { activity ->
-            when (itemId) {
-                R.id.navigation_profile -> navigator.openProfile()
-                R.id.navigation_feed -> navigator.openList()
-                R.id.navigation_organization -> {
-                }
+        when (itemId) {
+            R.id.navigation_profile -> navigator.openProfile()
+            R.id.navigation_appfeatures -> navigator.openList()
+            R.id.navigation_organization -> {
             }
         }
     }
@@ -47,7 +49,6 @@ class FlowFragment : BaseFragment() {
     override fun obtainViewModel(): BaseViewModel = flowViewModel
 
     companion object {
-
         fun newInstance() = FlowFragment()
     }
 }
