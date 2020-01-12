@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_game">Start game</string>
+    <string name="circles_count">Количество шаров: %1$d</string>
+    <string name="game_speed">Скорость игры:</string>
+    <string name="game_speed_value">%1$s - %2$d сек.</string>
+    <string name="game_time">Game time:</string>
+    <string name="game_start_button_title">Поехали!</string>
+    <string name="game_result_loss_title">Вы проиграли!</string>
+    <string name="game_result_winn_title">Вы выиграли за %1$.1f сек.!</string>
+    <string name="game_result_not_end">Игра еще не закончена</string>
+    <string name="game_result_close">Закрыть</string>
 </resources>

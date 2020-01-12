@@ -2,7 +2,6 @@ package ru.chernakov.rocketscienceapp.navigation
 
 import androidx.appcompat.app.AppCompatActivity
 import ru.chernakov.feature_app_bubblegame.navigation.BubbleGameNavigation
-import ru.chernakov.feature_app_bubblegame.presentation.BubbleGameMenuFragment
 import ru.chernakov.feature_appfeatures.navigation.AppFeaturesNavigation
 import ru.chernakov.feature_appfeatures.presentation.AppFeaturesFragment
 import ru.chernakov.feature_flow.navigation.FlowNavigation
@@ -14,6 +13,7 @@ import ru.chernakov.feature_profile.presentation.ProfileFragment
 import ru.chernakov.feature_register.navigation.RegisterNavigation
 import ru.chernakov.feature_register.presentation.RegisterFragment
 import ru.chernakov.feature_settings.navigation.SettingsNavigation
+import ru.chernakov.feature_settings.presentation.SettingsFragment
 import ru.chernakov.feature_splash.navigation.SplashNavigation
 import ru.chernakov.feature_splash.presentation.SplashFragment
 import ru.chernakov.rocketscienceapp.R
@@ -73,7 +73,7 @@ class Navigator : SplashNavigation, LoginNavigation, RegisterNavigation, FlowNav
 
     override fun fromProfileToSettings() {
         navController?.navigate(
-            ru.chernakov.feature_settings.presentation.SettingsFragment.newInstance(),
+            SettingsFragment.newInstance(),
             animation = NavigationAnimation(
                 R.anim.slide_up,
                 R.anim.fade_out,
@@ -88,6 +88,15 @@ class Navigator : SplashNavigation, LoginNavigation, RegisterNavigation, FlowNav
     }
 
     override fun openBubbleGame() {
-        navController?.navigate(BubbleGameMenuFragment.newInstance())
+        navController?.startBubbleGame()
+    }
+
+    override fun openBubbleGameMenu() {
+    }
+
+    override fun startBubbleGame() {
+    }
+
+    override fun openBubbleGameResult() {
     }
 }
