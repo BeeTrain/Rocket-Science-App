@@ -1,12 +1,14 @@
 <resources>
     <string name="start_game">Start game</string>
-    <string name="circles_count">Количество шаров: %1$d</string>
-    <string name="game_speed">Скорость игры:</string>
-    <string name="game_speed_value">%1$s - %2$d сек.</string>
+    <string name="bubble_game_settings">Settings</string>
+    <string name="to_menu">To menu</string>
+    <string name="bubbles_count">Bubbles count: %1$d</string>
+    <string name="game_speed">Game speed:</string>
+    <string name="game_speed_value">%1$s - %2$d s.</string>
     <string name="game_time">Game time:</string>
-    <string name="game_start_button_title">Поехали!</string>
-    <string name="game_result_loss_title">Вы проиграли!</string>
-    <string name="game_result_winn_title">Вы выиграли за %1$.1f сек.!</string>
-    <string name="game_result_not_end">Игра еще не закончена</string>
-    <string name="game_result_close">Закрыть</string>
+    <string name="game_result_lose">You lose!</string>
+    <string name="game_result_won">You won in %1$.1f s.!</string>
+    <string name="game_result_not_end">Game is not over yet!</string>
+    <string name="game_settings">Game Settings</string>
+
 </resources>

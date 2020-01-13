@@ -1,21 +1,28 @@
-package ru.chernakov.feature_app_bubblegame.game.game.logic
+package ru.chernakov.feature_app_bubblegame.util
 
 import android.os.SystemClock
 import android.view.animation.Interpolator
 import android.view.animation.LinearInterpolator
 import ru.chernakov.feature_app_bubblegame.data.GameSpeed
 import ru.chernakov.feature_app_bubblegame.data.model.Circle
-import ru.chernakov.feature_app_bubblegame.game.game.Game
+import ru.chernakov.feature_app_bubblegame.domain.BubbleGameInteractor
 
-internal class CirclePositionCalculator constructor(game: Game) {
-    private val circles: List<Circle> = game.circles
-    private val gameSpeed: GameSpeed = game.speed
+class BubblePositionUtil {
+    private lateinit var circles: List<Circle>
+    private lateinit var gameSpeed: GameSpeed
+    private lateinit var circlesStates: MutableList<GameState>
+    private var screenWidth = 0
+
     private val interpolator: Interpolator = LinearInterpolator()
-    private val circlesStates: MutableList<State> by lazy {
-        MutableList(circles.size, { index -> State(SystemClock.elapsedRealtime(), circles[index].x, 1) })
-    }
 
-    private val screenWidth = game.screenWidth
+    fun setGame(bubbleGameInteractor: BubbleGameInteractor) {
+        circles = bubbleGameInteractor.circles
+        gameSpeed = bubbleGameInteractor.speed
+        screenWidth = bubbleGameInteractor.screenWidth.toInt()
+        circlesStates = MutableList(circles.size) { index ->
+            GameState(SystemClock.elapsedRealtime(), circles[index].x, 1)
+        }
+    }
 
     fun update() {
         val speedTime = gameSpeed.timeMills
@@ -42,12 +49,12 @@ internal class CirclePositionCalculator constructor(game: Game) {
             item.x = newX
         }
     }
-}
 
-private data class State(var startTime: Long, var startX: Float, var direction: Int) {
-    fun reset(direction: Int) {
-        this.direction = direction
-        startTime = SystemClock.elapsedRealtime()
-        startX = 0f
+    private data class GameState(var startTime: Long, var startX: Float, var direction: Int) {
+        fun reset(direction: Int) {
+            this.direction = direction
+            startTime = SystemClock.elapsedRealtime()
+            startX = 0f
+        }
     }
 }

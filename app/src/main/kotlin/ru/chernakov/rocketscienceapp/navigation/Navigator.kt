@@ -2,6 +2,10 @@ package ru.chernakov.rocketscienceapp.navigation
 
 import androidx.appcompat.app.AppCompatActivity
 import ru.chernakov.feature_app_bubblegame.navigation.BubbleGameNavigation
+import ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameHostFragment
+import ru.chernakov.feature_app_bubblegame.presentation.menu.BubbleGameMenuFragment
+import ru.chernakov.feature_app_bubblegame.presentation.result.BubbleGameResultFragment
+import ru.chernakov.feature_app_bubblegame.presentation.running.BubbleGameRunningFragment
 import ru.chernakov.feature_appfeatures.navigation.AppFeaturesNavigation
 import ru.chernakov.feature_appfeatures.presentation.AppFeaturesFragment
 import ru.chernakov.feature_flow.navigation.FlowNavigation
@@ -88,15 +92,22 @@ class Navigator : SplashNavigation, LoginNavigation, RegisterNavigation, FlowNav
     }
 
     override fun openBubbleGame() {
-        navController?.startBubbleGame()
+        navController?.navigate(BubbleGameHostFragment.newInstance())
     }
 
-    override fun openBubbleGameMenu() {
+    override fun openBubbleGameMenu(hostFragment: BubbleGameHostFragment) {
+        navController?.subNavigate(BubbleGameMenuFragment.newInstance(hostFragment), false)
     }
 
-    override fun startBubbleGame() {
+    override fun startBubbleGame(hostFragment: BubbleGameHostFragment) {
+        navController?.subNavigate(BubbleGameRunningFragment.newInstance(hostFragment), false)
     }
 
-    override fun openBubbleGameResult() {
+    override fun openBubbleGameResult(hostFragment: BubbleGameHostFragment) {
+        navController?.subNavigate(BubbleGameResultFragment.newInstance(hostFragment), false)
+    }
+
+    override fun fromBubbleGameToFlow() {
+        navController?.navigate(FlowFragment.newInstance(), false)
     }
 }

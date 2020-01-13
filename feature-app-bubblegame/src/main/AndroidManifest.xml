@@ -1,7 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ru.chernakov.feature_app_bubblegame">
-
-    <application>
-        <activity android:name=".game.ui.BubbleGameActivity" />
-    </application>
-</manifest>
+<manifest package="ru.chernakov.feature_app_bubblegame" />

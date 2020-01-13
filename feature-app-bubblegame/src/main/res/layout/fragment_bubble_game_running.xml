@@ -5,8 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ru.chernakov.feature_app_bubblegame.game.ui.screen.GameScreenView
-        android:id="@+id/gsGameCanvas"
+    <ru.chernakov.feature_app_bubblegame.presentation.widget.BubbleGameView
+        android:id="@+id/bubbleGameView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 </LinearLayout>

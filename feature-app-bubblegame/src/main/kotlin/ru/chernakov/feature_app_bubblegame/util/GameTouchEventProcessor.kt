@@ -1,14 +1,16 @@
-package ru.chernakov.feature_app_bubblegame.game.game.logic
+package ru.chernakov.feature_app_bubblegame.util
 
 import android.view.MotionEvent
 import ru.chernakov.feature_app_bubblegame.data.model.Circle
-import ru.chernakov.feature_app_bubblegame.game.game.Game
+import ru.chernakov.feature_app_bubblegame.domain.BubbleGameInteractor
+import kotlin.math.pow
+import kotlin.math.sqrt
 
-internal class TouchEventProcessor constructor(game: Game) {
-    private val touchStates: List<State>
+class GameTouchEventProcessor {
+    private var touchStates: List<State> = listOf()
 
-    init {
-        touchStates = List(game.circles.size) { index -> State(game.circles[index]) }
+    fun setGame(bubbleGameInteractor: BubbleGameInteractor) {
+        touchStates = List(bubbleGameInteractor.circles.size) { index -> State(bubbleGameInteractor.circles[index]) }
     }
 
     fun processTouchEvent(event: MotionEvent): Boolean {
@@ -28,8 +30,8 @@ internal class TouchEventProcessor constructor(game: Game) {
         val historySize = event.historySize
         val pointerCount = event.pointerCount
 
-        for (i in 0..historySize - 1) {
-            for (k in 0..pointerCount - 1) {
+        for (i in 0 until historySize) {
+            for (k in 0 until pointerCount) {
                 checkPointer(event.getPointerId(k), event.getHistoricalX(k, i), event.getHistoricalY(k, i))
             }
         }
@@ -102,18 +104,13 @@ internal class TouchEventProcessor constructor(game: Game) {
         }
     }
 
-    private fun calculateTouchRadius(circle: Circle, x: Float, y: Float): Float {
-        return Math.sqrt(
-            Math.pow((x - circle.x).toDouble(), 2.toDouble()) + Math.pow(
-                (y - circle.y).toDouble(),
-                2.toDouble()
-            )
-        ).toFloat()
+    private fun calculateTouchRadius(c: Circle, x: Float, y: Float): Float {
+        return sqrt((x - c.x).toDouble().pow(2.toDouble()) + (y - c.y).toDouble().pow(2.toDouble())).toFloat()
     }
 
     private data class State(var circle: Circle, val pointerIds: MutableSet<Int> = mutableSetOf()) {
         fun hasPointers(): Boolean {
-            return !pointerIds.isEmpty()
+            return pointerIds.isNotEmpty()
         }
     }
 }

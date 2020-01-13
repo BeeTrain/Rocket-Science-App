@@ -1,51 +1,49 @@
-package ru.chernakov.feature_app_bubblegame.game.ui
+package ru.chernakov.feature_app_bubblegame.presentation.result
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewAnimationUtils
-import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_game_result.*
+import androidx.activity.OnBackPressedCallback
+import kotlinx.android.synthetic.main.fragment_bubble_game_result.*
+import org.koin.android.viewmodel.ext.android.viewModel
+import ru.chernakov.core_ui.presentation.fragment.BaseFragment
 import ru.chernakov.feature_app_bubblegame.R
 import ru.chernakov.feature_app_bubblegame.data.GameStatus
-import ru.chernakov.feature_app_bubblegame.game.game.Game
+import ru.chernakov.feature_app_bubblegame.navigation.OnBackPressedListener
+import ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameHostFragment
+import ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameViewModel
+import ru.chernakov.feature_app_bubblegame.presentation.widget.BubbleGameStateListener
 
-/**
- * @author mikhail.funikov@e-legion.com on 11/06/2017.
- */
+class BubbleGameResultFragment : BaseFragment() {
+    private val resultViewModel: BubbleGameViewModel by viewModel()
 
-class GameResultFragment : GameFragment() {
-    companion object {
-        fun newInstance(): GameResultFragment {
-            return GameResultFragment()
-        }
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_game_result, container, false)
-    }
+    private lateinit var onBackPressedListener: OnBackPressedListener
+    private lateinit var gameStateListener: BubbleGameStateListener
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val game = Game.getInstance()
-        val text = when (game?.status) {
-            GameStatus.LOSS -> getString(R.string.game_result_loss_title)
-            GameStatus.WIN -> getString(R.string.game_result_winn_title, game.passedTimeMs / 1000f)
+        val text = when (resultViewModel.gameInteractor.status) {
+            GameStatus.LOSS -> getString(R.string.game_result_lose)
+            GameStatus.WIN -> getString(R.string.game_result_won, resultViewModel.gameInteractor.passedTimeMs / 1000f)
             else -> getString(R.string.game_result_not_end)
 
         }
         tvResult.text = text
 
         bClose.setOnClickListener {
-            Game.resetParams()
             hideFragmentView()
         }
 
         showFragmentView()
+
+        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                hideFragmentView()
+            }
+        })
     }
 
     private fun showFragmentView() {
@@ -76,12 +74,25 @@ class GameResultFragment : GameFragment() {
                     if (view != null) {
                         view!!.visibility = View.INVISIBLE
                     }
-                    gameParamsCallback.onParamsReset()
+                    gameStateListener.onSettingsReset()
                 }
             })
             animator.start()
         } else {
-            gameParamsCallback.onParamsReset()
+            gameStateListener.onSettingsReset()
+        }
+    }
+
+    override fun getLayout() = R.layout.fragment_bubble_game_result
+
+    override fun obtainViewModel() = resultViewModel
+
+    companion object {
+        fun newInstance(hostFragment: BubbleGameHostFragment): BubbleGameResultFragment {
+            return BubbleGameResultFragment().apply {
+                gameStateListener = hostFragment
+                onBackPressedListener = hostFragment
+            }
         }
     }
 }

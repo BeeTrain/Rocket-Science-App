@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="bubbles_count_min">0</integer>
+    <integer name="bubbles_count_max">7</integer>
+
+</resources>
