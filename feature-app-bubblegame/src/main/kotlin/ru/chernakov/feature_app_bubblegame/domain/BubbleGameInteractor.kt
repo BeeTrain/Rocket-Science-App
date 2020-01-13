@@ -9,7 +9,7 @@ import ru.chernakov.feature_app_bubblegame.data.GameTime
 import ru.chernakov.feature_app_bubblegame.data.model.Circle
 import ru.chernakov.feature_app_bubblegame.presentation.widget.BubbleGameStatusListener
 import ru.chernakov.feature_app_bubblegame.util.BubblePositionUtil
-import ru.chernakov.feature_app_bubblegame.util.GameTouchEventProcessor
+import ru.chernakov.feature_app_bubblegame.util.TouchEventProcessor
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
@@ -17,7 +17,7 @@ import kotlin.math.roundToInt
 
 class BubbleGameInteractor(
     private var bubblePositionUtil: BubblePositionUtil,
-    private var touchProcessor: GameTouchEventProcessor
+    private var touchProcessor: TouchEventProcessor
 ) {
     var screenWidth: Int = 0
     var screenHeight: Int = 0
@@ -71,9 +71,9 @@ class BubbleGameInteractor(
         updateStatus(if (isVictory) GameStatus.WIN else GameStatus.LOSS)
     }
 
-    private fun createCircle(radius: Int, vertPos: Int, horPos: Int): Circle {
-        val cx: Float = horPos * (radius * 2f) + radius
-        val cy: Float = vertPos * (radius * 2f) + radius
+    private fun createCircle(radius: Int, vPos: Int, hPos: Int): Circle {
+        val cx: Float = hPos * (radius * 2f) + radius
+        val cy: Float = vPos * (radius * 2f) + radius
 
         val rand = Random()
         val color = Color.rgb(rand.nextInt(RAND_BOUND), rand.nextInt(RAND_BOUND), rand.nextInt(RAND_BOUND))
@@ -82,10 +82,10 @@ class BubbleGameInteractor(
     }
 
     fun onTouchEvent(event: MotionEvent?): Boolean {
-        if (status != GameStatus.RUNNING || event == null) {
-            return false
+        return if (status != GameStatus.RUNNING || event == null) {
+            false
         } else {
-            return touchProcessor.processTouchEvent(event)
+            touchProcessor.processTouchEvent(event)
         }
     }
 
@@ -116,15 +116,11 @@ class BubbleGameInteractor(
 
     private fun calculateScreenParams(): ScreenParams {
         val cellSize: Float = screenHeight / MAX_BUBBLES_COUNT.toFloat()
-        val verticalCount = Math.round(screenHeight / cellSize - .5f)
-        val horizontalCount = Math.round(screenWidth / cellSize - .5f)
+        val verticalCount = (screenHeight / cellSize - .5f).roundToInt()
+        val horizontalCount = (screenWidth / cellSize - .5f).roundToInt()
         val radius = (cellSize / 2 - .5f).roundToInt()
 
-        return ScreenParams(
-            radius,
-            verticalCount,
-            horizontalCount
-        )
+        return ScreenParams(radius, verticalCount, horizontalCount)
     }
 
     fun updateStatus(newStatus: GameStatus) {

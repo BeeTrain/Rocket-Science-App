@@ -13,12 +13,12 @@ import ru.chernakov.feature_app_bubblegame.presentation.widget.BubbleGameStateLi
 import ru.chernakov.feature_app_bubblegame.presentation.widget.BubbleGameStatusListener
 
 class BubbleGameHostFragment : BaseFragment(), OnBackPressedListener, BubbleGameStatusListener, BubbleGameStateListener {
-    private val BubbleGameViewModel: BubbleGameViewModel by viewModel()
+    private val bubbleGameViewModel: BubbleGameViewModel by viewModel()
     private val navigator: BubbleGameNavigation by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        BubbleGameViewModel.gameInteractor.statusCallback = this
+        bubbleGameViewModel.gameInteractor.statusCallback = this
     }
 
     override fun onGameStatusChanged(gameStatus: GameStatus) {
@@ -30,19 +30,19 @@ class BubbleGameHostFragment : BaseFragment(), OnBackPressedListener, BubbleGame
     }
 
     override fun onSettingsSet() {
-        BubbleGameViewModel.gameInteractor.updateStatus(GameStatus.RUNNING)
+        bubbleGameViewModel.gameInteractor.updateStatus(GameStatus.RUNNING)
     }
 
     override fun onScreenParamsSet() {
-        BubbleGameViewModel.gameInteractor.start()
+        bubbleGameViewModel.gameInteractor.start()
     }
 
     override fun onSettingsReset() {
-        BubbleGameViewModel.gameInteractor.updateStatus(GameStatus.STOPPED)
+        bubbleGameViewModel.gameInteractor.updateStatus(GameStatus.STOPPED)
     }
 
     override fun onRunningBackPressed() {
-        BubbleGameViewModel.gameInteractor.updateStatus(GameStatus.STOPPED)
+        bubbleGameViewModel.gameInteractor.updateStatus(GameStatus.STOPPED)
         navigator.openBubbleGameMenu(this)
 
     }
@@ -57,7 +57,7 @@ class BubbleGameHostFragment : BaseFragment(), OnBackPressedListener, BubbleGame
 
     override fun getLayout() = R.layout.fragment_bubble_game
 
-    override fun obtainViewModel() = BubbleGameViewModel
+    override fun obtainViewModel() = bubbleGameViewModel
 
     companion object {
         fun newInstance() = BubbleGameHostFragment()

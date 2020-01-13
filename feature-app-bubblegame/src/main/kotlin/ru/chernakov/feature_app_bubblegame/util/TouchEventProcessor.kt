@@ -6,7 +6,7 @@ import ru.chernakov.feature_app_bubblegame.domain.BubbleGameInteractor
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-class GameTouchEventProcessor {
+class TouchEventProcessor {
     private var touchStates: List<State> = listOf()
 
     fun setGame(bubbleGameInteractor: BubbleGameInteractor) {
