@@ -1,5 +1,6 @@
 package ru.chernakov.feature_app_bubblegame.presentation.widget
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
@@ -16,7 +17,7 @@ class BubbleGameView @JvmOverloads constructor(context: Context, attrs: Attribut
     private val circlePaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var isScreenSizeSet = false
     private var callback: BubbleGameStateListener? = null
-    var gameInteractor: BubbleGameInteractor? = null
+    var game: BubbleGameInteractor? = null
 
     fun setParamsCallback(listener: BubbleGameStateListener) {
         callback = listener
@@ -25,8 +26,9 @@ class BubbleGameView @JvmOverloads constructor(context: Context, attrs: Attribut
         invalidate()
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        return gameInteractor?.onTouchEvent(event) ?: false
+        return game?.onTouchEvent(event) ?: false
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -36,7 +38,7 @@ class BubbleGameView @JvmOverloads constructor(context: Context, attrs: Attribut
     }
 
     override fun onDraw(canvas: Canvas?) {
-        if (gameInteractor == null || gameInteractor?.status != GameStatus.RUNNING) {
+        if (game == null || game?.status != GameStatus.RUNNING) {
             return
         }
 
@@ -44,8 +46,8 @@ class BubbleGameView @JvmOverloads constructor(context: Context, attrs: Attribut
             setScreenParams(width, height)
         }
 
-        gameInteractor?.update()
-        val circles = gameInteractor?.circles
+        game?.update()
+        val circles = game?.circles
         for (item: Circle in circles.orEmpty()) {
             val radius = item.radius
             circlePaint.color = item.color
@@ -56,8 +58,8 @@ class BubbleGameView @JvmOverloads constructor(context: Context, attrs: Attribut
     }
 
     private fun setScreenParams(width: Int, height: Int) {
-        gameInteractor?.screenWidth = width
-        gameInteractor?.screenHeight = height
+        game?.screenWidth = width
+        game?.screenHeight = height
         callback?.onScreenParamsSet()
 
         isScreenSizeSet = true

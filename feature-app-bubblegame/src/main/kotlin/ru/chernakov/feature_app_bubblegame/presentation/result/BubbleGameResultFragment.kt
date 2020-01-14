@@ -16,20 +16,20 @@ import ru.chernakov.feature_app_bubblegame.navigation.OnBackPressedListener
 import ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameHostFragment
 import ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameViewModel
 import ru.chernakov.feature_app_bubblegame.presentation.widget.BubbleGameStateListener
+import kotlin.math.hypot
 
 class BubbleGameResultFragment : BaseFragment() {
-    private val resultViewModel: BubbleGameViewModel by viewModel()
+    private val bubbleGameViewModel: BubbleGameViewModel by viewModel()
 
     private lateinit var onBackPressedListener: OnBackPressedListener
     private lateinit var gameStateListener: BubbleGameStateListener
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val text = when (resultViewModel.gameInteractor.status) {
+        val text = when (bubbleGameViewModel.gameInteractor.status) {
             GameStatus.LOSS -> getString(R.string.game_result_lose)
-            GameStatus.WIN -> getString(R.string.game_result_won, resultViewModel.gameInteractor.passedTimeMs / 1000f)
+            GameStatus.WIN -> getString(R.string.game_result_won, bubbleGameViewModel.gameInteractor.passedTimeMs / 1000f)
             else -> getString(R.string.game_result_not_end)
-
         }
         tvResult.text = text
 
@@ -51,7 +51,7 @@ class BubbleGameResultFragment : BaseFragment() {
             view!!.post {
                 val cx = view!!.width / 2
                 val cy = view!!.height / 2
-                val radius = Math.hypot(cx.toDouble(), cy.toDouble())
+                val radius = hypot(cx.toDouble(), cy.toDouble())
                 val animator = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0f, radius.toFloat())
                 animator.duration = 6_00
                 view!!.visibility = View.VISIBLE
@@ -66,7 +66,7 @@ class BubbleGameResultFragment : BaseFragment() {
         if (view != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val cx = view!!.width / 2
             val cy = view!!.height / 2
-            val radius = Math.hypot(cx.toDouble(), cy.toDouble())
+            val radius = hypot(cx.toDouble(), cy.toDouble())
             val animator = ViewAnimationUtils.createCircularReveal(view, cx, cy, radius.toFloat(), 0f)
             animator.duration = 5_00
             animator.addListener(object : AnimatorListenerAdapter() {
@@ -85,7 +85,7 @@ class BubbleGameResultFragment : BaseFragment() {
 
     override fun getLayout() = R.layout.fragment_bubble_game_result
 
-    override fun obtainViewModel() = resultViewModel
+    override fun obtainViewModel() = bubbleGameViewModel
 
     companion object {
         fun newInstance(hostFragment: BubbleGameHostFragment): BubbleGameResultFragment {

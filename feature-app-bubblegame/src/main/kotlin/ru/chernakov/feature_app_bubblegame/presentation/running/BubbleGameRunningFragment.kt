@@ -13,7 +13,7 @@ import ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameViewModel
 import ru.chernakov.feature_app_bubblegame.presentation.widget.BubbleGameStateListener
 
 class BubbleGameRunningFragment : BaseFragment() {
-    private val runningViewModel: BubbleGameViewModel by viewModel()
+    private val bubbleGameViewModel: BubbleGameViewModel by viewModel()
 
     private lateinit var onBackPressedListener: OnBackPressedListener
     private lateinit var gameStateListener: BubbleGameStateListener
@@ -21,7 +21,7 @@ class BubbleGameRunningFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        bubbleGameView.gameInteractor = runningViewModel.gameInteractor
+        bubbleGameView.game = bubbleGameViewModel.gameInteractor
         bubbleGameView.setParamsCallback(gameStateListener)
 
         requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
@@ -33,7 +33,7 @@ class BubbleGameRunningFragment : BaseFragment() {
 
     override fun getLayout() = R.layout.fragment_bubble_game_running
 
-    override fun obtainViewModel() = runningViewModel
+    override fun obtainViewModel() = bubbleGameViewModel
 
     companion object {
         fun newInstance(hostFragment: BubbleGameHostFragment): BubbleGameRunningFragment {
