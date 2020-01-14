@@ -1,6 +1,7 @@
 import ru.chernakov.Plugins
 
 apply plugin: Plugins.detekt
+apply plugin: Plugins.dependenciesVersions
 
 buildscript {
 
@@ -17,6 +18,7 @@ buildscript {
         classpath Plugins.ClassPaths.googleServices
         classpath Plugins.ClassPaths.timeTracker
         classpath Plugins.ClassPaths.detekt
+        classpath Plugins.ClassPaths.dependenciesVersions
     }
 }
 
@@ -25,6 +27,13 @@ allprojects {
         google()
         jcenter()
     }
+}
+
+dependencyUpdates {
+    checkForGradleUpdate = true
+    outputFormatter = "plain"
+    outputDir = "build/dependencies"
+    reportfileName = "report"
 }
 
 task clean(type: Delete) {

@@ -11,6 +11,7 @@ object Plugins {
         const val firebaseAppDistribution = "com.google.firebase:firebase-appdistribution-gradle:${Versions.firebaseAppDistribution}"
         const val detekt = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Versions.detekt}"
         const val safeArgs = "androidx.navigation.safeargs.kotlin"
+        const val dependenciesVersions = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersions}"
     }
 
     object Url {
@@ -29,4 +30,5 @@ object Plugins {
     const val detekt = "io.gitlab.arturbosch.detekt"
     const val jacoco = "jacoco"
     const val checkstyle = "checkstyle"
+    const val dependenciesVersions = "com.github.ben-manes.versions"
 }

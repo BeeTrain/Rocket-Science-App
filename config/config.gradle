@@ -48,7 +48,6 @@ detekt {
     toolVersion = Versions.detekt
     input = files("src/main/kotlin")
     config = files("$projectDir/../config/quality/detekt.yml")
-    filters = ".*test.*,.*/resources/.*,.*/tmp/.*,.*/build/.*"
     reports {
         xml {
             enabled = true
