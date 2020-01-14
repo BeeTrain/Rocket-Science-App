@@ -1,6 +1,6 @@
 import ru.chernakov.Plugins
+import ru.chernakov.Versions
 
-apply plugin: Plugins.detekt
 apply plugin: Plugins.dependenciesVersions
 
 buildscript {

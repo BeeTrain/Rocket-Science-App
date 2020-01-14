@@ -7,18 +7,17 @@ object Versions {
     const val timeTracker = "0.11.1"
     const val fabric = "1.31.2"
     const val firebaseAppDistribution = "1.1.0"
-    const val detekt = "1.4.0"
     const val googleServices = "4.3.3"
     const val gradleVersions = "0.27.0"
-
     const val kotlin = "1.3.61"
-    const val kotlinCoroutines = "1.3.1"
 
-    const val koin = "2.1.0-alpha-10"
-
-    const val ktLint = "0.31.0"
+    const val ktLint = "0.36.0"
+    const val detekt = "1.4.0"
     const val checkstyle = "8.28"
+    const val jacocoTools = "0.7.6.201602180812"
 
+    const val kotlinCoroutines = "1.3.1"
+    const val koin = "2.1.0-alpha-10"
     const val multidex = "2.0.1"
 
     const val support = "1.0.0"

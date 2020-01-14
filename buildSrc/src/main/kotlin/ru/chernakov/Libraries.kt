@@ -5,7 +5,7 @@ object Libraries {
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     const val crashlytics = "com.crashlytics.sdk.android:crashlytics:${Versions.crashlytics}"
 
-    const val ktlint = "com.github.shyiko:ktlint:${Versions.ktLint}"
+    const val ktlint = "com.pinterest:ktlint:${Versions.ktLint}"
     const val checkstyle = "com.puppycrawl.tools:checkstyle:${Versions.checkstyle}"
 
     object Kotlin {

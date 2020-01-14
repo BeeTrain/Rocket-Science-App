@@ -1,9 +1,10 @@
 import ru.chernakov.Plugins
+import ru.chernakov.Versions
 
 apply plugin: Plugins.jacoco
 
 jacoco {
-    toolVersion = "0.7.6.201602180812"
+    toolVersion = Versions.jacocoTools
 }
 
 android {

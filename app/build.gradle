@@ -7,10 +7,6 @@ apply plugin: Plugins.application
 apply from: '../config/config.gradle'
 apply from: '../config/dependencies.gradle'
 
-apply from: '../config/quality/checkstyle.gradle'
-apply from: '../config/quality/ktlint.gradle'
-apply from: '../config/quality/jacoco.gradle'
-
 android {
     defaultConfig {
         applicationId AndroidConfig.ID
@@ -86,8 +82,4 @@ buildtimetracker {
     }
 }
 
-task checkBeforePush(group: 'verification',
-        description: 'Inspect your code before push') {
-    dependsOn 'checkstyle', 'detekt', 'ktlint', 'lintDebug'
-}
 apply plugin: Plugins.googleServices

@@ -8,6 +8,10 @@ apply plugin: Plugins.kotlinAndroidExtensions
 apply plugin: Plugins.detekt
 apply plugin: Plugins.timeTracker
 
+apply from: '../config/quality/ktlint.gradle'
+apply from: '../config/quality/checkstyle.gradle'
+apply from: '../config/quality/jacoco.gradle'
+
 android {
     compileSdkVersion AndroidConfig.targetSdk
 
@@ -58,4 +62,9 @@ detekt {
             destination = file("$projectDir/build/reports/detekt/detekt-report.html")
         }
     }
+}
+
+task checkBeforePush(group: 'verification',
+  description: 'Inspect your code before push') {
+  dependsOn 'checkstyle', 'detekt', 'ktlint', 'lintDebug'
 }

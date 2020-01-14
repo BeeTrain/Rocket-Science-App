@@ -1,5 +1,6 @@
 package ru.chernakov
 
+@Suppress("MaxLineLength")
 object Plugins {
     object ClassPaths {
         const val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
