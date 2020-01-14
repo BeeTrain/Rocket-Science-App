@@ -51,10 +51,10 @@ class RegisterFragment : BaseFragment() {
             }
         }
         btRegister.setOnClickListener { registerUser() }
-        registerViewModel.registerSuccessEvent.observe(this, SafeObserver {
+        registerViewModel.registerSuccessEvent.observe(viewLifecycleOwner, SafeObserver {
             onAuthResult(it)
         })
-        registerViewModel.registerErrorEvent.observe(this, SafeObserver {
+        registerViewModel.registerErrorEvent.observe(viewLifecycleOwner, SafeObserver {
             val authErrorMessage = when (it) {
                 is FirebaseAuthInvalidUserException -> getString(R.string.msg_error_auth_user)
                 is FirebaseAuthEmailException -> getString(R.string.msg_error_auth_email)

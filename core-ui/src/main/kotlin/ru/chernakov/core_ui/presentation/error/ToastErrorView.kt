@@ -24,6 +24,7 @@ class ToastErrorView(private val context: Context) : ErrorView, KoinComponent {
     override fun showUnexpectedError(t: Throwable) = showToast(t.toString())
 
     override fun showMalformedJsonException(malformedJsonException: MalformedJsonException) {
+        // do Nothing
     }
 
     private fun showToast(message: String?) {

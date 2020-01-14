@@ -38,10 +38,7 @@ class LoginFragment : BaseFragment() {
         btGoogleSign.setOnClickListener { v ->
             context?.let {
                 val bounce = AnimationUtils.loadAnimation(it, R.anim.bounce).apply {
-                    interpolator = BounceInterpolator(
-                        GOOGLE_SIGN_AMPLITUDE,
-                        GOOGLE_SIGN_FREQUENCY
-                    )
+                    interpolator = BounceInterpolator(GOOGLE_SIGN_AMPLITUDE, GOOGLE_SIGN_FREQUENCY)
                 }
                 v.startAnimation(bounce)
             }
@@ -70,10 +67,14 @@ class LoginFragment : BaseFragment() {
                 }
             }
         }
-        loginViewModel.signInEvent.observe(this, SafeObserver {
+        observeEvents()
+    }
+
+    private fun observeEvents() {
+        loginViewModel.signInEvent.observe(viewLifecycleOwner, SafeObserver {
             onAuthResult(it)
         })
-        loginViewModel.authErrorEvent.observe(this, SafeObserver {
+        loginViewModel.authErrorEvent.observe(viewLifecycleOwner, SafeObserver {
             val authErrorMessage = when (it) {
                 is FirebaseAuthInvalidUserException -> getString(R.string.msg_error_auth_user)
                 is FirebaseAuthEmailException -> getString(R.string.msg_error_auth_email)
@@ -82,7 +83,7 @@ class LoginFragment : BaseFragment() {
             }
             showMessage(authErrorMessage)
         })
-        loginViewModel.resetPasswordEvent.observe(this, SafeObserver {
+        loginViewModel.resetPasswordEvent.observe(viewLifecycleOwner, SafeObserver {
             val message = if (it) {
                 getString(R.string.msg_reset_pass_email_sended)
             } else {

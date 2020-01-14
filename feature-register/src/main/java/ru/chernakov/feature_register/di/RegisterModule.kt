@@ -6,5 +6,4 @@ import ru.chernakov.feature_register.presentation.RegisterViewModel
 
 val registerModule = module {
     viewModel { RegisterViewModel(get()) }
-
 }

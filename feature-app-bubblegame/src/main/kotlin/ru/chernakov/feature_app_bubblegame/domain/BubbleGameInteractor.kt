@@ -10,9 +10,7 @@ import ru.chernakov.feature_app_bubblegame.data.model.Circle
 import ru.chernakov.feature_app_bubblegame.presentation.widget.BubbleGameStatusListener
 import ru.chernakov.feature_app_bubblegame.util.BubblePositionUtil
 import ru.chernakov.feature_app_bubblegame.util.TouchEventProcessor
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashSet
+import java.util.Random
 import kotlin.math.roundToInt
 
 class BubbleGameInteractor(
@@ -116,9 +114,9 @@ class BubbleGameInteractor(
 
     private fun calculateScreenParams(): ScreenParams {
         val cellSize: Float = screenHeight / MAX_BUBBLES_COUNT.toFloat()
-        val verticalCount = (screenHeight / cellSize - .5f).roundToInt()
-        val horizontalCount = (screenWidth / cellSize - .5f).roundToInt()
-        val radius = (cellSize / 2 - .5f).roundToInt()
+        val verticalCount = (screenHeight / cellSize - VALUE_HALF).roundToInt()
+        val horizontalCount = (screenWidth / cellSize - VALUE_HALF).roundToInt()
+        val radius = (cellSize / 2 - VALUE_HALF).roundToInt()
 
         return ScreenParams(radius, verticalCount, horizontalCount)
     }
@@ -136,5 +134,6 @@ class BubbleGameInteractor(
         private const val MIN_BUBBLES_COUNT = 3
         private const val MAX_BUBBLES_COUNT = 10
         private const val RAND_BOUND = 256
+        private const val VALUE_HALF = .5f
     }
 }

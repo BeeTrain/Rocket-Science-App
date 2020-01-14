@@ -28,7 +28,10 @@ class BubbleGameResultFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         val text = when (bubbleGameViewModel.gameInteractor.status) {
             GameStatus.LOSS -> getString(R.string.game_result_lose)
-            GameStatus.WIN -> getString(R.string.game_result_won, bubbleGameViewModel.gameInteractor.passedTimeMs / 1000f)
+            GameStatus.WIN -> getString(
+                R.string.game_result_won,
+                bubbleGameViewModel.gameInteractor.passedTimeMs / MS_TO_SECONDS
+            )
             else -> getString(R.string.game_result_not_end)
         }
         tvResult.text = text
@@ -53,7 +56,7 @@ class BubbleGameResultFragment : BaseFragment() {
                 val cy = view!!.height / 2
                 val radius = hypot(cx.toDouble(), cy.toDouble())
                 val animator = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0f, radius.toFloat())
-                animator.duration = 6_00
+                animator.duration = ANIMATION_DURATION
                 view!!.visibility = View.VISIBLE
                 animator.start()
             }
@@ -68,7 +71,7 @@ class BubbleGameResultFragment : BaseFragment() {
             val cy = view!!.height / 2
             val radius = hypot(cx.toDouble(), cy.toDouble())
             val animator = ViewAnimationUtils.createCircularReveal(view, cx, cy, radius.toFloat(), 0f)
-            animator.duration = 5_00
+            animator.duration = ANIMATION_DURATION
             animator.addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
                     if (view != null) {
@@ -88,6 +91,9 @@ class BubbleGameResultFragment : BaseFragment() {
     override fun obtainViewModel() = bubbleGameViewModel
 
     companion object {
+        private const val ANIMATION_DURATION = 5_00L
+        private const val MS_TO_SECONDS = 1000
+
         fun newInstance(hostFragment: BubbleGameHostFragment): BubbleGameResultFragment {
             return BubbleGameResultFragment().apply {
                 gameStateListener = hostFragment

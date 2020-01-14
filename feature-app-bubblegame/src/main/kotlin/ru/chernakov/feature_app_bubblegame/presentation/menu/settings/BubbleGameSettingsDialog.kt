@@ -10,6 +10,7 @@ import ru.chernakov.core_ui.presentation.fragment.BaseBottomSheetDialog
 import ru.chernakov.feature_app_bubblegame.R
 import ru.chernakov.feature_app_bubblegame.data.GameSpeed
 import ru.chernakov.feature_app_bubblegame.data.GameTime
+import java.util.concurrent.TimeUnit
 
 class BubbleGameSettingsDialog : BaseBottomSheetDialog(), SeekBar.OnSeekBarChangeListener {
     override val layoutResId = R.layout.d_fragment_bubble_game_settings
@@ -48,9 +49,13 @@ class BubbleGameSettingsDialog : BaseBottomSheetDialog(), SeekBar.OnSeekBarChang
         gameSettingsModel.gameTime = GameTime.values()[spGameTime.selectedItemPosition]
     }
 
-    override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+    override fun onStartTrackingTouch(seekBar: SeekBar?) {
+        // do Nothing
+    }
 
-    override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+    override fun onStopTrackingTouch(seekBar: SeekBar?) {
+        // do Nothing
+    }
 
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
         updateBubbleCountLabel()
@@ -63,7 +68,7 @@ class BubbleGameSettingsDialog : BaseBottomSheetDialog(), SeekBar.OnSeekBarChang
     }
 
     private fun initGameSpeedUI() {
-        var selected = 0
+        var selected = FIRST_ITEM_INDEX
         for (speed in GameSpeed.values()) {
             if (speed == gameSettingsModel.gameSpeed) {
                 selected = speed.ordinal
@@ -82,9 +87,11 @@ class BubbleGameSettingsDialog : BaseBottomSheetDialog(), SeekBar.OnSeekBarChang
 
     private fun initGameTimeUI() {
         val gameTimeValues = mutableListOf<String>()
-        var selected = 0
+        var selected = FIRST_ITEM_INDEX
         for (time in GameTime.values()) {
-            val value = getString(R.string.game_speed_value, time.toString(), time.timeMs / 1000)
+            val value = getString(
+                R.string.game_speed_value, time.toString(), TimeUnit.MILLISECONDS.toSeconds(time.timeMs)
+            )
             gameTimeValues.add(value)
             if (time == gameSettingsModel.gameTime) {
                 selected = time.ordinal
@@ -107,10 +114,10 @@ class BubbleGameSettingsDialog : BaseBottomSheetDialog(), SeekBar.OnSeekBarChang
 
     companion object {
         private const val MIN_BUBBLES_COUNT = 3
+        private const val FIRST_ITEM_INDEX = 0
 
         fun show(fm: FragmentManager, gameSettingsModel: GameSettingsModel) {
-            val dialog = BubbleGameSettingsDialog()
-                .apply {
+            val dialog = BubbleGameSettingsDialog().apply {
                 this.gameSettingsModel = gameSettingsModel
             }
 

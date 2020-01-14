@@ -6,11 +6,11 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import ru.chernakov.core_base.util.lifecycle.Lifecycler
 import ru.chernakov.feature_app_bubblegame.di.bubbleGameModule
+import ru.chernakov.feature_appfeatures.di.appFeaturesModule
 import ru.chernakov.feature_flow.di.flowViewModule
 import ru.chernakov.feature_login.presentation.di.loginModule
 import ru.chernakov.feature_profile.di.profileModule
 import ru.chernakov.feature_register.di.registerModule
-import ru.chernakov.feature_appfeatures.di.servicesModule
 import ru.chernakov.feature_settings.di.settingsModule
 import ru.chernakov.feature_splash.di.splashModule
 import ru.chernakov.rocketscienceapp.di.appModule
@@ -45,7 +45,7 @@ class App : Application() {
                     flowViewModule,
                     profileModule,
                     settingsModule,
-                    servicesModule,
+                    appFeaturesModule,
                     bubbleGameModule
                 )
             )

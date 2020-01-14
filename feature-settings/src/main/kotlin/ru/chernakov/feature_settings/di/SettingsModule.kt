@@ -6,5 +6,4 @@ import ru.chernakov.feature_settings.presentation.SettingsViewModel
 
 val settingsModule = module {
     viewModel { SettingsViewModel(get()) }
-
 }

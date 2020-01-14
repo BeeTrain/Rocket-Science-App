@@ -2,7 +2,11 @@ package ru.chernakov.feature_app_bubblegame.data
 
 enum class GameSpeed(val timeMills: Long) {
     STATIC(Long.MAX_VALUE),
-    LOW(10_000),
-    MEDIUM(6_000),
-    HIGH(2_000)
+    LOW(SPEED_LOW),
+    MEDIUM(SPEED_MEDIUM),
+    HIGH(SPEED_HIGH)
 }
+
+private const val SPEED_LOW = 10_000L
+private const val SPEED_MEDIUM = 6_000L
+private const val SPEED_HIGH = 2_000L

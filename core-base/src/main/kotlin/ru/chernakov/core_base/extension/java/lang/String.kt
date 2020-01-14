@@ -1,11 +1,13 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package ru.chernakov.core_base.extension.java.lang
 
 import ru.chernakov.core_base.extension.java.util.DD_MM_YYYY_HH_MM
 import timber.log.Timber
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.Locale
 import java.util.Date
+import java.util.Locale
 
 inline fun String.toDateLong(pattern: String = DD_MM_YYYY_HH_MM): Long {
     val simpleDateFormat = SimpleDateFormat(pattern, Locale.getDefault())

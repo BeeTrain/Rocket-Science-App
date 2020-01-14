@@ -32,6 +32,7 @@ import ru.chernakov.core_ui.extension.android.content.getColorKtx
 import kotlin.math.min
 import kotlin.math.pow
 
+@Suppress("TooGenericExceptionCaught", "MagicNumber")
 class CircleImageView : AppCompatImageView {
     private val drawableRect = RectF()
     private val borderRect = RectF()
@@ -239,6 +240,7 @@ class CircleImageView : AppCompatImageView {
         bitmapPaint.colorFilter = colorFilter
     }
 
+    @Suppress("ReturnCount")
     private fun getBitmapFromDrawable(drawable: Drawable?): Bitmap? {
         if (drawable == null) {
             return null
@@ -355,8 +357,8 @@ class CircleImageView : AppCompatImageView {
 
     private fun inTouchableArea(x: Float, y: Float): Boolean {
         return (x - borderRect.centerX()).toDouble().pow(2.0) +
-                (y - borderRect.centerY()).toDouble().pow(2.0) <=
-                borderRadius.toDouble().pow(2.0)
+            (y - borderRect.centerY()).toDouble().pow(2.0) <=
+            borderRadius.toDouble().pow(2.0)
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

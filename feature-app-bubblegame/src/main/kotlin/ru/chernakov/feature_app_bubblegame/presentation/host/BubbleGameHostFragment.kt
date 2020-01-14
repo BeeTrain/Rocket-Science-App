@@ -12,7 +12,8 @@ import ru.chernakov.feature_app_bubblegame.navigation.OnBackPressedListener
 import ru.chernakov.feature_app_bubblegame.presentation.widget.BubbleGameStateListener
 import ru.chernakov.feature_app_bubblegame.presentation.widget.BubbleGameStatusListener
 
-class BubbleGameHostFragment : BaseFragment(), OnBackPressedListener, BubbleGameStatusListener, BubbleGameStateListener {
+class BubbleGameHostFragment : BaseFragment(), OnBackPressedListener, BubbleGameStatusListener,
+    BubbleGameStateListener {
     private val bubbleGameViewModel: BubbleGameViewModel by viewModel()
     private val navigator: BubbleGameNavigation by inject()
 
@@ -44,7 +45,6 @@ class BubbleGameHostFragment : BaseFragment(), OnBackPressedListener, BubbleGame
     override fun onRunningBackPressed() {
         bubbleGameViewModel.gameInteractor.updateStatus(GameStatus.STOPPED)
         navigator.openBubbleGameMenu(this)
-
     }
 
     override fun onMenuBackPressed() {
