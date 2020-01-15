@@ -1,4 +1,4 @@
-package ru.chernakov
+package ru.chernakov.rocketscienceapp
 
 object Modules {
     const val APP = ":app"

@@ -1,5 +1,5 @@
-import ru.chernakov.Plugins
-import ru.chernakov.Versions
+import ru.chernakov.rocketscienceapp.Plugins
+import ru.chernakov.rocketscienceapp.Versions
 
 apply plugin: Plugins.jacoco
 

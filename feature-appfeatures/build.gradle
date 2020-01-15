@@ -1,5 +1,5 @@
-import ru.chernakov.Modules
-import ru.chernakov.Plugins
+import ru.chernakov.rocketscienceapp.Modules
+import ru.chernakov.rocketscienceapp.Plugins
 
 apply plugin: Plugins.library
 

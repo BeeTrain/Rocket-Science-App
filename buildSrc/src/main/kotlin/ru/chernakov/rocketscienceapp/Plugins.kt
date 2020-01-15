@@ -1,4 +1,4 @@
-package ru.chernakov
+package ru.chernakov.rocketscienceapp
 
 @Suppress("MaxLineLength")
 object Plugins {

@@ -1,5 +1,5 @@
-import ru.chernakov.AndroidConfig
-import ru.chernakov.Modules
+import ru.chernakov.rocketscienceapp.AndroidConfig
+import ru.chernakov.rocketscienceapp.Modules
 
 rootProject.name = AndroidConfig.NAME
 

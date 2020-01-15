@@ -1,4 +1,4 @@
-import ru.chernakov.Libraries
+import ru.chernakov.rocketscienceapp.Libraries
 
 def Group(Closure closure) {
     closure.delegate = dependencies

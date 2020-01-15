@@ -1,5 +1,4 @@
-import ru.chernakov.Plugins
-import ru.chernakov.Versions
+import ru.chernakov.rocketscienceapp.Plugins
 
 apply plugin: Plugins.dependenciesVersions
 

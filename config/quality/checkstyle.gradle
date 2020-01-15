@@ -1,5 +1,5 @@
-import ru.chernakov.Libraries
-import ru.chernakov.Plugins
+import ru.chernakov.rocketscienceapp.Libraries
+import ru.chernakov.rocketscienceapp.Plugins
 
 apply plugin: Plugins.checkstyle
 

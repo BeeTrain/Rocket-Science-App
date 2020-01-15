@@ -1,6 +1,6 @@
-import ru.chernakov.Plugins
-import ru.chernakov.Versions
-import ru.chernakov.AndroidConfig
+import ru.chernakov.rocketscienceapp.AndroidConfig
+import ru.chernakov.rocketscienceapp.Plugins
+import ru.chernakov.rocketscienceapp.Versions
 
 apply plugin: Plugins.kotlinAndroid
 apply plugin: Plugins.kotlinKapt
@@ -31,7 +31,7 @@ android {
     }
 
     buildTypes {
-        releaseQa { }
+        releaseQa {}
     }
 
     sourceSets {
@@ -64,7 +64,6 @@ detekt {
     }
 }
 
-task checkBeforePush(group: 'verification',
-  description: 'Inspect your code before push') {
-  dependsOn 'checkstyle', 'detekt', 'ktlint', 'lintDebug'
+task checkBeforePush(group: 'verification', description: 'Inspect your code before push') {
+    dependsOn 'checkstyle', 'detekt', 'ktlint', 'lintDebug'
 }

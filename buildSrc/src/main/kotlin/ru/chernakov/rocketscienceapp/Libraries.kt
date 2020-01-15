@@ -1,4 +1,4 @@
-package ru.chernakov
+package ru.chernakov.rocketscienceapp
 
 object Libraries {
     const val multidex = "androidx.multidex:multidex:${Versions.multidex}"
