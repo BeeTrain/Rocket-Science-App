@@ -30,7 +30,7 @@ class BubbleGameResultFragment : BaseFragment() {
             GameStatus.LOSS -> getString(R.string.game_result_lose)
             GameStatus.WIN -> getString(
                 R.string.game_result_won,
-                bubbleGameViewModel.gameInteractor.passedTimeMs / MS_TO_SECONDS
+                (bubbleGameViewModel.gameInteractor.passedTimeMs / MS_TO_SECONDS).toFloat()
             )
             else -> getString(R.string.game_result_not_end)
         }
@@ -92,7 +92,7 @@ class BubbleGameResultFragment : BaseFragment() {
 
     companion object {
         private const val ANIMATION_DURATION = 5_00L
-        private const val MS_TO_SECONDS = 1000
+        private const val MS_TO_SECONDS = 1000L
 
         fun newInstance(hostFragment: BubbleGameHostFragment): BubbleGameResultFragment {
             return BubbleGameResultFragment().apply {
