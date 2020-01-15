@@ -42,6 +42,11 @@ ext {
         implementation Libraries.playServicesAuth
     }
 
+    navigation = Group {
+        implementation Libraries.Navigation.uiKtx
+        implementation Libraries.Navigation.fragmentKtx
+    }
+
     viewModel = Group {
         implementation Libraries.ViewModel.extensions
     }

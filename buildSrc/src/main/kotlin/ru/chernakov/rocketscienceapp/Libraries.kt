@@ -50,6 +50,11 @@ object Libraries {
         const val logging = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
     }
 
+    object Navigation {
+        const val uiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+        const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
+    }
+
     object ViewModel {
         const val extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.archComponents}"
         const val common = "androidx.lifecycle:lifecycle-common-java8:${Versions.archComponents}"

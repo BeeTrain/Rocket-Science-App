@@ -24,6 +24,7 @@ object Versions {
     const val appCompat = "1.2.0-alpha01"
     const val constraint = "2.0.0-beta4"
     const val material = "1.2.0-alpha03"
+    const val navigation = "2.1.0"
 
     const val firebaseDatabase = "19.2.0"
     const val firebaseAuth = "19.2.0"
