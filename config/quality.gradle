@@ -1,0 +1,8 @@
+apply from: '../config/quality/ktlint/ktlint.gradle'
+apply from: '../config/quality/checkstyle/checkstyle.gradle'
+apply from: '../config/quality/detekt/detekt.gradle'
+apply from: '../config/quality/jacoco/jacoco.gradle'
+
+task checkBeforePush(group: 'verification', description: 'Inspect your code before push') {
+    dependsOn 'checkstyle', 'detekt', 'ktlint', 'pmd', 'lintDebug'
+}

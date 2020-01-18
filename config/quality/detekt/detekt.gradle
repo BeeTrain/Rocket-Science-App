@@ -1,0 +1,20 @@
+import ru.chernakov.rocketscienceapp.Plugins
+import ru.chernakov.rocketscienceapp.Versions
+
+apply plugin: Plugins.detekt
+
+detekt {
+    toolVersion = Versions.detekt
+    input = files("src/main/kotlin")
+    config = files("$projectDir/../config/quality/detekt/detekt.yml")
+    reports {
+        xml {
+            enabled = true
+            destination = file("$projectDir/build/reports/detekt/detekt-report.xml")
+        }
+        html {
+            enabled = true
+            destination = file("$projectDir/build/reports/detekt/detekt-report.html")
+        }
+    }
+}
