@@ -25,12 +25,12 @@ class AppFeaturesFragment : BaseFragment() {
         }
         rvFeed.apply {
             adapter = feedAdapter
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = LinearLayoutManager(requireContext())
             itemAnimator = DefaultItemAnimator()
         }
         val features =
             listOf(
-                AppFeature(AppFeature.BUBBLE_GAME_ID, "Bubble game"),
+                AppFeature(AppFeature.BUBBLE_GAME_ID, "Bubble game", R.drawable.ic_bubble_game),
                 AppFeature(1, "qwe"),
                 AppFeature(2, "asd"),
                 AppFeature(3, "zxc")

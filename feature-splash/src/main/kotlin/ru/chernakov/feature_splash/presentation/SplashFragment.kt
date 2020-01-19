@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
+import ru.chernakov.core_base.util.lifecycle.SafeObserver
 import ru.chernakov.core_ui.presentation.fragment.BaseFragment
 import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
 import ru.chernakov.feature_splash.R
@@ -15,7 +16,10 @@ class SplashFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        redirectToNextScreen(splashViewModel.getUser() != null)
+        splashViewModel.imitateLoading()
+        splashViewModel.loadingDataEvent.observe(viewLifecycleOwner, SafeObserver {
+            redirectToNextScreen(splashViewModel.getUser() != null)
+        })
     }
 
     override fun getLayout(): Int = R.layout.fragment_splash
