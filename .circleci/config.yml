@@ -13,6 +13,7 @@ references:
 commands:
     generate-gradle-checksums:
         steps:
+            - chmod +x ./gradlew
             - run:
                   name: Generate Gradle checksums
                   command: |
@@ -22,6 +23,7 @@ commands:
     restore-gradle-cache:
         description: Restore the cache of ~/.gradle based on the local build files.
         steps:
+            - chmod +x ./gradlew
             - generate-gradle-checksums
             - restore_cache:
                   keys:
@@ -30,6 +32,7 @@ commands:
     save-gradle-cache:
         description: Cache the contents of ~/.gradle based on the local build files.
         steps:
+            - chmod +x ./gradlew
             - save_cache:
                   paths:
                       - ~/.gradle
@@ -39,6 +42,7 @@ jobs:
     update_dependency_cache:
         <<: *container_config
         steps:
+            - chmod +x ./gradlew
             - checkout
             - restore-gradle-cache
             - run:
@@ -49,6 +53,7 @@ jobs:
     ktlint:
         <<: *container_config
         steps:
+            - chmod +x ./gradlew
             - checkout
             - restore-gradle-cache
             - run: ./gradlew ktlintCheck
@@ -56,6 +61,7 @@ jobs:
     detekt:
         <<: *container_config
         steps:
+            - chmod +x ./gradlew
             - checkout
             - restore-gradle-cache
             - run: ./gradlew detekt
@@ -63,6 +69,7 @@ jobs:
     lint:
         <<: *container_config
         steps:
+            - chmod +x ./gradlew
             - checkout
             - restore-gradle-cache
             - run: ./gradlew lintDebug
@@ -70,6 +77,7 @@ jobs:
     unit_test:
         <<: *container_config
         steps:
+            - chmod +x ./gradlew
             - checkout
             - restore-gradle-cache
             - run: ./gradlew testDebugUnitTest --stacktrace
@@ -83,6 +91,7 @@ jobs:
             GRADLE_OPTS: -Xmx2g -XX:+HeapDumpOnOutOfMemoryError -Dorg.gradle.caching=true -Dorg.gradle.configureondemand=true -Dkotlin.compiler.execution.strategy=in-process -Dkotlin.incremental=false
 
         steps:
+            - chmod +x ./gradlew
             - checkout
             - restore-gradle-cache
             - run: ./gradlew :app:bundleDebug
@@ -90,7 +99,6 @@ workflows:
     version: 2
     check:
         jobs:
-            - chmod +x ./gradlew
             - update_dependency_cache
             - lint:
                   requires:
