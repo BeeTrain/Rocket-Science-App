@@ -1,119 +1,30 @@
-version: 2.1
-
-references:
-    container_config: &container_config
-        docker:
-            - image: circleci/android:api-29
-
-        working_directory: ~/data
-
-        environment:
-            JVM_OPTS: -Xmx3g
-
-commands:
-    generate-gradle-checksums:
-        steps:
-            - chmod +x ./gradlew
-            - run:
-                  name: Generate Gradle checksums
-                  command: |
-                      # This finds all *.kt files and generates checksums for caching
-                      find buildSrc -name "*.kt" -type f | sort | xargs shasum  > gradle-checksums.txt
-                      cat gradle-checksums.txt
-    restore-gradle-cache:
-        description: Restore the cache of ~/.gradle based on the local build files.
-        steps:
-            - chmod +x ./gradlew
-            - generate-gradle-checksums
-            - restore_cache:
-                  keys:
-                      - gradle-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "gradle-checksums.txt" }}
-                      - gradle-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-
-    save-gradle-cache:
-        description: Cache the contents of ~/.gradle based on the local build files.
-        steps:
-            - chmod +x ./gradlew
-            - save_cache:
-                  paths:
-                      - ~/.gradle
-                  key: gradle-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "gradle-checksums.txt" }}
-
+version: 2
 jobs:
-    update_dependency_cache:
-        <<: *container_config
+    build:
+        working_directory: ~/code
+        docker:
+            - image: circleci/android:api-25-alpha
+        environment:
+            JVM_OPTS: -Xmx3200m
         steps:
-            - chmod +x ./gradlew
             - checkout
-            - restore-gradle-cache
+            - restore_cache:
+                  key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+                      #      - run:
+                      #         name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
+                  command: sudo chmod +x ./gradlew
             - run:
                   name: Download Dependencies
                   command: ./gradlew androidDependencies
-            - save-gradle-cache
-
-    ktlint:
-        <<: *container_config
-        steps:
-            - chmod +x ./gradlew
-            - checkout
-            - restore-gradle-cache
-            - run: ./gradlew ktlintCheck
-
-    detekt:
-        <<: *container_config
-        steps:
-            - chmod +x ./gradlew
-            - checkout
-            - restore-gradle-cache
-            - run: ./gradlew detekt
-
-    lint:
-        <<: *container_config
-        steps:
-            - chmod +x ./gradlew
-            - checkout
-            - restore-gradle-cache
-            - run: ./gradlew lintDebug
-
-    unit_test:
-        <<: *container_config
-        steps:
-            - chmod +x ./gradlew
-            - checkout
-            - restore-gradle-cache
-            - run: ./gradlew testDebugUnitTest --stacktrace
-
-    build_app:
-        description: An executor with sensible defaults for Android Gradle tasks (set with GRADLE_OPTS).
-
-        <<: *container_config
-
-        environment:
-            GRADLE_OPTS: -Xmx2g -XX:+HeapDumpOnOutOfMemoryError -Dorg.gradle.caching=true -Dorg.gradle.configureondemand=true -Dkotlin.compiler.execution.strategy=in-process -Dkotlin.incremental=false
-
-        steps:
-            - chmod +x ./gradlew
-            - checkout
-            - restore-gradle-cache
-            - run: ./gradlew :app:bundleDebug
-workflows:
-    version: 2
-    check:
-        jobs:
-            - update_dependency_cache
-            - lint:
-                  requires:
-                      - update_dependency_cache
-            - detekt:
-                  requires:
-                      - update_dependency_cache
-            - ktlint:
-                  requires:
-                      - update_dependency_cache
-            - unit_test:
-                  requires:
-                      - update_dependency_cache
-            - build_app:
-                  requires:
-                      - lint
-                      - detekt
-                      - ktlint
+            - save_cache:
+                  paths:
+                      - ~/.gradle
+                  key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+            - run:
+                  name: Run Tests
+                  command: ./gradlew lint test
+            - store_artifacts:
+                  path: app/build/reports
+                  destination: reports
+            - store_test_results:
+                  path: app/build/test-results
