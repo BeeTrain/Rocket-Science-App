@@ -93,6 +93,7 @@ workflows:
     version: 2
     check:
         jobs:
+            - command: sudo chmod +x ./gradlew
             - update_dependency_cache
             - lint:
                   requires:
