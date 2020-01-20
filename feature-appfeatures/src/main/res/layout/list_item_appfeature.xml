@@ -35,7 +35,6 @@
             android:fontFamily="serif"
             tools:text="App Feature" />
 
-
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>
