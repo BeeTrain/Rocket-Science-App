@@ -16,13 +16,13 @@ jobs:
         <<: *container_config
         steps:
             - checkout
-            - run: ./gradlew ktlint
+            - run: bash ./gradlew ktlint
 
     detekt:
         <<: *container_config
         steps:
             - checkout
-            - run: ./gradlew detekt
+            - run: bash ./gradlew detekt
 
     lint:
         <<: *container_config
@@ -30,7 +30,7 @@ jobs:
             - checkout
             # pure "lint" gradle task should be avoided because it is parent task for lintDebug and lintRelease (it runs lint
             # multiple times for each build variant). We want to run "lintDebug" task, because it's faster.
-            - run: ./gradlew lintDebug
+            - run: bash ./gradlew lintDebug
 
     build_app:
         description: An executor with sensible defaults for Android Gradle tasks (set with GRADLE_OPTS).
@@ -39,10 +39,6 @@ jobs:
 
         environment:
             GRADLE_OPTS: -Xmx2g -XX:+HeapDumpOnOutOfMemoryError -Dorg.gradle.caching=true -Dorg.gradle.configureondemand=true -Dkotlin.compiler.execution.strategy=in-process -Dkotlin.incremental=false
-
-        steps:
-            - checkout
-            - run: ./gradlew :app:bundleDebug
 workflows:
     version: 2
     check:
