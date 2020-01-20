@@ -7,14 +7,5 @@ import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
 
 class SplashViewModel(private val firebaseAuth: FirebaseAuth) : BaseViewModel() {
 
-    val loadingDataEvent = SingleLiveEvent<Boolean>()
-
-    fun imitateLoading() {
-        launchLoadingErrorJob {
-            delay(3000)
-            loadingDataEvent.postValue(true)
-        }
-    }
-
     fun getUser() = firebaseAuth.currentUser
 }

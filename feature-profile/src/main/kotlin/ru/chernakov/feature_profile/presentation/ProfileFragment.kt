@@ -34,7 +34,13 @@ class ProfileFragment : BaseFragment() {
         user?.let {
             tvUsername.text = it.displayName
             tvUserNick.text = it.email
-            it.photoUrl?.let { Picasso.get().load(it).into(ivProfilePhoto) }
+            it.photoUrl?.let {
+                Picasso.get()
+                    .load(it)
+                    .placeholder(R.drawable.img_user_avatar)
+                    .error(R.drawable.img_user_avatar)
+                    .into(ivProfilePhoto)
+            }
         }
     }
 
