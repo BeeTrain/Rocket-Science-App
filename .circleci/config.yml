@@ -3,4 +3,4 @@ version: 2.1
 workflows:
     quality:
         jobs:
-            - checkBeforePush
+            - run: ./gradlew checkBeforePush
