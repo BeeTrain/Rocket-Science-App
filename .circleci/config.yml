@@ -11,12 +11,6 @@ references:
         JVM_OPTS: -Xmx3g
 
 jobs:
-    restore_cache:
-        <<: *container_config
-        steps:
-            - checkout
-            key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-
     chmod_permissions:
         <<: *container_config
         command: sudo chmod +x ./gradlew
@@ -52,7 +46,10 @@ workflows:
     version: 2
     quality:
         jobs:
-            - restore_cache
+            - checkout
+            - restore_cache:
+                  key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+
             - chmod_permissions
             - download_dependencies
             - save_cache
