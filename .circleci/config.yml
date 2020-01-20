@@ -1,7 +1,6 @@
-version: 2.1
-
-references:
-    container_config: &container_config
+version: 2
+jobs:
+    quality:
     docker:
         - image: circleci/android:api-28
 
@@ -10,40 +9,36 @@ references:
     environment:
         JVM_OPTS: -Xmx3g
 
-jobs:
-    quality:
-        <<: *container_config
+    steps:
+        - checkout
+        - restore_cache:
+              key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
-        steps:
-            - checkout
-            - restore_cache:
-                  key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+        - run:
+              name: Chmod permissions
+              command: sudo chmod +x ./gradlew
 
-            - run:
-                  name: Chmod permissions
-                  command: sudo chmod +x ./gradlew
+        - run:
+              name: Download dependencies
+              command: ./gradlew androidDependencies
 
-            - run:
-                  name: Download dependencies
-                  command: ./gradlew androidDependencies
+        - save_cache:
+              paths:
+                  - ~/.gradle
+              key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
-            - save_cache:
-                  paths:
-                      - ~/.gradle
-                  key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+        - run:
+              name: Ktlint
+              command: ./gradlew ktlint
 
-            - run:
-                  name: Ktlint
-                  command: ./gradlew ktlint
+        - run:
+              name: Detekt
+              command: ./gradlew detekt
 
-            - run:
-                  name: Detekt
-                  command: ./gradlew detekt
+        - run:
+              name: Checkstyle
+              command: ./gradlew checkstyle
 
-            - run:
-                  name: Checkstyle
-                  command: ./gradlew checkstyle
-
-            - store_artifacts:
-                  path: app/build/reports
-                  destination: reports
+        - store_artifacts:
+              path: app/build/reports
+              destination: reports
