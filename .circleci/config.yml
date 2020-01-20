@@ -1,6 +1,21 @@
 version: 2.1
 
+jobs:
+    ktlint:
+        steps:
+            - run: ./gradlew ktlint
+
+    detekt:
+        steps:
+            - run: ./gradlew detekt
+
+    checkstyle:
+        steps:
+            - run: ./gradlew checkstyle
+
 workflows:
     quality:
         jobs:
-            - run: ./gradlew checkBeforePush
+            - ktlint
+            - detekt
+            - checkstyle
