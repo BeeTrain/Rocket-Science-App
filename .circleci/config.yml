@@ -43,7 +43,7 @@ jobs:
             - restore-gradle-cache
             - run:
                   name: Download Dependencies
-                  command: sudo chmod +x ./gradlew androidDependencies
+                  command: ./gradlew androidDependencies
             - save-gradle-cache
 
     ktlint:
@@ -51,31 +51,28 @@ jobs:
         steps:
             - checkout
             - restore-gradle-cache
-            - run: sudo chmod +x ./gradlew ktlintCheck
+            - run: ./gradlew ktlintCheck
 
     detekt:
         <<: *container_config
         steps:
             - checkout
             - restore-gradle-cache
-            - run: sudo chmod +x ./gradlew detekt
+            - run: ./gradlew detekt
 
     lint:
         <<: *container_config
         steps:
             - checkout
             - restore-gradle-cache
-            # pure "lint" gradle task should be avoided because it is parent task for lintDebug and lintRelease (it runs lint
-            # multiple times for each build variant). We want to run "lintDebug" task, because it's faster.
-            - run: sudo chmod +x ./gradlew lintDebug
+            - run: ./gradlew lintDebug
 
     unit_test:
         <<: *container_config
         steps:
             - checkout
             - restore-gradle-cache
-            # --stacktrace is just a temporary flag to help with debugging of ConcurrentModificationException that happens occasionally
-            - run: sudo chmod +x ./gradlew testDebugUnitTest --stacktrace
+            - run: ./gradlew testDebugUnitTest --stacktrace
 
     build_app:
         description: An executor with sensible defaults for Android Gradle tasks (set with GRADLE_OPTS).
@@ -93,6 +90,7 @@ workflows:
     version: 2
     check:
         jobs:
+            - chmod +x ./gradlew
             - update_dependency_cache
             - lint:
                   requires:
@@ -111,4 +109,3 @@ workflows:
                       - lint
                       - detekt
                       - ktlint
-                      - unit_test
