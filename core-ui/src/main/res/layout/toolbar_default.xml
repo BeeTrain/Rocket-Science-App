@@ -8,12 +8,12 @@
     android:background="?attr/colorPrimary"
     android:contentInsetStart="0dp"
     android:contentInsetEnd="0dp"
+    android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
     app:contentInsetEnd="0dp"
     app:contentInsetStart="0dp"
     app:elevation="@dimen/default_elevation"
     app:layout_collapseMode="pin"
-    app:layout_scrollFlags="scroll|exitUntilCollapsed"
-    app:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+    app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
     <include layout="@layout/layout_actionbar" />
 
