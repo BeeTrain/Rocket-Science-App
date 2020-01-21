@@ -1,12 +1,14 @@
 package ru.chernakov.feature_flow.presentation
 
-import androidx.lifecycle.MutableLiveData
+import ru.chernakov.core_base.util.lifecycle.SingleLiveEvent
 import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
 
 class FlowViewModel : BaseViewModel() {
-    var selectedNavigationData = MutableLiveData<Int>()
+    var selectedScreenEvent = SingleLiveEvent<Int>()
+
+    fun getSelectedScreenId() = selectedScreenEvent.value
 
     fun setSelected(itemId: Int) {
-        selectedNavigationData.postValue(itemId)
+        selectedScreenEvent.postValue(itemId)
     }
 }

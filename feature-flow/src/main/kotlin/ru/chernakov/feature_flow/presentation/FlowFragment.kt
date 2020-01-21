@@ -18,11 +18,12 @@ class FlowFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupNavigation()
-        flowViewModel.selectedNavigationData.observe(viewLifecycleOwner, SafeObserver {
+        flowViewModel.selectedScreenEvent.observe(viewLifecycleOwner, SafeObserver {
             startFlowFragment(it)
         })
-
-        if (savedInstanceState == null) {
+        if (flowViewModel.getSelectedScreenId() != null) {
+            navigation.selectedItemId = flowViewModel.getSelectedScreenId()!!
+        } else {
             navigation.selectedItemId = R.id.navigation_appfeatures
         }
     }
