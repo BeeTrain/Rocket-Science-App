@@ -42,11 +42,13 @@ class BubbleGameResultFragment : BaseFragment() {
 
         showFragmentView()
 
-        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                hideFragmentView()
-            }
-        })
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    hideFragmentView()
+                }
+            })
     }
 
     private fun showFragmentView() {

@@ -34,11 +34,13 @@ class BubbleGameMenuFragment : BaseFragment(), GameSettingsOnClickListener {
         btSettings.setOnClickListener {
             BubbleGameSettingsDialog.show(childFragmentManager, gameSettings)
         }
-        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                onBackPressedListener.onMenuBackPressed()
-            }
-        })
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    onBackPressedListener.onMenuBackPressed()
+                }
+            })
     }
 
     override fun onApply(gameSettingsModel: GameSettingsModel) {

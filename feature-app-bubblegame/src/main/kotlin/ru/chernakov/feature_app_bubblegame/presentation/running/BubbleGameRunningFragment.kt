@@ -24,11 +24,13 @@ class BubbleGameRunningFragment : BaseFragment() {
         bubbleGameView.game = bubbleGameViewModel.gameInteractor
         bubbleGameView.setParamsCallback(gameStateListener)
 
-        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                onBackPressedListener.onRunningBackPressed()
-            }
-        })
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    onBackPressedListener.onRunningBackPressed()
+                }
+            })
     }
 
     override fun getLayout() = R.layout.fragment_bubble_game_running
