@@ -10,4 +10,4 @@ trim_trailing_whitespace = true
 insert_final_newline = false
 
 [*.{java,kt,kts,xml,kt.spec,kts.spec}]
-disabled_rules = import-ordering
+disabled_rules = import-ordering, no-wildcard-imports
