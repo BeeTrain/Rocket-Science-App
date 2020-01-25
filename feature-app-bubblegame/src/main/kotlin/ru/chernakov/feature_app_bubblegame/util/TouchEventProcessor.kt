@@ -1,16 +1,17 @@
 package ru.chernakov.feature_app_bubblegame.util
 
 import android.view.MotionEvent
+import ru.chernakov.feature_app_bubblegame.data.model.Bubble
 import ru.chernakov.feature_app_bubblegame.data.model.Circle
 import ru.chernakov.feature_app_bubblegame.domain.BubbleGameInteractor
 import kotlin.math.pow
 import kotlin.math.sqrt
 
 class TouchEventProcessor {
-    private var touchStates: List<State> = listOf()
+    private var bubbles: List<Bubble> = listOf()
 
     fun setGame(bubbleGameInteractor: BubbleGameInteractor) {
-        touchStates = List(bubbleGameInteractor.circles.size) { index -> State(bubbleGameInteractor.circles[index]) }
+        bubbles = bubbleGameInteractor.bubbles
     }
 
     fun processTouchEvent(event: MotionEvent): Boolean {
@@ -23,7 +24,7 @@ class TouchEventProcessor {
     }
 
     fun isAllCirclesHavePointers(): Boolean {
-        return !touchStates.any { item -> !item.hasPointers() }
+        return !bubbles.any { item -> !item.hasPointers() }
     }
 
     private fun handleActionMove(event: MotionEvent) {
@@ -74,7 +75,7 @@ class TouchEventProcessor {
     }
 
     private fun checkPointer(pointerId: Int, x: Float, y: Float) {
-        for (state in touchStates) {
+        for (state in bubbles) {
             val circle = state.circle
             val maxY = circle.y + circle.radius
             val minY = circle.y - circle.radius
@@ -93,24 +94,18 @@ class TouchEventProcessor {
     }
 
     private fun removePointer(pointerId: Int) {
-        for (state in touchStates) {
+        for (state in bubbles) {
             state.pointerIds.remove(pointerId)
         }
     }
 
     private fun freeCirclesFromPointers() {
-        for (state in touchStates) {
+        for (state in bubbles) {
             state.pointerIds.clear()
         }
     }
 
     private fun calculateTouchRadius(c: Circle, x: Float, y: Float): Float {
         return sqrt((x - c.x).toDouble().pow(2.toDouble()) + (y - c.y).toDouble().pow(2.toDouble())).toFloat()
-    }
-
-    private data class State(var circle: Circle, val pointerIds: MutableSet<Int> = mutableSetOf()) {
-        fun hasPointers(): Boolean {
-            return pointerIds.isNotEmpty()
-        }
     }
 }

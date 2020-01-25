@@ -47,7 +47,7 @@ class BubbleGameView @JvmOverloads constructor(context: Context, attrs: Attribut
         }
 
         game?.update()
-        val circles = game?.circles
+        val circles = game?.bubbles?.map { it.circle }
         for (item: Circle in circles.orEmpty()) {
             val radius = item.radius
             circlePaint.color = item.color

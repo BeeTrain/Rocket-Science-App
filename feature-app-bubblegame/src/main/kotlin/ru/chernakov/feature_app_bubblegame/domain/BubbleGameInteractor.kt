@@ -6,11 +6,15 @@ import android.view.MotionEvent
 import ru.chernakov.feature_app_bubblegame.data.GameSpeed
 import ru.chernakov.feature_app_bubblegame.data.GameStatus
 import ru.chernakov.feature_app_bubblegame.data.GameTime
+import ru.chernakov.feature_app_bubblegame.data.model.Bubble
+import ru.chernakov.feature_app_bubblegame.data.model.BubblePosition
 import ru.chernakov.feature_app_bubblegame.data.model.Circle
 import ru.chernakov.feature_app_bubblegame.presentation.widget.BubbleGameStatusListener
 import ru.chernakov.feature_app_bubblegame.util.BubblePositionUtil
 import ru.chernakov.feature_app_bubblegame.util.TouchEventProcessor
-import java.util.Random
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashSet
 import kotlin.math.roundToInt
 
 class BubbleGameInteractor(
@@ -27,7 +31,7 @@ class BubbleGameInteractor(
     lateinit var gameTime: GameTime
     lateinit var speed: GameSpeed
 
-    var circles: List<Circle> = listOf()
+    var bubbles: List<Bubble> = listOf()
         private set
 
     var status = GameStatus.STOPPED
@@ -45,7 +49,6 @@ class BubbleGameInteractor(
         startTimeMs = SystemClock.elapsedRealtime()
         passedTimeMs = 0
         touchProcessor.setGame(this)
-        bubblePositionUtil.setGame(this)
 
         updateStatus(GameStatus.RUNNING)
     }
@@ -56,7 +59,7 @@ class BubbleGameInteractor(
         }
 
         passedTimeMs = SystemClock.elapsedRealtime() - startTimeMs
-        bubblePositionUtil.update()
+        bubbles = bubblePositionUtil.update(bubbles, speed, screenWidth)
 
         if (touchProcessor.isAllCirclesHavePointers()) {
             end(true)
@@ -69,14 +72,17 @@ class BubbleGameInteractor(
         updateStatus(if (isVictory) GameStatus.WIN else GameStatus.LOSS)
     }
 
-    private fun createCircle(radius: Int, vPos: Int, hPos: Int): Circle {
+    private fun createBubble(radius: Int, vPos: Int, hPos: Int): Bubble {
         val cx: Float = hPos * (radius * 2f) + radius
         val cy: Float = vPos * (radius * 2f) + radius
 
         val rand = Random()
         val color = Color.rgb(rand.nextInt(RAND_BOUND), rand.nextInt(RAND_BOUND), rand.nextInt(RAND_BOUND))
 
-        return Circle(radius.toFloat(), cx, cy, color)
+        return Bubble(
+            Circle(radius.toFloat(), cx, cy, color),
+            BubblePosition(SystemClock.elapsedRealtime(), cx, 1)
+        )
     }
 
     fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -88,7 +94,7 @@ class BubbleGameInteractor(
     }
 
     private fun placeCircles() {
-        val circles: MutableList<Circle> = ArrayList(bubbleCount)
+        val circles: MutableList<Bubble> = ArrayList(bubbleCount)
         val characteristic: ScreenParams = calculateScreenParams()
 
         val verticalInd: MutableSet<Int> = HashSet(characteristic.verticalCellCount)
@@ -106,10 +112,10 @@ class BubbleGameInteractor(
 
                 vPos++
             }
-            circles.add(i, createCircle(characteristic.circleRadius, vPos, hPos))
+            circles.add(i, createBubble(characteristic.circleRadius, vPos, hPos))
         }
 
-        this.circles = ArrayList(circles)
+        this.bubbles = ArrayList(circles)
     }
 
     private fun calculateScreenParams(): ScreenParams {
