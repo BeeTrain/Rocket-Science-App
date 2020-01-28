@@ -24,7 +24,7 @@ class SplashFragment : BaseFragment() {
 
     private fun redirectToNextScreen(isLogged: Boolean) {
         if (isLogged) {
-            navigation.fromSplashToFlow()
+            navigation.fromSplashToAppFeatures()
         } else {
             navigation.fromSplashToLogin()
         }

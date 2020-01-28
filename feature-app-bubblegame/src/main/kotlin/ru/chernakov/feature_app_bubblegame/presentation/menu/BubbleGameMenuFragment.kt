@@ -2,26 +2,28 @@ package ru.chernakov.feature_app_bubblegame.presentation.menu
 
 import android.os.Bundle
 import android.view.View
-import androidx.activity.OnBackPressedCallback
 import kotlinx.android.synthetic.main.fragment_bubble_game_menu.*
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
+import ru.chernakov.core_base.util.lifecycle.SafeObserver
 import ru.chernakov.core_ui.presentation.fragment.BaseFragment
 import ru.chernakov.feature_app_bubblegame.R
-import ru.chernakov.feature_app_bubblegame.navigation.OnBackPressedListener
-import ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameHostFragment
-import ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameViewModel
+import ru.chernakov.feature_app_bubblegame.data.GameStatus
+import ru.chernakov.feature_app_bubblegame.navigation.BubbleGameNavigation
+import ru.chernakov.feature_app_bubblegame.presentation.BubbleGameViewModel
 import ru.chernakov.feature_app_bubblegame.presentation.menu.settings.BubbleGameSettingsDialog
 import ru.chernakov.feature_app_bubblegame.presentation.menu.settings.GameSettingsModel
 import ru.chernakov.feature_app_bubblegame.presentation.menu.settings.GameSettingsOnClickListener
-import ru.chernakov.feature_app_bubblegame.presentation.widget.BubbleGameStateListener
 
 class BubbleGameMenuFragment : BaseFragment(), GameSettingsOnClickListener {
     private val bubbleGameViewModel: BubbleGameViewModel by viewModel()
-
-    private lateinit var onBackPressedListener: OnBackPressedListener
-    private lateinit var gameStateListener: BubbleGameStateListener
+    private val navigator: BubbleGameNavigation by inject()
 
     private var gameSettings = GameSettingsModel()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,18 +31,20 @@ class BubbleGameMenuFragment : BaseFragment(), GameSettingsOnClickListener {
             bubbleGameViewModel.gameInteractor.bubbleCount = gameSettings.bubbleCount
             bubbleGameViewModel.gameInteractor.speed = gameSettings.gameSpeed
             bubbleGameViewModel.gameInteractor.gameTime = gameSettings.gameTime
-            gameStateListener.onSettingsSet()
+            bubbleGameViewModel.gameInteractor.updateStatus(GameStatus.RUNNING)
         }
         btSettings.setOnClickListener {
             BubbleGameSettingsDialog.show(childFragmentManager, gameSettings)
         }
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    onBackPressedListener.onMenuBackPressed()
+        bubbleGameViewModel.gameInteractor.status.observe(viewLifecycleOwner, SafeObserver {
+            when (it) {
+                GameStatus.RUNNING -> {
+                    navigator.startBubbleGame()
                 }
-            })
+                else -> {
+                }
+            }
+        })
     }
 
     override fun onApply(gameSettingsModel: GameSettingsModel) {
@@ -50,13 +54,4 @@ class BubbleGameMenuFragment : BaseFragment(), GameSettingsOnClickListener {
     override fun getLayout() = R.layout.fragment_bubble_game_menu
 
     override fun obtainViewModel() = bubbleGameViewModel
-
-    companion object {
-        fun newInstance(hostFragment: BubbleGameHostFragment): BubbleGameMenuFragment {
-            return BubbleGameMenuFragment().apply {
-                gameStateListener = hostFragment
-                onBackPressedListener = hostFragment
-            }
-        }
-    }
 }

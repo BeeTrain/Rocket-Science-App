@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_profile"
+    app:startDestination="@id/profileScreen"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/profileScreen"
+        android:name="ru.chernakov.feature_profile.presentation.ProfileFragment"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/actionFromProfileToFavorite"
+            app:destination="@+id/navigation_favorite" />
+        <action
+            android:id="@+id/actionFromProfileToAppFeatures"
+            app:destination="@+id/navigation_appfeatures" />
+        <action
+            android:id="@+id/actionFromProfileToSettings"
+            app:destination="@+id/settingsScreen" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsScreen"
+        android:name="ru.chernakov.feature_settings.presentation.SettingsFragment"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/actionLogoutFromSettings"
+            app:destination="@+id/splashScreen" />
+    </fragment>
+
+</navigation>

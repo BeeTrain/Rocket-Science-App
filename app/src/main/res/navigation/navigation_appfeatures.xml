@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_appfeatures"
+    app:startDestination="@id/appfeaturesScreen"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/appfeaturesScreen"
+        android:name="ru.chernakov.feature_appfeatures.presentation.AppFeaturesFragment"
+        tools:layout="@layout/fragment_appfeatures">
+        <action
+            android:id="@+id/actionFromAppFeaturesToFavorite"
+            app:destination="@+id/navigation_favorite" />
+        <action
+            android:id="@+id/actionFromAppFeaturesToProfile"
+            app:destination="@+id/navigation_profile" />
+        <action
+            android:id="@+id/actionOpenBubbleGame"
+            app:destination="@+id/navigation_bubble_game" />
+    </fragment>
+
+    <include app:graph="@navigation/navigation_bubble_game" />
+
+</navigation>

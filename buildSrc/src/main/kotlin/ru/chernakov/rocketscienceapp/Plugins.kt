@@ -11,7 +11,7 @@ object Plugins {
         const val googleServices = "com.google.gms:google-services:${Versions.googleServices}"
         const val firebaseAppDistribution = "com.google.firebase:firebase-appdistribution-gradle:${Versions.firebaseAppDistribution}"
         const val detekt = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Versions.detekt}"
-        const val safeArgs = "androidx.navigation.safeargs.kotlin"
+        const val navigationSafeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
         const val dependenciesVersions = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersions}"
     }
 
@@ -28,4 +28,5 @@ object Plugins {
     const val jacoco = "jacoco"
     const val checkstyle = "checkstyle"
     const val dependenciesVersions = "com.github.ben-manes.versions"
+    const val navigationSafeArgsKotlin = "androidx.navigation.safeargs.kotlin"
 }

@@ -18,6 +18,7 @@ buildscript {
         classpath Plugins.ClassPaths.timeTracker
         classpath Plugins.ClassPaths.detekt
         classpath Plugins.ClassPaths.dependenciesVersions
+        classpath Plugins.ClassPaths.navigationSafeArgs
     }
 }
 
@@ -25,6 +26,20 @@ allprojects {
     repositories {
         google()
         jcenter()
+    }
+}
+
+subprojects {
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+
+            // Enable experimental coroutines APIs, including Flow
+            freeCompilerArgs += "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi"
+            freeCompilerArgs += "-Xuse-experimental=kotlinx.coroutines.FlowPreview"
+
+            // Set JVM target to 1.8
+            jvmTarget = "1.8"
+        }
     }
 }
 

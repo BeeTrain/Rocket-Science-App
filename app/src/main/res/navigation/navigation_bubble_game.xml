@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_bubble_game"
+    app:startDestination="@id/bubbleMenuScreen"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/bubbleMenuScreen"
+        android:name="ru.chernakov.feature_app_bubblegame.presentation.menu.BubbleGameMenuFragment"
+        tools:layout="@layout/fragment_bubble_game_menu">
+
+        <action
+            android:id="@+id/actionBubbleFromMenuToGame"
+            app:destination="@+id/bubbleGameScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bubbleGameScreen"
+        android:name="ru.chernakov.feature_app_bubblegame.presentation.running.BubbleGameRunningFragment"
+        tools:layout="@layout/fragment_bubble_game_running">
+        <action
+            android:id="@+id/actionBubbleFromGameToResult"
+            app:destination="@+id/bubbleResultScreen" />
+        <action
+            android:id="@+id/actionBubbleFromGameToMenu"
+            app:destination="@id/bubbleMenuScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bubbleResultScreen"
+        android:name="ru.chernakov.feature_app_bubblegame.presentation.result.BubbleGameResultFragment"
+        tools:layout="@layout/fragment_bubble_game_result">
+        <action
+            android:id="@+id/actionBubbleFromResultToMenu"
+            app:destination="@+id/bubbleMenuScreen" />
+    </fragment>
+
+</navigation>
