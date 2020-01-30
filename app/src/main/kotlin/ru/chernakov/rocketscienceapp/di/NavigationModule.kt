@@ -9,6 +9,7 @@ import ru.chernakov.feature_profile.navigation.ProfileNavigation
 import ru.chernakov.feature_register.navigation.RegisterNavigation
 import ru.chernakov.feature_settings.navigation.SettingsNavigation
 import ru.chernakov.feature_splash.navigation.SplashNavigation
+import ru.chernakov.rocketscienceapp.navigation.BottomNavigation
 import ru.chernakov.rocketscienceapp.navigation.MainNavigator
 
 val navigationModule = module {
@@ -16,6 +17,7 @@ val navigationModule = module {
     single<SplashNavigation> { get<MainNavigator>() }
     single<LoginNavigation> { get<MainNavigator>() }
     single<RegisterNavigation> { get<MainNavigator>() }
+    single<BottomNavigation> { get<MainNavigator>() }
     single<FavoriteNavigation> { get<MainNavigator>() }
     single<ProfileNavigation> { get<MainNavigator>() }
     single<SettingsNavigation> { get<MainNavigator>() }
