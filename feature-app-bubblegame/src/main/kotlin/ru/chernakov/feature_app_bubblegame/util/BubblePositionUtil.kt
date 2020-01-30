@@ -14,13 +14,12 @@ class BubblePositionUtil {
         for (bubble in bubbles) {
             val radius = bubble.circle.radius
             val state = bubble.position
-            val currStateTime = SystemClock.elapsedRealtime() - state.startTime
-            val coef = currStateTime / gameSpeed.timeMills.toFloat()
+            val coef = state.stateTime / gameSpeed.timeMills.toFloat()
             val interpolated = interpolator.getInterpolation(coef)
 
             val posDelta = screenWidth * interpolated
-            var newX =
-                state.startX + posDelta * state.direction + if (state.direction == -1) screenWidth - radius else radius
+            val bubblePos = if (state.direction == -1) screenWidth - radius else radius
+            var newX = state.startX + posDelta * state.direction + bubblePos
 
             if (!bubble.hasPointers()) {
                 if (newX < radius) {
@@ -32,9 +31,11 @@ class BubblePositionUtil {
                 }
 
                 bubble.circle.x = newX
+                bubble.position.stateTime = SystemClock.elapsedRealtime() - state.startTime
             } else {
-                bubble.position.startTime = SystemClock.elapsedRealtime()
+                bubble.position.startTime = state.stateTime - state.startTime
             }
+            bubble.position.stateTime = SystemClock.elapsedRealtime() - state.startTime
             updated.add(bubble)
         }
         return updated

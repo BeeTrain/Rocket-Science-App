@@ -81,7 +81,7 @@ class BubbleGameInteractor(
 
         return Bubble(
             Circle(radius.toFloat(), cx, cy, color),
-            BubblePosition(SystemClock.elapsedRealtime(), cx, 1)
+            BubblePosition(SystemClock.elapsedRealtime(), SystemClock.elapsedRealtime(), cx, 1)
         )
     }
 
@@ -134,7 +134,11 @@ class BubbleGameInteractor(
         }
     }
 
-    class ScreenParams(val circleRadius: Int, val verticalCellCount: Int, val horizontalCellCount: Int)
+    class ScreenParams(
+        val circleRadius: Int,
+        val verticalCellCount: Int,
+        val horizontalCellCount: Int
+    )
 
     companion object {
         private const val MIN_BUBBLES_COUNT = 3
