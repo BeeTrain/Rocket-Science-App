@@ -2,37 +2,47 @@ package ru.chernakov.feature_app_bubblegame.presentation.running
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import kotlinx.android.synthetic.main.fragment_bubble_game_running.*
-import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.core_base.util.lifecycle.SafeObserver
 import ru.chernakov.core_ui.presentation.fragment.BaseFragment
 import ru.chernakov.feature_app_bubblegame.R
-import ru.chernakov.feature_app_bubblegame.data.GameStatus
-import ru.chernakov.feature_app_bubblegame.navigation.BubbleGameNavigation
-import ru.chernakov.feature_app_bubblegame.presentation.BubbleGameViewModel
+import ru.chernakov.feature_app_bubblegame.navigation.OnBackPressedListener
+import ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameHostFragment
+import ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameViewModel
+import ru.chernakov.feature_app_bubblegame.presentation.widget.BubbleGameStateListener
 
 class BubbleGameRunningFragment : BaseFragment() {
     private val bubbleGameViewModel: BubbleGameViewModel by viewModel()
-    private val navigator: BubbleGameNavigation by inject()
+
+    private lateinit var onBackPressedListener: OnBackPressedListener
+    private lateinit var gameStateListener: BubbleGameStateListener
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         bubbleGameView.game = bubbleGameViewModel.gameInteractor
+        bubbleGameView.setParamsCallback(gameStateListener)
 
-        bubbleGameViewModel.gameInteractor.status.observe(viewLifecycleOwner, SafeObserver {
-            when (it) {
-                GameStatus.LOSS, GameStatus.WIN -> {
-                    navigator.openBubbleGameResult()
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    onBackPressedListener.onRunningBackPressed()
                 }
-                else -> {
-                }
-            }
-        })
+            })
     }
 
     override fun getLayout() = R.layout.fragment_bubble_game_running
 
     override fun obtainViewModel() = bubbleGameViewModel
+
+    companion object {
+        fun newInstance(hostFragment: BubbleGameHostFragment): BubbleGameRunningFragment {
+            return BubbleGameRunningFragment().apply {
+                gameStateListener = hostFragment
+                onBackPressedListener = hostFragment
+            }
+        }
+    }
 }

@@ -1,12 +1,15 @@
 package ru.chernakov.rocketscienceapp.navigation
 
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
+import ru.chernakov.core_ui.extension.androidx.fragment.app.replaceFragment
 import ru.chernakov.feature_app_bubblegame.navigation.BubbleGameNavigation
-import ru.chernakov.feature_app_bubblegame.presentation.menu.BubbleGameMenuFragmentDirections
-import ru.chernakov.feature_app_bubblegame.presentation.result.BubbleGameResultFragmentDirections
-import ru.chernakov.feature_app_bubblegame.presentation.running.BubbleGameRunningFragmentDirections
+import ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameHostFragment
+import ru.chernakov.feature_app_bubblegame.presentation.menu.BubbleGameMenuFragment
+import ru.chernakov.feature_app_bubblegame.presentation.result.BubbleGameResultFragment
+import ru.chernakov.feature_app_bubblegame.presentation.running.BubbleGameRunningFragment
 import ru.chernakov.feature_appfeatures.navigation.AppFeaturesNavigation
 import ru.chernakov.feature_appfeatures.presentation.AppFeaturesFragmentDirections
 import ru.chernakov.feature_favorite.navigaton.FavoriteNavigation
@@ -21,14 +24,15 @@ import ru.chernakov.feature_settings.navigation.SettingsNavigation
 import ru.chernakov.feature_settings.presentation.SettingsFragmentDirections
 import ru.chernakov.feature_splash.navigation.SplashNavigation
 import ru.chernakov.feature_splash.presentation.SplashFragmentDirections
+import ru.chernakov.rocketscienceapp.NavGraphDirections
 import ru.chernakov.rocketscienceapp.R
 import ru.chernakov.rocketscienceapp.presentation.MainActivity
 
-class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation,
+class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation, BottomNavigation,
     ProfileNavigation, FavoriteNavigation, SettingsNavigation, AppFeaturesNavigation,
     BubbleGameNavigation {
 
-    private lateinit var activity: MainActivity
+    private var activity: MainActivity? = null
     var navigation: NavController? = null
 
     fun bind(activity: MainActivity) {
@@ -38,11 +42,41 @@ class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation,
 
     fun unbind() {
         navigation = null
+        activity = null
     }
 
-    fun navigate(action: NavDirections, showBottomNavigation: Boolean = false) {
+    private fun navigate(action: NavDirections, showBottomNavigation: Boolean = false) {
         navigation?.navigate(action)
-        activity.setBottomNavigationVisibility(showBottomNavigation)
+        activity?.setBottomNavigationVisibility(showBottomNavigation)
+    }
+
+    private fun subNavigate(
+        fragment: Fragment,
+        isAddToBackStack: Boolean = true,
+        animation: NavigationAnimation? = null
+    ) {
+        activity?.supportFragmentManager?.replaceFragment(fragment, R.id.subContainer)?.apply {
+            addToBackStack = isAddToBackStack
+            animation?.let {
+                enter = it.enter
+                exit = it.exit
+                popEnter = it.popEnter
+                popExit = it.popExit
+            }
+            commit()
+        }
+    }
+
+    override fun openAppFeatures() {
+        navigate(NavGraphDirections.actionOpenAppFeatures(), true)
+    }
+
+    override fun openFavorite() {
+        navigate(NavGraphDirections.actionOpenFavorite(), true)
+    }
+
+    override fun openProfile() {
+        navigate(NavGraphDirections.actionOpenProfile(), true)
     }
 
     override fun fromSplashToLogin() {
@@ -50,7 +84,7 @@ class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation,
     }
 
     override fun fromSplashToAppFeatures() {
-        navigate(SplashFragmentDirections.actionOpenAppFeatures(), true)
+        openProfile()
     }
 
     override fun fromLoginToRegister() {
@@ -89,31 +123,31 @@ class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation,
         navigate(AppFeaturesFragmentDirections.actionFromAppFeaturesToProfile(), true)
     }
 
-    override fun openBubbleGame() {
-        navigate(AppFeaturesFragmentDirections.actionOpenBubbleGame())
-    }
-
-    override fun startBubbleGame() {
-        navigate(BubbleGameMenuFragmentDirections.actionBubbleFromMenuToGame())
-    }
-
-    override fun stopBubbleGame() {
-        navigate(BubbleGameRunningFragmentDirections.actionBubbleFromGameToMenu())
-    }
-
-    override fun openBubbleGameResult() {
-        navigate(BubbleGameRunningFragmentDirections.actionBubbleFromGameToResult())
-    }
-
-    override fun openBubbleGameMenu() {
-        navigate(BubbleGameResultFragmentDirections.actionBubbleFromResultToMenu())
-    }
-
     override fun fromFavoriteToAppFeatures() {
         navigate(FavoriteFragmentDirections.actionFromFavoriteToAppFeatures(), true)
     }
 
     override fun fromFavoriteToProfile() {
         navigate(FavoriteFragmentDirections.actionFromFavoriteToProfile(), true)
+    }
+
+    override fun fromBubbleGameToAppFeatures() {
+        openAppFeatures()
+    }
+
+    override fun openBubbleGame() {
+        navigate(AppFeaturesFragmentDirections.actionOpenBubbleGame())
+    }
+
+    override fun openBubbleGameMenu(hostFragment: BubbleGameHostFragment) {
+        subNavigate(BubbleGameMenuFragment.newInstance(hostFragment), false)
+    }
+
+    override fun startBubbleGame(hostFragment: BubbleGameHostFragment) {
+        subNavigate(BubbleGameRunningFragment.newInstance(hostFragment), false)
+    }
+
+    override fun openBubbleGameResult(hostFragment: BubbleGameHostFragment) {
+        subNavigate(BubbleGameResultFragment.newInstance(hostFragment), false)
     }
 }

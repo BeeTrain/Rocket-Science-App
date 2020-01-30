@@ -3,13 +3,13 @@ package ru.chernakov.feature_app_bubblegame.domain
 import android.graphics.Color
 import android.os.SystemClock
 import android.view.MotionEvent
-import androidx.lifecycle.MutableLiveData
 import ru.chernakov.feature_app_bubblegame.data.GameSpeed
 import ru.chernakov.feature_app_bubblegame.data.GameStatus
 import ru.chernakov.feature_app_bubblegame.data.GameTime
 import ru.chernakov.feature_app_bubblegame.data.model.Bubble
 import ru.chernakov.feature_app_bubblegame.data.model.BubblePosition
 import ru.chernakov.feature_app_bubblegame.data.model.Circle
+import ru.chernakov.feature_app_bubblegame.presentation.widget.BubbleGameStatusListener
 import ru.chernakov.feature_app_bubblegame.util.BubblePositionUtil
 import ru.chernakov.feature_app_bubblegame.util.TouchEventProcessor
 import java.util.*
@@ -34,7 +34,14 @@ class BubbleGameInteractor(
     var bubbles: List<Bubble> = listOf()
         private set
 
-    var status = MutableLiveData<GameStatus>()
+    var status = GameStatus.STOPPED
+        private set
+
+    var statusCallback: BubbleGameStatusListener? = null
+        set(value) {
+            field = value
+            field?.onGameStatusChanged(status)
+        }
 
     fun start() {
         placeCircles()
@@ -47,7 +54,7 @@ class BubbleGameInteractor(
     }
 
     fun update() {
-        if (status.value != GameStatus.RUNNING) {
+        if (status != GameStatus.RUNNING) {
             return
         }
 
@@ -70,8 +77,7 @@ class BubbleGameInteractor(
         val cy: Float = vPos * (radius * 2f) + radius
 
         val rand = Random()
-        val color =
-            Color.rgb(rand.nextInt(RAND_BOUND), rand.nextInt(RAND_BOUND), rand.nextInt(RAND_BOUND))
+        val color = Color.rgb(rand.nextInt(RAND_BOUND), rand.nextInt(RAND_BOUND), rand.nextInt(RAND_BOUND))
 
         return Bubble(
             Circle(radius.toFloat(), cx, cy, color),
@@ -80,7 +86,7 @@ class BubbleGameInteractor(
     }
 
     fun onTouchEvent(event: MotionEvent?): Boolean {
-        return if (status.value != GameStatus.RUNNING || event == null) {
+        return if (status != GameStatus.RUNNING || event == null) {
             false
         } else {
             touchProcessor.processTouchEvent(event)
@@ -122,16 +128,13 @@ class BubbleGameInteractor(
     }
 
     fun updateStatus(newStatus: GameStatus) {
-        if (status.value != newStatus) {
-            status.postValue(newStatus)
+        if (status != newStatus) {
+            status = newStatus
+            statusCallback?.onGameStatusChanged(newStatus)
         }
     }
 
-    class ScreenParams(
-        val circleRadius: Int,
-        val verticalCellCount: Int,
-        val horizontalCellCount: Int
-    )
+    class ScreenParams(val circleRadius: Int, val verticalCellCount: Int, val horizontalCellCount: Int)
 
     companion object {
         private const val MIN_BUBBLES_COUNT = 3

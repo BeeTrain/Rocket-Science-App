@@ -16,7 +16,15 @@ class BubbleGameView @JvmOverloads constructor(context: Context, attrs: Attribut
 
     private val circlePaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var isScreenSizeSet = false
+    private var callback: BubbleGameStateListener? = null
     var game: BubbleGameInteractor? = null
+
+    fun setParamsCallback(listener: BubbleGameStateListener) {
+        callback = listener
+        isScreenSizeSet = false
+
+        invalidate()
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -30,7 +38,7 @@ class BubbleGameView @JvmOverloads constructor(context: Context, attrs: Attribut
     }
 
     override fun onDraw(canvas: Canvas?) {
-        if (game == null || game?.status?.value != GameStatus.RUNNING) {
+        if (game == null || game?.status != GameStatus.RUNNING) {
             return
         }
 
@@ -52,8 +60,8 @@ class BubbleGameView @JvmOverloads constructor(context: Context, attrs: Attribut
     private fun setScreenParams(width: Int, height: Int) {
         game?.screenWidth = width
         game?.screenHeight = height
-        isScreenSizeSet = true
+        callback?.onScreenParamsSet()
 
-        invalidate()
+        isScreenSizeSet = true
     }
 }
