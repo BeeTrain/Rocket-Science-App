@@ -45,7 +45,7 @@ abstract class BaseFragment : Fragment() {
 
     private fun setupErrorHandling(errorLiveData: LiveData<Throwable>) {
         createErrorObserver()?.let {
-            errorLiveData.observe(this, it)
+            errorLiveData.observe(viewLifecycleOwner, it)
         }
     }
 

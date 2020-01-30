@@ -169,7 +169,7 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun goToNextScreen() {
-        navigation.fromLoginToFlow()
+        navigation.fromLoginToAppFeatures()
     }
 
     private fun goToRegister() {

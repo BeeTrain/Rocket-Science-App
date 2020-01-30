@@ -48,7 +48,7 @@ class BubbleGameHostFragment : BaseFragment(), OnBackPressedListener, BubbleGame
     }
 
     override fun onMenuBackPressed() {
-        navigator.fromBubbleGameToFlow()
+        navigator.fromBubbleGameToAppFeatures()
     }
 
     override fun onResultBackPressed() {
@@ -58,8 +58,4 @@ class BubbleGameHostFragment : BaseFragment(), OnBackPressedListener, BubbleGame
     override fun getLayout() = R.layout.fragment_bubble_game
 
     override fun obtainViewModel() = bubbleGameViewModel
-
-    companion object {
-        fun newInstance() = BubbleGameHostFragment()
-    }
 }

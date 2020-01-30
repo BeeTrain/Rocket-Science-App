@@ -6,6 +6,7 @@ apply plugin: Plugins.application
 
 apply from: '../config/config.gradle'
 apply from: '../config/dependencies.gradle'
+apply plugin: Plugins.navigationSafeArgsKotlin
 
 android {
     defaultConfig {
@@ -30,7 +31,7 @@ dependencies {
     implementation project(Modules.FEATURE_SPLASH)
     implementation project(Modules.FEATURE_LOGIN)
     implementation project(Modules.FEATURE_REGISTER)
-    implementation project(Modules.FEATURE_FLOW)
+    implementation project(Modules.FEATURE_FAVORITE)
     implementation project(Modules.FEATURE_PROFILE)
     implementation project(Modules.FEATURE_SETTINGS)
     implementation project(Modules.FEATURE_APPFEATURES)

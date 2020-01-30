@@ -103,7 +103,7 @@ class RegisterFragment : BaseFragment() {
     }
 
     private fun goToNextScreen() {
-        navigator.fromRegisterToFlow()
+        navigator.fromRegisterToAppFeatures()
     }
 
     companion object {

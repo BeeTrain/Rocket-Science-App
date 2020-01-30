@@ -7,7 +7,7 @@ object Modules {
     const val FEATURE_SPLASH = ":feature-splash"
     const val FEATURE_LOGIN = ":feature-login"
     const val FEATURE_REGISTER = ":feature-register"
-    const val FEATURE_FLOW = ":feature-flow"
+    const val FEATURE_FAVORITE = ":feature-favorite"
     const val FEATURE_PROFILE = ":feature-profile"
     const val FEATURE_SETTINGS = ":feature-settings"
     const val FEATURE_APPFEATURES = ":feature-appfeatures"

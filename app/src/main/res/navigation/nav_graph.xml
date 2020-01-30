@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashScreen">
+    <action
+        android:id="@+id/actionOpenFavorite"
+        app:destination="@+id/favoriteScreen"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true" />
+    <action
+        android:id="@+id/actionOpenAppFeatures"
+        app:destination="@+id/appfeaturesScreen"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true" />
+    <action
+        android:id="@+id/actionOpenProfile"
+        app:destination="@+id/profileScreen"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true" />
+
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="ru.chernakov.feature_splash.presentation.SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/actionFromSplashToLogin"
+            app:destination="@+id/loginScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginScreen"
+        android:name="ru.chernakov.feature_login.presentation.presentation.LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/actionFromLoginToRegister"
+            app:destination="@+id/registerScreen" />
+        <action
+            android:id="@+id/actionFromLoginToAppFeatures"
+            app:destination="@+id/appfeaturesScreen"
+            app:popUpTo="@id/appfeaturesScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerScreen"
+        android:name="ru.chernakov.feature_register.presentation.RegisterFragment"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/actionFromRegisterToAppFeatures"
+            app:destination="@+id/appfeaturesScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/appfeaturesScreen"
+        android:name="ru.chernakov.feature_appfeatures.presentation.AppFeaturesFragment"
+        tools:layout="@layout/fragment_appfeatures">
+        <action
+            android:id="@+id/actionFromAppFeaturesToFavorite"
+            app:destination="@+id/favoriteScreen" />
+        <action
+            android:id="@+id/actionFromAppFeaturesToProfile"
+            app:destination="@+id/profileScreen" />
+        <action
+            android:id="@+id/actionOpenBubbleGame"
+            app:destination="@id/bubbleGameScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoriteScreen"
+        android:name="ru.chernakov.feature_favorite.presentation.FavoriteFragment"
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/actionFromFavoriteToProfile"
+            app:destination="@+id/profileScreen" />
+        <action
+            android:id="@+id/actionFromFavoriteToAppFeatures"
+            app:destination="@+id/appfeaturesScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileScreen"
+        android:name="ru.chernakov.feature_profile.presentation.ProfileFragment"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/actionFromProfileToFavorite"
+            app:destination="@+id/favoriteScreen" />
+        <action
+            android:id="@+id/actionFromProfileToAppFeatures"
+            app:destination="@+id/appfeaturesScreen" />
+        <action
+            android:id="@+id/actionFromProfileToSettings"
+            app:destination="@+id/settingsScreen" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsScreen"
+        android:name="ru.chernakov.feature_settings.presentation.SettingsFragment"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/actionLogoutFromSettings"
+            app:destination="@+id/splashScreen" />
+    </fragment>
+
+    <!--    App Features-->
+
+    <fragment
+        android:id="@+id/bubbleGameScreen"
+        android:name="ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameHostFragment"
+        tools:layout="@layout/fragment_bubble_game_menu"/>
+
+</navigation>

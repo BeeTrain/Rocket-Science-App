@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- Navigation -->
-    <string name="navigation_profile">profile</string>
-    <string name="navigation_appfeatures">appfeatures</string>
-    <string name="navigation_favorite">favorite</string>
-</resources>
