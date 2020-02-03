@@ -17,7 +17,7 @@ class SettingsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ivClose.setOnClickListener { fragmentManager?.popBackStack() }
+        ivClose.setOnClickListener { navigator.fromSettingsToProfile() }
         btLogout.setOnClickListener { settingsViewModel.logoutUser() }
         settingsViewModel.logoutEvent.observe(viewLifecycleOwner, Observer {
             navigator.logoutFromSettings()
@@ -27,8 +27,4 @@ class SettingsFragment : BaseFragment() {
     override fun getLayout(): Int = R.layout.fragment_settings
 
     override fun obtainViewModel(): BaseViewModel = settingsViewModel
-
-    companion object {
-        fun newInstance() = SettingsFragment()
-    }
 }

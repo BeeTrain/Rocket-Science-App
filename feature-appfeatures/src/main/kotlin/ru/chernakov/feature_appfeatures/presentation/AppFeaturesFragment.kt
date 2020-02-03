@@ -47,9 +47,4 @@ class AppFeaturesFragment : BaseFragment() {
     override fun getLayout(): Int = R.layout.fragment_appfeatures
 
     override fun obtainViewModel(): BaseViewModel = BaseViewModel()
-
-    companion object {
-
-        fun newInstance() = AppFeaturesFragment()
-    }
 }

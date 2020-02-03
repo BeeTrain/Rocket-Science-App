@@ -30,7 +30,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun onFirstStart() {
-        if (mainViewModel.selectedNavigationItemEvent.value == null) {
+        if (mainViewModel.selectedNavigationItemEvent.value == null && mainViewModel.getUser() != null) {
             bottomNavigation.selectedItemId = R.id.navigation_appfeatures
         }
     }
@@ -40,7 +40,8 @@ class MainActivity : BaseActivity() {
             R.id.navigation_favorite -> mainNavigator.openFavorite()
             R.id.navigation_profile -> mainNavigator.openProfile()
             R.id.navigation_appfeatures -> mainNavigator.openAppFeatures()
-            else -> mainNavigator.openAppFeatures()
+            else -> {
+            }
         }
     }
 

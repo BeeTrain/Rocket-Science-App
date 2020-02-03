@@ -105,9 +105,4 @@ class RegisterFragment : BaseFragment() {
     private fun goToNextScreen() {
         navigator.fromRegisterToAppFeatures()
     }
-
-    companion object {
-
-        fun newInstance() = RegisterFragment()
-    }
 }

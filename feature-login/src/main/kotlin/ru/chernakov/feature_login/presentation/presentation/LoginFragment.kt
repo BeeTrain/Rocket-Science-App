@@ -93,10 +93,6 @@ class LoginFragment : BaseFragment() {
         })
     }
 
-    override fun getLayout(): Int = R.layout.fragment_login
-
-    override fun obtainViewModel(): BaseViewModel = loginViewModel
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == RC_SIGN_IN) {
@@ -176,12 +172,13 @@ class LoginFragment : BaseFragment() {
         navigation.fromLoginToRegister()
     }
 
+    override fun getLayout(): Int = R.layout.fragment_login
+
+    override fun obtainViewModel(): BaseViewModel = loginViewModel
+
     companion object {
         private const val GOOGLE_SIGN_AMPLITUDE = 0.2
         private const val GOOGLE_SIGN_FREQUENCY = 20.0
-
         private val RC_SIGN_IN = RequestCodeGenerator.next
-
-        fun newInstance() = LoginFragment()
     }
 }

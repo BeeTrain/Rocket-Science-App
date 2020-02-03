@@ -92,11 +92,15 @@ class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation, Bot
     }
 
     override fun fromLoginToAppFeatures() {
-        navigate(LoginFragmentDirections.actionFromLoginToAppFeatures(), true)
+        openAppFeatures()
     }
 
     override fun fromRegisterToAppFeatures() {
         navigate(RegisterFragmentDirections.actionFromRegisterToAppFeatures(), true)
+    }
+
+    override fun fromRegisterToLogin() {
+        navigate(RegisterFragmentDirections.actionFromRegisterToLogin())
     }
 
     override fun fromProfileToFavorite() {
@@ -113,6 +117,10 @@ class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation, Bot
 
     override fun logoutFromSettings() {
         navigate(SettingsFragmentDirections.actionLogoutFromSettings())
+    }
+
+    override fun fromSettingsToProfile() {
+        navigate(SettingsFragmentDirections.actionFromSettingsToProfile(), true)
     }
 
     override fun fromAppFeaturesToFavorite() {

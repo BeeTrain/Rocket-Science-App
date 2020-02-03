@@ -5,5 +5,5 @@ import org.koin.dsl.module
 import ru.chernakov.rocketscienceapp.presentation.MainViewModel
 
 val appModule = module {
-    viewModel { MainViewModel() }
+    viewModel { MainViewModel(get()) }
 }

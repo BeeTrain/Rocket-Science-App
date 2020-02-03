@@ -43,9 +43,4 @@ class ProfileFragment : BaseFragment() {
             }
         }
     }
-
-    companion object {
-
-        fun newInstance() = ProfileFragment()
-    }
 }

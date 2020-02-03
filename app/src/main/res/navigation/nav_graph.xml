@@ -36,7 +36,11 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/actionFromLoginToRegister"
-            app:destination="@+id/registerScreen" />
+            app:destination="@+id/registerScreen"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_down" />
         <action
             android:id="@+id/actionFromLoginToAppFeatures"
             app:destination="@+id/appfeaturesScreen"
@@ -50,6 +54,11 @@
         <action
             android:id="@+id/actionFromRegisterToAppFeatures"
             app:destination="@+id/appfeaturesScreen" />
+        <action
+            android:id="@+id/actionFromRegisterToLogin"
+            app:destination="@+id/loginScreen"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_down" />
     </fragment>
 
     <fragment
@@ -91,7 +100,11 @@
             app:destination="@+id/appfeaturesScreen" />
         <action
             android:id="@+id/actionFromProfileToSettings"
-            app:destination="@+id/settingsScreen" />
+            app:destination="@+id/settingsScreen"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_down" />
 
     </fragment>
 
@@ -102,6 +115,11 @@
         <action
             android:id="@+id/actionLogoutFromSettings"
             app:destination="@+id/splashScreen" />
+        <action
+            android:id="@+id/actionFromSettingsToProfile"
+            app:destination="@+id/profileScreen"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_down" />
     </fragment>
 
     <!--    App Features-->
@@ -109,6 +127,6 @@
     <fragment
         android:id="@+id/bubbleGameScreen"
         android:name="ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameHostFragment"
-        tools:layout="@layout/fragment_bubble_game_menu"/>
+        tools:layout="@layout/fragment_bubble_game_menu" />
 
 </navigation>
