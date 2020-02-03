@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="resend_in_x_seconds">
+        <item quantity="one">You can resend email again in %d second</item>
+        <item quantity="other">You can resend email again in %d seconds</item>
+    </plurals>
+</resources>

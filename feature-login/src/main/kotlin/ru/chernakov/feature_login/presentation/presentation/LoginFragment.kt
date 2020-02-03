@@ -25,6 +25,7 @@ import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
 import ru.chernakov.core_ui.util.animation.BounceInterpolator
 import ru.chernakov.feature_login.R
 import ru.chernakov.feature_login.presentation.navigation.LoginNavigation
+import java.util.concurrent.TimeUnit
 
 class LoginFragment : BaseFragment() {
     private val loginViewModel: LoginViewModel by viewModel()
@@ -90,6 +91,19 @@ class LoginFragment : BaseFragment() {
                 getString(R.string.msg_reset_pass_error)
             }
             showMessage(message)
+        })
+        loginViewModel.resendEmailAccessEvent.observe(viewLifecycleOwner, SafeObserver {
+            tvForgotPassword.isClickable = it
+        })
+        loginViewModel.resendEmailTimerEvent.observe(viewLifecycleOwner, SafeObserver {
+            val remainingSeconds = TimeUnit.MILLISECONDS.toSeconds(it).toInt()
+            tvForgotPassword.text = if (remainingSeconds > 0) {
+                resources.getQuantityString(
+                    R.plurals.resend_in_x_seconds, remainingSeconds, remainingSeconds
+                )
+            } else {
+                getString(R.string.msg_forgot_password)
+            }
         })
     }
 
