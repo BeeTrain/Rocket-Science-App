@@ -19,4 +19,10 @@
     <string name="navigation_profile">profile</string>
     <string name="navigation_appfeatures">appfeatures</string>
     <string name="navigation_favorite">favorite</string>
+
+    <!-- PasswordStrength-->
+    <string name="password_weak">This is a weak Password, try harder!</string>
+    <string name="password_medium">Not so bad, but could be better</string>
+    <string name="password_strong">Quite strong</string>
+    <string name="password_very_strong">Wow, don\'t forget it</string>
 </resources>

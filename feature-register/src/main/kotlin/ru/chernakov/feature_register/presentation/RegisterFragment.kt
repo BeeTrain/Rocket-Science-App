@@ -14,6 +14,7 @@ import ru.chernakov.core_ui.extension.android.widget.addTextChangedListener
 import ru.chernakov.core_ui.presentation.fragment.BaseFragment
 import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
 import ru.chernakov.feature_register.R
+import ru.chernakov.feature_register.data.model.PasswordStrength
 import ru.chernakov.feature_register.navigation.RegisterNavigation
 
 class RegisterFragment : BaseFragment() {
@@ -38,6 +39,8 @@ class RegisterFragment : BaseFragment() {
                     if (registerViewModel.isPasswordValid(it)) {
                         tilPassword.error = null
                     }
+                    val passStrength = PasswordStrength.calculate(it.toString())
+                    tilPassword.helperText = if (it.isNotEmpty()) getString(passStrength.message) else null
                 }
             }
         }
