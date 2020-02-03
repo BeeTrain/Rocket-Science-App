@@ -22,6 +22,11 @@ class BubbleGameHostFragment : BaseFragment(), OnBackPressedListener, BubbleGame
         bubbleGameViewModel.gameInteractor.statusCallback = this
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        bubbleGameViewModel.gameInteractor.statusCallback = null
+    }
+
     override fun onGameStatusChanged(gameStatus: GameStatus) {
         when (gameStatus) {
             GameStatus.STOPPED -> navigator.openBubbleGameMenu(this)
