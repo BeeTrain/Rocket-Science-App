@@ -19,7 +19,7 @@ dependencies {
 
     viewModel()
 
-    firebase()
+    firebaseAuth()
     playServicesAuth()
     network()
 

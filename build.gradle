@@ -19,6 +19,7 @@ buildscript {
         classpath Plugins.ClassPaths.detekt
         classpath Plugins.ClassPaths.dependenciesVersions
         classpath Plugins.ClassPaths.navigationSafeArgs
+        classpath Plugins.ClassPaths.firebaseCrashlytics
     }
 }
 

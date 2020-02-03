@@ -34,7 +34,12 @@ ext {
         implementation Libraries.Retrofit.gsonConverter
     }
 
-    firebase = Group {
+    firebaseQuality = Group {
+        implementation Libraries.Firebase.analytics
+        implementation Libraries.Firebase.crashlytics
+    }
+
+    firebaseAuth = Group {
         implementation Libraries.Firebase.auth
     }
 

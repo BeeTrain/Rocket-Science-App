@@ -38,10 +38,12 @@ object Libraries {
 
     object Firebase {
         const val analytics = "com.google.firebase:firebase-analytics:${Versions.firebaseAnalytics}"
+        const val crashlytics = "com.google.firebase:firebase-crashlytics:${Versions.firebaseCrashlytics}"
         const val firestore = "com.google.firebase:firebase-firestore-ktx:${Versions.firebaseFirestore}"
         const val database = "com.google.firebase:firebase-database:${Versions.firebaseDatabase}"
         const val auth = "com.google.firebase:firebase-auth:${Versions.firebaseAuth}"
-        const val firebaseUiAuth = "com.firebaseui:firebase-ui-auth:${Versions.firebaseUiAuth}"    }
+        const val firebaseUiAuth = "com.firebaseui:firebase-ui-auth:${Versions.firebaseUiAuth}"
+    }
 
     object Retrofit {
         const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"

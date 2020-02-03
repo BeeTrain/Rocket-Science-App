@@ -3,6 +3,7 @@ import ru.chernakov.rocketscienceapp.Modules
 import ru.chernakov.rocketscienceapp.Plugins
 
 apply plugin: Plugins.application
+apply plugin: Plugins.firebaseCrashlytics
 
 apply from: '../config/config.gradle'
 apply from: '../config/dependencies.gradle'
@@ -49,7 +50,8 @@ dependencies {
 
     network()
 
-    firebase()
+    firebaseAuth()
+    firebaseQuality()
     playServicesAuth()
 
     koin()
