@@ -10,6 +10,8 @@ import ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameHostFragm
 import ru.chernakov.feature_app_bubblegame.presentation.menu.BubbleGameMenuFragment
 import ru.chernakov.feature_app_bubblegame.presentation.result.BubbleGameResultFragment
 import ru.chernakov.feature_app_bubblegame.presentation.running.BubbleGameRunningFragment
+import ru.chernakov.feature_app_movies.navigation.MoviesNavigation
+import ru.chernakov.feature_app_movies.presentation.movies.MoviesFragmentDirections
 import ru.chernakov.feature_appfeatures.navigation.AppFeaturesNavigation
 import ru.chernakov.feature_appfeatures.presentation.AppFeaturesFragmentDirections
 import ru.chernakov.feature_favorite.navigaton.FavoriteNavigation
@@ -30,7 +32,7 @@ import ru.chernakov.rocketscienceapp.presentation.MainActivity
 
 class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation, BottomNavigation,
     ProfileNavigation, FavoriteNavigation, SettingsNavigation, AppFeaturesNavigation,
-    BubbleGameNavigation {
+    BubbleGameNavigation, MoviesNavigation {
 
     private var activity: MainActivity? = null
     var navigation: NavController? = null
@@ -100,7 +102,7 @@ class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation, Bot
     }
 
     override fun fromRegisterToLogin() {
-        navigate(RegisterFragmentDirections.actionFromRegisterToLogin())
+        navigation?.popBackStack()
     }
 
     override fun fromProfileToFavorite() {
@@ -157,5 +159,13 @@ class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation, Bot
 
     override fun openBubbleGameResult(hostFragment: BubbleGameHostFragment) {
         subNavigate(BubbleGameResultFragment.newInstance(hostFragment), false)
+    }
+
+    override fun openMovies() {
+        navigate(AppFeaturesFragmentDirections.actionOpenMovies())
+    }
+
+    override fun fromMoviesToInfo() {
+        navigate(MoviesFragmentDirections.actionFromMoviesToInfo())
     }
 }

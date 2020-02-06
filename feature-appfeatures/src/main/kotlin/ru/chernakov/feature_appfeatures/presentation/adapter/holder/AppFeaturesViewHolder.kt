@@ -20,7 +20,7 @@ class AppFeaturesViewHolder(
     fun bind(feature: AppFeature) {
         item = feature
         itemView.apply {
-            tvTitle.text = item.name
+            tvTitle.text = context.getString(item.name)
             Picasso.get().load(item.iconRes).into(ivFeatureIcon)
         }
     }

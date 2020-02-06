@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_feature_name_default">WIP! Coming soon</string>
+    <string name="app_feature_bubble_game">Bubble Game</string>
+    <string name="app_feature_movies">Movies</string>
+</resources>

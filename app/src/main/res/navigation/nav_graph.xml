@@ -54,11 +54,6 @@
         <action
             android:id="@+id/actionFromRegisterToAppFeatures"
             app:destination="@+id/appfeaturesScreen" />
-        <action
-            android:id="@+id/actionFromRegisterToLogin"
-            app:destination="@+id/loginScreen"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/slide_down" />
     </fragment>
 
     <fragment
@@ -74,6 +69,9 @@
         <action
             android:id="@+id/actionOpenBubbleGame"
             app:destination="@id/bubbleGameScreen" />
+        <action
+            android:id="@+id/actionOpenMovies"
+            app:destination="@+id/moviesScreen" />
     </fragment>
 
     <fragment
@@ -122,11 +120,27 @@
             app:exitAnim="@anim/slide_down" />
     </fragment>
 
-    <!--    App Features-->
+    <!-- App Features -->
 
+    <!-- Bubble game -->
     <fragment
         android:id="@+id/bubbleGameScreen"
         android:name="ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameHostFragment"
         tools:layout="@layout/fragment_bubble_game_menu" />
+
+    <!-- Movies -->
+    <fragment
+        android:id="@+id/moviesScreen"
+        android:name="ru.chernakov.feature_app_movies.presentation.movies.MoviesFragment"
+        tools:layout="@layout/fragment_movies" >
+        <action
+            android:id="@+id/actionFromMoviesToInfo"
+            app:destination="@id/movieInfoScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieInfoScreen"
+        android:name="ru.chernakov.feature_app_movies.presentation.info.MovieInfoFragment"
+        tools:layout="@layout/fragment_movie_info" />
 
 </navigation>
