@@ -30,6 +30,7 @@ import ru.chernakov.rocketscienceapp.NavGraphDirections
 import ru.chernakov.rocketscienceapp.R
 import ru.chernakov.rocketscienceapp.presentation.MainActivity
 
+@Suppress("TooManyMethods")
 class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation, BottomNavigation,
     ProfileNavigation, FavoriteNavigation, SettingsNavigation, AppFeaturesNavigation,
     BubbleGameNavigation, MoviesNavigation {

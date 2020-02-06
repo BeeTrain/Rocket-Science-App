@@ -29,7 +29,7 @@ class BubbleGameResultFragment : BaseFragment() {
         val text = when (bubbleGameViewModel.gameInteractor.status) {
             GameStatus.LOSS -> getString(R.string.game_result_lose)
             GameStatus.WIN -> getString(
-                R.string.game_result_won, (bubbleGameViewModel.gameInteractor.passedTimeMs / MS_TO_SECONDS)
+                R.string.game_result_won, bubbleGameViewModel.gameInteractor.passedTimeMs / MS_TO_SECONDS
             )
             else -> getString(R.string.game_result_not_end)
         }

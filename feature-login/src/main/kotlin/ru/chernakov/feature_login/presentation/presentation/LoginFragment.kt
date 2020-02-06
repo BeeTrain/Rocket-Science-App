@@ -36,6 +36,11 @@ class LoginFragment : BaseFragment() {
         if (savedInstanceState == null) {
             runStartAnimation()
         }
+        setupListeners()
+        observeEvents()
+    }
+
+    private fun setupListeners() {
         btGoogleSign.setOnClickListener { v ->
             context?.let {
                 val bounce = AnimationUtils.loadAnimation(it, R.anim.bounce).apply {
@@ -68,7 +73,6 @@ class LoginFragment : BaseFragment() {
                 }
             }
         }
-        observeEvents()
     }
 
     private fun observeEvents() {
@@ -119,18 +123,19 @@ class LoginFragment : BaseFragment() {
     private fun onLogin() {
         val isEmailValid = loginViewModel.isEmailValid(titEmail.editableText)
         val isPasswordValid = loginViewModel.isPasswordValid(titPassword.editableText)
-        if (isEmailValid && isPasswordValid) {
-            activity?.hideKeyboard()
-            loginViewModel.signInWithEmailAndPassword(
-                titEmail.text.toString().trim(),
-                titPassword.text.toString().trim()
-            )
-        } else {
-            if (!isEmailValid) {
+        when {
+            isEmailValid && isPasswordValid -> {
+                requireActivity().hideKeyboard()
+                loginViewModel.signInWithEmailAndPassword(
+                    titEmail.text.toString().trim(),
+                    titPassword.text.toString().trim()
+                )
+            }
+            !isEmailValid -> {
                 titEmail.requestFocus()
                 tilEmail.error = getString(R.string.msg_error_email)
             }
-            if (!isPasswordValid) {
+            !isPasswordValid -> {
                 titPassword.requestFocus()
                 tilPassword.error = getString(R.string.msg_error_password)
             }
@@ -191,8 +196,8 @@ class LoginFragment : BaseFragment() {
     override fun obtainViewModel(): BaseViewModel = loginViewModel
 
     companion object {
-        private const val GOOGLE_SIGN_AMPLITUDE = 0.2
-        private const val GOOGLE_SIGN_FREQUENCY = 20.0
+        private const val GOOGLE_SIGN_AMPLITUDE = 0.1
+        private const val GOOGLE_SIGN_FREQUENCY = 40.0
         private val RC_SIGN_IN = RequestCodeGenerator.next
     }
 }

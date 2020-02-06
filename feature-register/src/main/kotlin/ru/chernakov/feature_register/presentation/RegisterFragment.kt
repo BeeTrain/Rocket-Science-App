@@ -23,7 +23,28 @@ class RegisterFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupListeners()
+        observeData()
+    }
+
+    private fun observeData() {
+        registerViewModel.registerSuccessEvent.observe(viewLifecycleOwner, SafeObserver {
+            onAuthResult(it)
+        })
+        registerViewModel.registerErrorEvent.observe(viewLifecycleOwner, SafeObserver {
+            val authErrorMessage = when (it) {
+                is FirebaseAuthInvalidUserException -> getString(R.string.msg_error_auth_user)
+                is FirebaseAuthEmailException -> getString(R.string.msg_error_auth_email)
+                is FirebaseAuthInvalidCredentialsException -> getString(R.string.msg_error_auth_credentials)
+                else -> it.localizedMessage
+            }
+            showAuthErrorMessage(authErrorMessage)
+        })
+    }
+
+    private fun setupListeners() {
         ivClose.setOnClickListener { navigator.fromRegisterToLogin() }
+        btRegister.setOnClickListener { registerUser() }
         titEmail.addTextChangedListener {
             afterTextChanged {
                 it?.let {
@@ -53,19 +74,6 @@ class RegisterFragment : BaseFragment() {
                 }
             }
         }
-        btRegister.setOnClickListener { registerUser() }
-        registerViewModel.registerSuccessEvent.observe(viewLifecycleOwner, SafeObserver {
-            onAuthResult(it)
-        })
-        registerViewModel.registerErrorEvent.observe(viewLifecycleOwner, SafeObserver {
-            val authErrorMessage = when (it) {
-                is FirebaseAuthInvalidUserException -> getString(R.string.msg_error_auth_user)
-                is FirebaseAuthEmailException -> getString(R.string.msg_error_auth_email)
-                is FirebaseAuthInvalidCredentialsException -> getString(R.string.msg_error_auth_credentials)
-                else -> it.localizedMessage
-            }
-            showAuthErrorMessage(authErrorMessage)
-        })
     }
 
     override fun getLayout(): Int = R.layout.fragment_register
@@ -78,18 +86,19 @@ class RegisterFragment : BaseFragment() {
         val isPassConfirmValid = registerViewModel.isPasswordConfirmValid(
             titPassword.editableText, titPasswordConfirm.editableText
         )
-        if (isEmailValid && isPasswordValid && isPassConfirmValid) {
-            registerViewModel.registerUser(titEmail.text.toString(), titPassword.text.toString())
-        } else {
-            if (!isEmailValid) {
+        when {
+            isEmailValid && isPasswordValid && isPassConfirmValid -> {
+                registerViewModel.registerUser(titEmail.text.toString(), titPassword.text.toString())
+            }
+            !isEmailValid -> {
                 titEmail.requestFocus()
                 tilEmail.error = getString(R.string.msg_error_email)
             }
-            if (!isPasswordValid) {
+            !isPasswordValid -> {
                 titPassword.requestFocus()
                 tilPassword.error = getString(R.string.msg_error_password)
             }
-            if (!isPassConfirmValid) {
+            !isPassConfirmValid -> {
                 titPasswordConfirm.requestFocus()
                 tilPasswordConfirm.error = getString(R.string.msg_error_password_confirm)
             }
