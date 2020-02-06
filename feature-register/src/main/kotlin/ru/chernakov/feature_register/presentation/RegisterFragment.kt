@@ -23,7 +23,7 @@ class RegisterFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ivClose.setOnClickListener { fragmentManager?.popBackStack() }
+        ivClose.setOnClickListener { navigator.fromRegisterToLogin() }
         titEmail.addTextChangedListener {
             afterTextChanged {
                 it?.let {
