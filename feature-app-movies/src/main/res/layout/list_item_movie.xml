@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_elevation"
+    app:rippleColor="@color/colorSecondaryLight">
+
+    <ImageView
+        android:id="@+id/ivPoster"
+        style="@style/MoviePoster"
+        android:layout_height="@dimen/poster_height"
+        android:contentDescription="@string/content_description" />
+
+</com.google.android.material.card.MaterialCardView>

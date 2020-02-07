@@ -134,13 +134,13 @@
         android:name="ru.chernakov.feature_app_movies.presentation.movies.MoviesFragment"
         tools:layout="@layout/fragment_movies" >
         <action
-            android:id="@+id/actionFromMoviesToInfo"
-            app:destination="@id/movieInfoScreen" />
+            android:id="@+id/actionFromMoviesToDetails"
+            app:destination="@id/movieDetailsScreen" />
     </fragment>
 
     <fragment
-        android:id="@+id/movieInfoScreen"
-        android:name="ru.chernakov.feature_app_movies.presentation.info.MovieInfoFragment"
+        android:id="@+id/movieDetailsScreen"
+        android:name="ru.chernakov.feature_app_movies.presentation.details.MovieDetailsFragment"
         tools:layout="@layout/fragment_movie_info" />
 
 </navigation>

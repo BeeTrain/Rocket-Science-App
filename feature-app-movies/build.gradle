@@ -1,3 +1,4 @@
+import ru.chernakov.rocketscienceapp.Libraries
 import ru.chernakov.rocketscienceapp.Modules
 import ru.chernakov.rocketscienceapp.Plugins
 
@@ -5,6 +6,13 @@ apply plugin: Plugins.library
 
 apply from: '../config/config.gradle'
 apply from: '../config/dependencies.gradle'
+
+android {
+    defaultConfig {
+        buildConfigField 'String', 'API_BASE_URL', '"https://api.themoviedb.org/3/"'
+        buildConfigField 'String', 'API_IMAGE_URL', '"https://image.tmdb.org/t/p/w500"'
+    }
+}
 
 dependencies {
     implementation project(Modules.CORE_BASE)
@@ -15,7 +23,12 @@ dependencies {
     androidxCore()
     supportCore()
 
+    picasso()
+    implementation Libraries.pagination
+
     koin()
 
     viewModel()
+
+    network()
 }

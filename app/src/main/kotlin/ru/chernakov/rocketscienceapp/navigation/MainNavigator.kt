@@ -166,7 +166,7 @@ class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation, Bot
         navigate(AppFeaturesFragmentDirections.actionOpenMovies())
     }
 
-    override fun fromMoviesToInfo() {
-        navigate(MoviesFragmentDirections.actionFromMoviesToInfo())
+    override fun fromMoviesToDetails() {
+        navigate(MoviesFragmentDirections.actionFromMoviesToDetails())
     }
 }

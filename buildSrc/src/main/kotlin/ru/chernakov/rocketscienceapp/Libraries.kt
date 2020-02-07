@@ -75,4 +75,6 @@ object Libraries {
     const val playServicesAuth = "com.google.android.gms:play-services-auth:${Versions.gmsAuth}"
 
     const val picasso = "com.squareup.picasso:picasso:${Versions.picasso}"
+
+    const val pagination = "androidx.paging:paging-runtime:${Versions.pagination}"
 }
