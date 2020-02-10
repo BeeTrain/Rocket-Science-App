@@ -6,15 +6,21 @@ import ru.chernakov.feature_app_movies.data.model.Movie
 import ru.chernakov.feature_app_movies.domain.LoadMoviesInteractor
 
 class MoviesViewModel(private val loadMoviesInteractor: LoadMoviesInteractor) : BaseViewModel() {
-    val moviesData = MutableLiveData<List<Movie>>()
+    val moviesData = MutableLiveData<Pair<List<Movie>, Int>>()
+
+    private var loadedPage = 1
 
     init {
-        loadMovies()
+        loadMore()
     }
 
-    private fun loadMovies() {
+    fun loadMore() {
         launchLoadingErrorJob {
-            moviesData.postValue(loadMoviesInteractor.loadMovies())
+            moviesData.postValue(
+                Pair(loadMoviesInteractor.loadMovies(loadedPage), loadedPage).also {
+                    loadedPage++
+                }
+            )
         }
     }
 }

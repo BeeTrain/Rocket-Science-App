@@ -30,7 +30,7 @@ import ru.chernakov.rocketscienceapp.NavGraphDirections
 import ru.chernakov.rocketscienceapp.R
 import ru.chernakov.rocketscienceapp.presentation.MainActivity
 
-@Suppress("TooManyMethods")
+@Suppress("TooManyFunctions")
 class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation, BottomNavigation,
     ProfileNavigation, FavoriteNavigation, SettingsNavigation, AppFeaturesNavigation,
     BubbleGameNavigation, MoviesNavigation {
@@ -164,6 +164,10 @@ class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation, Bot
 
     override fun openMovies() {
         navigate(AppFeaturesFragmentDirections.actionOpenMovies())
+    }
+
+    override fun fromMoviesToAppFeatures() {
+        openAppFeatures()
     }
 
     override fun fromMoviesToDetails() {

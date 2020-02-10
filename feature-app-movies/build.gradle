@@ -1,4 +1,3 @@
-import ru.chernakov.rocketscienceapp.Libraries
 import ru.chernakov.rocketscienceapp.Modules
 import ru.chernakov.rocketscienceapp.Plugins
 
@@ -24,7 +23,6 @@ dependencies {
     supportCore()
 
     picasso()
-    implementation Libraries.pagination
 
     koin()
 
