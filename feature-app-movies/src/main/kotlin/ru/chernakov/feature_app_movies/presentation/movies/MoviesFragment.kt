@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.fragment_movies.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import ru.chernakov.core_base.util.lifecycle.SafeObserver
+import ru.chernakov.core_ui.extension.android.view.visibleOrGone
 import ru.chernakov.core_ui.presentation.adapter.AbstractPaginationAdapter
 import ru.chernakov.core_ui.presentation.fragment.BaseFragment
 import ru.chernakov.feature_app_movies.R
@@ -29,6 +30,9 @@ class MoviesFragment : BaseFragment(), AbstractPaginationAdapter.Callback {
                 override fun handleOnBackPressed() = navigator.fromMoviesToAppFeatures()
             }
         )
+        moviesViewModel.loading.observe(viewLifecycleOwner, SafeObserver {
+            pbLoading.visibleOrGone(it)
+        })
 
         initList()
     }
@@ -38,7 +42,8 @@ class MoviesFragment : BaseFragment(), AbstractPaginationAdapter.Callback {
             callback = this@MoviesFragment
         }
         rvMovies.apply {
-            layoutManager = StaggeredGridLayoutManager(ROW_SIZE, StaggeredGridLayoutManager.VERTICAL)
+            layoutManager =
+                StaggeredGridLayoutManager(ROW_SIZE, StaggeredGridLayoutManager.VERTICAL)
             adapter = moviesAdapter
             itemAnimator = DefaultItemAnimator()
         }
