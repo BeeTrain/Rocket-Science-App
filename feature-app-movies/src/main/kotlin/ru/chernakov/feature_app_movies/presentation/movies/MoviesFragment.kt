@@ -48,7 +48,7 @@ class MoviesFragment : BaseFragment(), AbstractPaginationAdapter.Callback {
             itemAnimator = DefaultItemAnimator()
         }
         moviesViewModel.moviesData.observe(viewLifecycleOwner, SafeObserver {
-            moviesAdapter.setData(it.first, it.second > 1)
+            moviesAdapter.setData(it.first, it.second == 1)
         })
     }
 

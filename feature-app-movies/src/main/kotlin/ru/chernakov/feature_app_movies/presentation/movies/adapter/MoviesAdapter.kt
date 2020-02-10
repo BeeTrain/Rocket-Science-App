@@ -27,8 +27,8 @@ class MoviesAdapter(loadOffset: Int) : AbstractPaginationAdapter<Movie, MovieVie
 
     override fun getItemCount() = items.size
 
-    fun setData(movies: List<Movie>, isNewPage: Boolean) {
-        if (!isNewPage) items.clear()
+    fun setData(movies: List<Movie>, isFirstPage: Boolean) {
+        if (isFirstPage) items.clear()
 
         items.addAll(movies)
         notifyDataSetChanged()
