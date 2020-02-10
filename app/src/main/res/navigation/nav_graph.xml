@@ -132,7 +132,7 @@
     <fragment
         android:id="@+id/moviesScreen"
         android:name="ru.chernakov.feature_app_movies.presentation.movies.MoviesFragment"
-        tools:layout="@layout/fragment_movies" >
+        tools:layout="@layout/fragment_movies">
         <action
             android:id="@+id/actionFromMoviesToDetails"
             app:destination="@id/movieDetailsScreen" />
@@ -141,6 +141,10 @@
     <fragment
         android:id="@+id/movieDetailsScreen"
         android:name="ru.chernakov.feature_app_movies.presentation.details.MovieDetailsFragment"
-        tools:layout="@layout/fragment_movie_info" />
+        tools:layout="@layout/fragment_movie_details">
+        <argument
+            android:name="MOVIE_JSON"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

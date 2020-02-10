@@ -77,5 +77,5 @@ val moviesModule = module {
 
     viewModel { MoviesViewModel(get()) }
 
-    viewModel { MovieDetailsViewModel() }
+    viewModel { (movieJson: String) -> MovieDetailsViewModel(movieJson) }
 }

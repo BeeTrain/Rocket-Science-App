@@ -6,8 +6,13 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_movie.view.*
 import ru.chernakov.feature_app_movies.data.model.Movie
 
-class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class MovieViewHolder(itemView: View, onItemClickListener: ((Movie) -> Unit)?) : RecyclerView.ViewHolder(itemView) {
+
     lateinit var item: Movie
+
+    init {
+        itemView.setOnClickListener { onItemClickListener?.invoke(item) }
+    }
 
     fun bind(movie: Movie) {
         item = movie

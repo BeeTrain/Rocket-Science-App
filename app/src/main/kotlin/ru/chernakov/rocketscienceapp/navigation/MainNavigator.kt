@@ -170,7 +170,7 @@ class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation, Bot
         openAppFeatures()
     }
 
-    override fun fromMoviesToDetails() {
-        navigate(MoviesFragmentDirections.actionFromMoviesToDetails())
+    override fun fromMoviesToDetails(movieJson: String) {
+        navigate(MoviesFragmentDirections.actionFromMoviesToDetails(movieJson))
     }
 }

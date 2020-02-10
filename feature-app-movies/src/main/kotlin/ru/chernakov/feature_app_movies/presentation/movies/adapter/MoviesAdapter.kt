@@ -8,6 +8,7 @@ import ru.chernakov.feature_app_movies.data.model.Movie
 
 class MoviesAdapter(loadOffset: Int) : AbstractPaginationAdapter<Movie, MovieViewHolder>() {
     var items = mutableListOf<Movie>()
+    var onItemClickListener: ((Movie) -> Unit)? = null
 
     init {
         this.loadOffset = loadOffset
@@ -16,7 +17,7 @@ class MoviesAdapter(loadOffset: Int) : AbstractPaginationAdapter<Movie, MovieVie
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.list_item_movie, parent, false)
-        return MovieViewHolder(view)
+        return MovieViewHolder(view, onItemClickListener)
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {

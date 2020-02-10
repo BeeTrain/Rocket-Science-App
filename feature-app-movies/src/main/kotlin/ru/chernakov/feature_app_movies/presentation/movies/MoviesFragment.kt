@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.android.synthetic.main.fragment_movies.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
+import ru.chernakov.core_base.util.data.GsonSerialization
 import ru.chernakov.core_base.util.lifecycle.SafeObserver
 import ru.chernakov.core_ui.extension.android.view.visibleOrGone
 import ru.chernakov.core_ui.presentation.adapter.AbstractPaginationAdapter
@@ -40,10 +41,10 @@ class MoviesFragment : BaseFragment(), AbstractPaginationAdapter.Callback {
     private fun initList() {
         moviesAdapter = MoviesAdapter(LOAD_OFFSET).apply {
             callback = this@MoviesFragment
+            onItemClickListener = { navigator.fromMoviesToDetails(GsonSerialization.gson.toJson(it)) }
         }
         rvMovies.apply {
-            layoutManager =
-                StaggeredGridLayoutManager(ROW_SIZE, StaggeredGridLayoutManager.VERTICAL)
+            layoutManager = StaggeredGridLayoutManager(ROW_SIZE, StaggeredGridLayoutManager.VERTICAL)
             adapter = moviesAdapter
             itemAnimator = DefaultItemAnimator()
         }
