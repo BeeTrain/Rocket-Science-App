@@ -13,7 +13,7 @@ object AndroidConfig {
     const val versionName = "1.0"
 
     const val testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-    const val srcMain ="src/main/kotlin"
+    const val srcMain = "src/main/kotlin"
     const val srcTest = "src/test/kotlin"
 
     const val isMultiDexEnabled = true
