@@ -20,13 +20,13 @@ object AndroidConfig {
 }
 
 interface BuildType {
+    val isMinifyEnabled: Boolean
 
     companion object {
         const val RELEASE = "release"
         const val DEBUG = "debug"
-    }
 
-    val isMinifyEnabled: Boolean
+    }
 }
 
 object BuildTypeDebug : BuildType {
