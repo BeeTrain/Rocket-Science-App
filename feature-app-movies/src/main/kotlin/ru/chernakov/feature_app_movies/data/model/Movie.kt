@@ -4,14 +4,12 @@ import com.google.gson.annotations.SerializedName
 import ru.chernakov.feature_app_movies.BuildConfig
 
 data class Movie(
-    @SerializedName("id")
-    val id: Long,
-    @SerializedName("title")
-    val title: String,
-    @SerializedName("poster_path")
-    val posterPath: String,
-    @SerializedName("overview")
-    val overview: String
+    @SerializedName("id") var id: Long,
+    @SerializedName("title") var title: String,
+    @SerializedName("poster_path") var posterPath: String,
+    @SerializedName("overview") var overview: String,
+    @SerializedName("release_date") var releaseDate: String,
+    @SerializedName("vote_average") var voteAverage: String
 ) {
 
     fun getPosterLoadingUrl() = posterBaseUrl + posterPath

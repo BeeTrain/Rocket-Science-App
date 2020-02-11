@@ -10,6 +10,7 @@ import ru.chernakov.core_base.util.lifecycle.SafeObserver
 import ru.chernakov.core_ui.extension.android.view.visibleOrGone
 import ru.chernakov.core_ui.presentation.fragment.BaseFragment
 import ru.chernakov.feature_app_movies.R
+import ru.chernakov.feature_app_movies.data.model.Movie
 
 class MovieDetailsFragment : BaseFragment() {
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModel {
@@ -22,11 +23,18 @@ class MovieDetailsFragment : BaseFragment() {
             pbLoading.visibleOrGone(it)
         })
         movieDetailsViewModel.movieData.observe(viewLifecycleOwner, SafeObserver {
-            tvTitle.text = it.title
-            Picasso.get()
-                .load(it.getPosterLoadingUrl())
-                .into(ivPoster)
+            setData(it)
         })
+    }
+
+    private fun setData(movie: Movie) {
+        tvTitle.text = movie.title
+        tvVote.text = movie.voteAverage
+        tvOverview.text = movie.overview
+        tvReleaseDate.text = movie.releaseDate
+        Picasso.get()
+            .load(movie.getPosterLoadingUrl())
+            .into(ivPoster)
     }
 
     override fun getLayout() = R.layout.fragment_movie_details
