@@ -14,6 +14,7 @@
     <ImageView
         android:id="@+id/ivPoster"
         style="@style/MoviePoster"
+        android:scaleType="center"
         android:layout_height="@dimen/poster_height"
         android:contentDescription="@string/content_description" />
 

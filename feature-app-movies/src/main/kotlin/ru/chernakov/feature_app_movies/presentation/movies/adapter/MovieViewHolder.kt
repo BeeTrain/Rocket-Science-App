@@ -4,6 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_movie.view.*
+import ru.chernakov.feature_app_movies.R
 import ru.chernakov.feature_app_movies.data.model.Movie
 
 class MovieViewHolder(itemView: View, onItemClickListener: ((Movie) -> Unit)?) : RecyclerView.ViewHolder(itemView) {
@@ -19,6 +20,7 @@ class MovieViewHolder(itemView: View, onItemClickListener: ((Movie) -> Unit)?) :
         itemView.apply {
             Picasso.get()
                 .load(item.getPosterLoadingUrl())
+                .error(R.drawable.ic_movie_stub)
                 .into(ivPoster)
         }
     }

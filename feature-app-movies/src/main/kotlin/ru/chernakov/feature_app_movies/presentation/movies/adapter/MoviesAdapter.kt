@@ -7,7 +7,7 @@ import ru.chernakov.feature_app_movies.R
 import ru.chernakov.feature_app_movies.data.model.Movie
 
 class MoviesAdapter(loadOffset: Int) : AbstractPaginationAdapter<Movie, MovieViewHolder>() {
-    var items = mutableListOf<Movie>()
+    var items = mutableSetOf<Movie>()
     var onItemClickListener: ((Movie) -> Unit)? = null
 
     init {
@@ -23,7 +23,7 @@ class MoviesAdapter(loadOffset: Int) : AbstractPaginationAdapter<Movie, MovieVie
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
 
-        holder.bind(items[position])
+        holder.bind(items.toList()[position])
     }
 
     override fun getItemCount() = items.size
