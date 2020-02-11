@@ -5,4 +5,10 @@
         <item name="android:scaleType">centerCrop</item>
         <item name="android:background">@color/black_1000</item>
     </style>
+
+    <style name="MovieDetailsLabel">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white_1000</item>
+    </style>
 </resources>
