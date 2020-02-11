@@ -29,7 +29,7 @@
             android:layout_marginStart="@dimen/margin_medium"
             android:fontFamily="sans-serif-smallcaps"
             android:textColor="@color/white_1000"
-            android:textSize="@dimen/text_xlarge"
+            android:textSize="@dimen/text_xxlarge"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
