@@ -2,4 +2,5 @@
 <resources>
 
     <color name="bg_movie_details">#80000000</color>
+    <color name="bg_movies_toolbar">#80D40000</color>
 </resources>

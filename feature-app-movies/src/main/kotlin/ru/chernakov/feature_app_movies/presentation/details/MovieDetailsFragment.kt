@@ -34,6 +34,7 @@ class MovieDetailsFragment : BaseFragment() {
         tvReleaseDate.text = movie.releaseDate
         Picasso.get()
             .load(movie.getPosterLoadingUrl())
+            .error(R.drawable.img_movie_details_stub)
             .into(ivPoster)
     }
 
