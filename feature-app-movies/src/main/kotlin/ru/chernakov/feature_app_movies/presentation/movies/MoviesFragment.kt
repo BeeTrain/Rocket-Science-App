@@ -41,7 +41,7 @@ class MoviesFragment : BaseFragment(), AbstractPaginationAdapter.Callback {
     private fun initList() {
         moviesAdapter = MoviesAdapter(LOAD_OFFSET).apply {
             callback = this@MoviesFragment
-            onItemClickListener = { navigator.fromMoviesToDetails(GsonSerialization.gson.toJson(it)) }
+            onItemClickListener = { moviesViewModel.selectMovie(it) }
         }
         rvMovies.apply {
             layoutManager = StaggeredGridLayoutManager(ROW_SIZE, StaggeredGridLayoutManager.VERTICAL)
@@ -49,7 +49,10 @@ class MoviesFragment : BaseFragment(), AbstractPaginationAdapter.Callback {
             itemAnimator = DefaultItemAnimator()
         }
         moviesViewModel.moviesData.observe(viewLifecycleOwner, SafeObserver {
-            moviesAdapter.setData(it.first, it.second == 1)
+            moviesAdapter.setData(it.toList())
+        })
+        moviesViewModel.selectedMovieEvent.observe(viewLifecycleOwner, SafeObserver {
+            navigator.fromMoviesToDetails(GsonSerialization.gson.toJson(it))
         })
     }
 
