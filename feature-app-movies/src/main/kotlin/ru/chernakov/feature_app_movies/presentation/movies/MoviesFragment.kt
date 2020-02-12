@@ -5,6 +5,7 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_movies.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -21,27 +22,37 @@ class MoviesFragment : BaseFragment(), AbstractPaginationAdapter.Callback {
     private val moviesViewModel: MoviesViewModel by viewModel()
     private val navigator: MoviesNavigation by inject()
 
-    private lateinit var moviesAdapter: MoviesAdapter
+    private val moviesAdapter by lazy { MoviesAdapter(LOAD_OFFSET) }
+    private val connectionSnackbar by lazy { createNetworkErrorSnackbar() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner, object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() = navigator.fromMoviesToAppFeatures()
+                override fun handleOnBackPressed() {
+                    navigator.fromMoviesToAppFeatures()
+                    setConnectionSnackbarVisible(false)
+                }
             }
         )
         moviesViewModel.loading.observe(viewLifecycleOwner, SafeObserver {
             pbLoading.visibleOrGone(it)
+        })
+        moviesViewModel.networkErrorEvent.observe(viewLifecycleOwner, SafeObserver {
+            setConnectionSnackbarVisible(it)
         })
 
         initList()
     }
 
     private fun initList() {
-        moviesAdapter = MoviesAdapter(LOAD_OFFSET).apply {
+        moviesAdapter.apply {
             callback = this@MoviesFragment
-            onItemClickListener = { moviesViewModel.selectMovie(it) }
+            onItemClickListener = {
+                moviesViewModel.selectMovie(it)
+                setConnectionSnackbarVisible(false)
+            }
         }
         rvMovies.apply {
             layoutManager = StaggeredGridLayoutManager(ROW_SIZE, StaggeredGridLayoutManager.VERTICAL)
@@ -56,13 +67,26 @@ class MoviesFragment : BaseFragment(), AbstractPaginationAdapter.Callback {
         })
     }
 
-    override fun getLayout() = R.layout.fragment_movies
+    private fun setConnectionSnackbarVisible(isVisible: Boolean) {
+        if (isVisible) {
+            connectionSnackbar.show()
+        } else {
+            connectionSnackbar.dismiss()
+        }
+    }
 
-    override fun obtainViewModel() = moviesViewModel
+    private fun createNetworkErrorSnackbar(): Snackbar {
+        return Snackbar.make(requireView(), getString(R.string.msg_error_network), Snackbar.LENGTH_INDEFINITE)
+            .setAction(R.string.button_retry) { loadMore() }
+    }
 
     override fun loadMore() {
         moviesViewModel.loadMore()
     }
+
+    override fun getLayout() = R.layout.fragment_movies
+
+    override fun obtainViewModel() = moviesViewModel
 
     companion object {
         private const val ROW_SIZE = 3
