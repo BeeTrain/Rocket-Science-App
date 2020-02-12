@@ -15,4 +15,4 @@
 ### Features
 
  - Bubble game
- - Movies - list of upcoming movies (themoviedb.org API usage)
+ - Movies - list of upcoming movies ([themoviedb.org API](https://www.themoviedb.org/documentation/api) usage)
