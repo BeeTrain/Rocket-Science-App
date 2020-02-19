@@ -5,6 +5,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import ru.chernakov.core_ui.extension.androidx.fragment.app.replaceFragment
+import ru.chernakov.feature_app_appmonitor.navigation.AppMonitorNavigation
+import ru.chernakov.feature_app_appmonitor.presentation.list.AppsListFragmentDirections
 import ru.chernakov.feature_app_bubblegame.navigation.BubbleGameNavigation
 import ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameHostFragment
 import ru.chernakov.feature_app_bubblegame.presentation.menu.BubbleGameMenuFragment
@@ -33,7 +35,7 @@ import ru.chernakov.rocketscienceapp.presentation.MainActivity
 @Suppress("TooManyFunctions")
 class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation, BottomNavigation,
     ProfileNavigation, FavoriteNavigation, SettingsNavigation, AppFeaturesNavigation,
-    BubbleGameNavigation, MoviesNavigation {
+    BubbleGameNavigation, MoviesNavigation, AppMonitorNavigation {
 
     private var activity: MainActivity? = null
     var navigation: NavController? = null
@@ -172,5 +174,17 @@ class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation, Bot
 
     override fun fromMoviesToDetails(movieJson: String) {
         navigate(MoviesFragmentDirections.actionFromMoviesToDetails(movieJson))
+    }
+
+    override fun openAppMonitor() {
+        navigate(AppFeaturesFragmentDirections.actionOpenAppMonitor())
+    }
+
+    override fun fromAppMonitorToAppFeatures() {
+        openAppFeatures()
+    }
+
+    override fun fromAppsListToInfo(packageId: String) {
+        navigate(AppsListFragmentDirections.actionFromAppsListToAppInfo(packageId))
     }
 }

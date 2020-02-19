@@ -1,6 +1,7 @@
 package ru.chernakov.rocketscienceapp.di
 
 import org.koin.dsl.module
+import ru.chernakov.feature_app_appmonitor.navigation.AppMonitorNavigation
 import ru.chernakov.feature_app_bubblegame.navigation.BubbleGameNavigation
 import ru.chernakov.feature_app_movies.navigation.MoviesNavigation
 import ru.chernakov.feature_appfeatures.navigation.AppFeaturesNavigation
@@ -25,4 +26,5 @@ val navigationModule = module {
     single<AppFeaturesNavigation> { get<MainNavigator>() }
     single<BubbleGameNavigation> { get<MainNavigator>() }
     single<MoviesNavigation> { get<MainNavigator>() }
+    single<AppMonitorNavigation> { get<MainNavigator>() }
 }

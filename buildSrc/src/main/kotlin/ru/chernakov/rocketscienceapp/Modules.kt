@@ -13,4 +13,5 @@ object Modules {
     const val FEATURE_APPFEATURES = ":feature-appfeatures"
     const val FEATURE_APP_BUBBLEGAME = ":feature-app-bubblegame"
     const val FEATURE_APP_MOVIES = ":feature-app-movies"
+    const val FEATURE_APP_APPMONITOR = ":feature-app-appmonitor"
 }

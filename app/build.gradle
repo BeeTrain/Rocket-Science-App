@@ -39,6 +39,7 @@ dependencies {
 
     implementation project(Modules.FEATURE_APP_BUBBLEGAME)
     implementation project(Modules.FEATURE_APP_MOVIES)
+    implementation project(Modules.FEATURE_APP_APPMONITOR)
 
     multidex()
 

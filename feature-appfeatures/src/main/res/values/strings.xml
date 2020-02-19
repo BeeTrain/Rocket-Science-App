@@ -3,4 +3,5 @@
     <string name="app_feature_name_default">WIP! Coming soon</string>
     <string name="app_feature_bubble_game">Bubble Game</string>
     <string name="app_feature_movies">Movies</string>
+    <string name="app_feature_appmonitor">AppMonitor</string>
 </resources>

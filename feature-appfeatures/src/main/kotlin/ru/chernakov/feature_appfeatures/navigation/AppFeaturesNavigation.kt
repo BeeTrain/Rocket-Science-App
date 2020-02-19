@@ -5,4 +5,5 @@ interface AppFeaturesNavigation {
     fun fromAppFeaturesToProfile()
     fun openBubbleGame()
     fun openMovies()
+    fun openAppMonitor()
 }

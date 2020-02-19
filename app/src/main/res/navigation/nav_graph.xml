@@ -72,6 +72,9 @@
         <action
             android:id="@+id/actionOpenMovies"
             app:destination="@+id/moviesScreen" />
+        <action
+            android:id="@+id/actionOpenAppMonitor"
+            app:destination="@+id/appMonitorScreen" />
     </fragment>
 
     <fragment
@@ -148,6 +151,29 @@
         tools:layout="@layout/fragment_movie_details">
         <argument
             android:name="MOVIE_JSON"
+            app:argType="string" />
+    </fragment>
+
+    <!-- AppMonitor -->
+    <fragment
+        android:id="@+id/appMonitorScreen"
+        android:name="ru.chernakov.feature_app_appmonitor.presentation.list.AppsListFragment"
+        tools:layout="@layout/fragment_apps_list">
+        <action
+            android:id="@+id/actionFromAppsListToAppInfo"
+            app:destination="@+id/appInfoScreen"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/appInfoScreen"
+        android:name="ru.chernakov.feature_app_appmonitor.presentation.info.AppInfoFragment"
+        tools:layout="@layout/fragment_app_info">
+        <argument
+            android:name="PACKAGE"
             app:argType="string" />
     </fragment>
 

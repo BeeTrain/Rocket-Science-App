@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_default_title">-</string>
+    <string name="app_default_package">-</string>
+    <string name="label_app_sha">SHA: %s</string>
+    <string name="label_app_version">v%s</string>
+    <string name="label_app_installed">Installed: %s</string>
+    <string name="label_app_updated">Updated: %s</string>
+    <string name="label_app_size">Size: %s mb</string>
+
+    <string name="title_open_app">Open App</string>
+    <string name="title_save_apk">Save APK</string>
+    <string name="title_open_market">Open in Google Play</string>
+    <string name="title_delete_app">Delete App</string>
+    <string name="title_share_app">Share App</string>
+    <string name="title_appmonitor">AppMonitor</string>
+</resources>

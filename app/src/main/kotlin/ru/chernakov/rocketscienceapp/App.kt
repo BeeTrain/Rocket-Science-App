@@ -5,6 +5,7 @@ import leakcanary.LeakSentry
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import ru.chernakov.core_base.util.lifecycle.Lifecycler
+import ru.chernakov.feature_app_appmonitor.di.appMonitorModule
 import ru.chernakov.feature_app_bubblegame.di.bubbleGameModule
 import ru.chernakov.feature_app_movies.di.moviesModule
 import ru.chernakov.feature_appfeatures.di.appFeaturesModule
@@ -48,7 +49,8 @@ class App : Application() {
                     settingsModule,
                     appFeaturesModule,
                     bubbleGameModule,
-                    moviesModule
+                    moviesModule,
+                    appMonitorModule
                 )
             )
         }

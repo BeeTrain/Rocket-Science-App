@@ -19,7 +19,7 @@ class AppFeaturesFragment : BaseFragment() {
     private val appFeaturesViewModel: AppFeaturesViewModel by viewModel()
     private val navigator: AppFeaturesNavigation by inject()
 
-    lateinit var appFeaturesAdapter: AppFeaturesAdapter
+    private lateinit var appFeaturesAdapter: AppFeaturesAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,6 +47,7 @@ class AppFeaturesFragment : BaseFragment() {
         when (appFeature.id) {
             AppFeature.BUBBLE_GAME_ID -> navigator.openBubbleGame()
             AppFeature.MOVIES_ID -> navigator.openMovies()
+            AppFeature.APPMONITOR_ID -> navigator.openAppMonitor()
         }
     }
 

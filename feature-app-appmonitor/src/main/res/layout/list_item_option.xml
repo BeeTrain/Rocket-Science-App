@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cvOption"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/app_elevation"
+    app:rippleColor="@color/colorPrimaryLight">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/app_elevation"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/content_description"
+            android:maxWidth="@dimen/app_option_max_size"
+            android:maxHeight="@dimen/app_option_max_size"
+            tools:src="@drawable/ic_app" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="Widget.AppMonitor.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/app_elevation"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textSize="@dimen/text_medium"
+            tools:text="Option №1" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -4,18 +4,19 @@ import ru.chernakov.rocketscienceapp.Modules
 rootProject.name = AndroidConfig.NAME
 
 include(
-        Modules.APP,
-        Modules.CORE_BASE,
-        Modules.CORE_UI,
+    Modules.APP,
+    Modules.CORE_BASE,
+    Modules.CORE_UI,
 
-        Modules.FEATURE_SPLASH,
-        Modules.FEATURE_LOGIN,
-        Modules.FEATURE_REGISTER,
-        Modules.FEATURE_FAVORITE,
-        Modules.FEATURE_PROFILE,
-        Modules.FEATURE_SETTINGS,
-        Modules.FEATURE_APPFEATURES,
+    Modules.FEATURE_SPLASH,
+    Modules.FEATURE_LOGIN,
+    Modules.FEATURE_REGISTER,
+    Modules.FEATURE_FAVORITE,
+    Modules.FEATURE_PROFILE,
+    Modules.FEATURE_SETTINGS,
+    Modules.FEATURE_APPFEATURES,
 
-        Modules.FEATURE_APP_BUBBLEGAME,
-        Modules.FEATURE_APP_MOVIES
+    Modules.FEATURE_APP_BUBBLEGAME,
+    Modules.FEATURE_APP_MOVIES,
+    Modules.FEATURE_APP_APPMONITOR
 )
