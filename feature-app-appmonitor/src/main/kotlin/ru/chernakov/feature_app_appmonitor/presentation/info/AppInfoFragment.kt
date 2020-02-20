@@ -93,5 +93,11 @@ class AppInfoFragment : BaseFragment() {
         private const val KEY_PACKAGE = "PACKAGE"
         private const val MARKET_URI = "market://details?id="
         private const val PLAY_URI = "https://play.google.com/store/apps/details?id="
+
+        fun createArgs(appPackage: String): Bundle {
+            return Bundle().apply {
+                putString(KEY_PACKAGE, appPackage)
+            }
+        }
     }
 }

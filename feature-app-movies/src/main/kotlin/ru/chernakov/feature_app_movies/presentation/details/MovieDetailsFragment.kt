@@ -44,5 +44,11 @@ class MovieDetailsFragment : BaseFragment() {
 
     companion object {
         private const val KEY_MOVIE_JSON = "MOVIE_JSON"
+
+        fun createArgs(movieJson: String): Bundle {
+            return Bundle().apply {
+                putString(KEY_MOVIE_JSON, movieJson)
+            }
+        }
     }
 }

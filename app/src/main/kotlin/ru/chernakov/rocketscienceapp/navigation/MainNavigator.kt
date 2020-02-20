@@ -1,11 +1,13 @@
 package ru.chernakov.rocketscienceapp.navigation
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import ru.chernakov.core_ui.extension.androidx.fragment.app.replaceFragment
 import ru.chernakov.feature_app_appmonitor.navigation.AppMonitorNavigation
+import ru.chernakov.feature_app_appmonitor.presentation.info.AppInfoFragment
 import ru.chernakov.feature_app_appmonitor.presentation.list.AppsListFragmentDirections
 import ru.chernakov.feature_app_bubblegame.navigation.BubbleGameNavigation
 import ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameHostFragment
@@ -13,6 +15,7 @@ import ru.chernakov.feature_app_bubblegame.presentation.menu.BubbleGameMenuFragm
 import ru.chernakov.feature_app_bubblegame.presentation.result.BubbleGameResultFragment
 import ru.chernakov.feature_app_bubblegame.presentation.running.BubbleGameRunningFragment
 import ru.chernakov.feature_app_movies.navigation.MoviesNavigation
+import ru.chernakov.feature_app_movies.presentation.details.MovieDetailsFragment
 import ru.chernakov.feature_app_movies.presentation.movies.MoviesFragmentDirections
 import ru.chernakov.feature_appfeatures.navigation.AppFeaturesNavigation
 import ru.chernakov.feature_appfeatures.presentation.AppFeaturesFragmentDirections
@@ -40,18 +43,12 @@ class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation, Bot
     private var activity: MainActivity? = null
     var navigation: NavController? = null
 
-    fun bind(activity: MainActivity) {
-        this.navigation = activity.findNavController(R.id.nav_host_container)
-        this.activity = activity
-    }
-
-    fun unbind() {
-        navigation = null
-        activity = null
-    }
-
-    private fun navigate(action: NavDirections, showBottomNavigation: Boolean = false) {
-        navigation?.navigate(action)
+    private fun navigate(action: NavDirections, showBottomNavigation: Boolean = false, args: Bundle? = null) {
+        if (args != null) {
+            navigation?.navigate(action.actionId, args)
+        } else {
+            navigation?.navigate(action)
+        }
         activity?.setBottomNavigationVisibility(showBottomNavigation)
     }
 
@@ -70,6 +67,16 @@ class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation, Bot
             }
             commit()
         }
+    }
+
+    fun bind(activity: MainActivity) {
+        this.navigation = activity.findNavController(R.id.nav_host_container)
+        this.activity = activity
+    }
+
+    fun unbind() {
+        navigation = null
+        activity = null
     }
 
     override fun openAppFeatures() {
@@ -173,7 +180,10 @@ class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation, Bot
     }
 
     override fun fromMoviesToDetails(movieJson: String) {
-        navigate(MoviesFragmentDirections.actionFromMoviesToDetails(movieJson))
+        navigate(
+            MoviesFragmentDirections.actionFromMoviesToDetails(),
+            args = MovieDetailsFragment.createArgs(movieJson)
+        )
     }
 
     override fun openAppMonitor() {
@@ -185,6 +195,6 @@ class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation, Bot
     }
 
     override fun fromAppsListToInfo(packageId: String) {
-        navigate(AppsListFragmentDirections.actionFromAppsListToAppInfo(packageId))
+        navigate(AppsListFragmentDirections.actionFromAppsListToAppInfo(), args = AppInfoFragment.createArgs(packageId))
     }
 }
