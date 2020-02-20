@@ -2,6 +2,7 @@ package ru.chernakov.feature_app_appmonitor.presentation.list
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_apps_list.*
@@ -24,6 +25,13 @@ class AppsListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         toolbar.setNavigationOnClickListener { requireActivity().onBackPressed() }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    navigator.fromAppMonitorToAppFeatures()
+                }
+            }
+        )
         appsAdapter.apply {
             onItemClickListener = {
                 navigator.fromAppsListToInfo(it.appPackage)
