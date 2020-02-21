@@ -1,4 +1,4 @@
-package ru.chernakov.rocketscienceapp.presentation.navigation
+package ru.chernakov.rocketscienceapp.navigation
 
 interface LoginNavigation {
     fun fromLoginToRegister()

@@ -1,10 +1,11 @@
-package ru.chernakov.rocketscienceapp.presentation.presentation
+package ru.chernakov.rocketscienceapp.presentation
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
+import androidx.activity.OnBackPressedCallback
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
@@ -17,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import ru.chernakov.rocketscienceapp.R
-import ru.chernakov.rocketscienceapp.presentation.navigation.LoginNavigation
+import ru.chernakov.rocketscienceapp.navigation.LoginNavigation
 import ru.chernakov.rocketscienceapp.extension.android.app.hideKeyboard
 import ru.chernakov.rocketscienceapp.extension.android.widget.addTextChangedListener
 import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
@@ -36,6 +37,14 @@ class LoginFragment : BaseFragment() {
         if (savedInstanceState == null) {
             runStartAnimation()
         }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    requireActivity().finish()
+                }
+            })
+
         setupListeners()
         observeEvents()
     }

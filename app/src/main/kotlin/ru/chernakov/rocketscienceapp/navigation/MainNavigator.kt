@@ -16,8 +16,7 @@ import ru.chernakov.rocketscienceapp.presentation.movies.MoviesFragmentDirection
 import ru.chernakov.rocketscienceapp.presentation.AppFeaturesFragmentDirections
 import ru.chernakov.rocketscienceapp.navigaton.FavoriteNavigation
 import ru.chernakov.rocketscienceapp.presentation.FavoriteFragmentDirections
-import ru.chernakov.rocketscienceapp.presentation.navigation.LoginNavigation
-import ru.chernakov.rocketscienceapp.presentation.presentation.LoginFragmentDirections
+import ru.chernakov.rocketscienceapp.presentation.LoginFragmentDirections
 import ru.chernakov.rocketscienceapp.presentation.ProfileFragmentDirections
 import ru.chernakov.rocketscienceapp.presentation.RegisterFragmentDirections
 import ru.chernakov.rocketscienceapp.presentation.SettingsFragmentDirections

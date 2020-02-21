@@ -10,7 +10,7 @@ import ru.chernakov.rocketscienceapp.di.bubbleGameModule
 import ru.chernakov.rocketscienceapp.di.moviesModule
 import ru.chernakov.rocketscienceapp.di.appFeaturesModule
 import ru.chernakov.rocketscienceapp.di.favoriteModule
-import ru.chernakov.rocketscienceapp.presentation.di.loginModule
+import ru.chernakov.rocketscienceapp.di.loginModule
 import ru.chernakov.rocketscienceapp.di.profileModule
 import ru.chernakov.rocketscienceapp.di.registerModule
 import ru.chernakov.rocketscienceapp.di.settingsModule

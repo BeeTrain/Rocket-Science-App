@@ -6,7 +6,7 @@ import ru.chernakov.rocketscienceapp.navigation.BubbleGameNavigation
 import ru.chernakov.rocketscienceapp.navigation.MoviesNavigation
 import ru.chernakov.rocketscienceapp.navigation.AppFeaturesNavigation
 import ru.chernakov.rocketscienceapp.navigaton.FavoriteNavigation
-import ru.chernakov.rocketscienceapp.presentation.navigation.LoginNavigation
+import ru.chernakov.rocketscienceapp.navigation.LoginNavigation
 import ru.chernakov.rocketscienceapp.navigation.ProfileNavigation
 import ru.chernakov.rocketscienceapp.navigation.RegisterNavigation
 import ru.chernakov.rocketscienceapp.navigation.SettingsNavigation
