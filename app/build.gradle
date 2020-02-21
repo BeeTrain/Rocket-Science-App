@@ -26,8 +26,7 @@ android {
 }
 
 dependencies {
-    implementation project(Modules.CORE_BASE)
-    implementation project(Modules.CORE_UI)
+    implementation project(Modules.APP_CORE)
 
     implementation project(Modules.FEATURE_SPLASH)
     implementation project(Modules.FEATURE_LOGIN)

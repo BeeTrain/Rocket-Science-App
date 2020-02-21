@@ -16,15 +16,15 @@ import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.core_base.util.RequestCodeGenerator
-import ru.chernakov.core_base.util.lifecycle.SafeObserver
-import ru.chernakov.core_ui.extension.android.app.hideKeyboard
-import ru.chernakov.core_ui.extension.android.widget.addTextChangedListener
-import ru.chernakov.core_ui.presentation.fragment.BaseFragment
-import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
-import ru.chernakov.core_ui.util.animation.BounceInterpolator
 import ru.chernakov.feature_login.R
 import ru.chernakov.feature_login.presentation.navigation.LoginNavigation
+import ru.chernakov.rocketscienceapp.extension.android.app.hideKeyboard
+import ru.chernakov.rocketscienceapp.extension.android.widget.addTextChangedListener
+import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
+import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
+import ru.chernakov.rocketscienceapp.util.RequestCodeGenerator
+import ru.chernakov.rocketscienceapp.util.animation.BounceInterpolator
+import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 import java.util.concurrent.TimeUnit
 
 class LoginFragment : BaseFragment() {

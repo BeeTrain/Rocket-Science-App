@@ -1,8 +1,8 @@
 package ru.chernakov.rocketscienceapp.presentation
 
 import com.google.firebase.auth.FirebaseAuth
-import ru.chernakov.core_base.util.lifecycle.SingleLiveEvent
-import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
+import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
+import ru.chernakov.rocketscienceapp.util.lifecycle.SingleLiveEvent
 
 class MainViewModel(private val firebaseAuth: FirebaseAuth) : BaseViewModel() {
     val selectedNavigationItemEvent = SingleLiveEvent<Int>()

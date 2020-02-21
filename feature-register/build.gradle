@@ -7,8 +7,7 @@ apply from: '../config/config.gradle'
 apply from: '../config/dependencies.gradle'
 
 dependencies {
-    implementation project(Modules.CORE_BASE)
-    implementation project(Modules.CORE_UI)
+    implementation project(Modules.APP_CORE)
 
     kotlinLib()
 

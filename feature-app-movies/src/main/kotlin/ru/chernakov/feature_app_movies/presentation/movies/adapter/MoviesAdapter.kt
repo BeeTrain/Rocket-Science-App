@@ -2,9 +2,9 @@ package ru.chernakov.feature_app_movies.presentation.movies.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import ru.chernakov.core_ui.presentation.adapter.AbstractPaginationAdapter
 import ru.chernakov.feature_app_movies.R
 import ru.chernakov.feature_app_movies.data.model.Movie
+import ru.chernakov.rocketscienceapp.presentation.adapter.AbstractPaginationAdapter
 
 class MoviesAdapter(loadOffset: Int) : AbstractPaginationAdapter<Movie, MovieViewHolder>() {
     var items = mutableSetOf<Movie>()

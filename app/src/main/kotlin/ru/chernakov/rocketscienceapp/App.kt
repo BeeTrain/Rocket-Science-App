@@ -4,7 +4,7 @@ import android.app.Application
 import leakcanary.LeakSentry
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
-import ru.chernakov.core_base.util.lifecycle.Lifecycler
+import ru.chernakov.rocketscienceapp.util.lifecycle.Lifecycler
 import ru.chernakov.feature_app_appmonitor.di.appMonitorModule
 import ru.chernakov.feature_app_bubblegame.di.bubbleGameModule
 import ru.chernakov.feature_app_movies.di.moviesModule

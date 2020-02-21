@@ -6,10 +6,10 @@ import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.fragment_settings.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.core_ui.presentation.fragment.BaseFragment
-import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
 import ru.chernakov.feature_settings.R
 import ru.chernakov.feature_settings.navigation.SettingsNavigation
+import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
+import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
 
 class SettingsFragment : BaseFragment() {
     private val settingsViewModel: SettingsViewModel by viewModel()

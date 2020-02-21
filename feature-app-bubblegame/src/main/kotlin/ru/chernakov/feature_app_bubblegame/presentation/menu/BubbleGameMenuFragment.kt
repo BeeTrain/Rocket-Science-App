@@ -5,7 +5,6 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import kotlinx.android.synthetic.main.fragment_bubble_game_menu.*
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.core_ui.presentation.fragment.BaseFragment
 import ru.chernakov.feature_app_bubblegame.R
 import ru.chernakov.feature_app_bubblegame.navigation.OnBackPressedListener
 import ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameHostFragment
@@ -14,6 +13,7 @@ import ru.chernakov.feature_app_bubblegame.presentation.menu.settings.BubbleGame
 import ru.chernakov.feature_app_bubblegame.presentation.menu.settings.GameSettingsModel
 import ru.chernakov.feature_app_bubblegame.presentation.menu.settings.GameSettingsOnClickListener
 import ru.chernakov.feature_app_bubblegame.presentation.widget.BubbleGameStateListener
+import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
 
 class BubbleGameMenuFragment : BaseFragment(), GameSettingsOnClickListener {
     private val bubbleGameViewModel: BubbleGameViewModel by viewModel()

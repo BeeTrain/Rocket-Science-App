@@ -5,10 +5,10 @@ import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.core_ui.extension.android.view.visibleOrGone
-import ru.chernakov.core_ui.presentation.activity.BaseActivity
 import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.extension.android.view.visibleOrGone
 import ru.chernakov.rocketscienceapp.navigation.MainNavigator
+import ru.chernakov.rocketscienceapp.presentation.activity.BaseActivity
 
 class MainActivity : BaseActivity() {
     private val mainViewModel: MainViewModel by viewModel()

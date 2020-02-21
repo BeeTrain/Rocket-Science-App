@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_apps_list.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.core_base.util.lifecycle.SafeObserver
-import ru.chernakov.core_ui.extension.android.view.visibleOrGone
-import ru.chernakov.core_ui.extension.android.view.visibleOrInvisible
-import ru.chernakov.core_ui.presentation.fragment.BaseFragment
 import ru.chernakov.feature_app_appmonitor.R
 import ru.chernakov.feature_app_appmonitor.navigation.AppMonitorNavigation
 import ru.chernakov.feature_app_appmonitor.presentation.list.adapter.AppsListAdapter
+import ru.chernakov.rocketscienceapp.extension.android.view.visibleOrGone
+import ru.chernakov.rocketscienceapp.extension.android.view.visibleOrInvisible
+import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
+import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 
 class AppsListFragment : BaseFragment() {
     private val appsListViewModel: AppsListViewModel by viewModel()

@@ -9,7 +9,6 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.chernakov.core_base.util.data.GsonSerialization
 import ru.chernakov.feature_app_movies.BuildConfig
 import ru.chernakov.feature_app_movies.R
 import ru.chernakov.feature_app_movies.data.repository.MoviesRepository
@@ -18,6 +17,7 @@ import ru.chernakov.feature_app_movies.data.repository.UrlRepository
 import ru.chernakov.feature_app_movies.domain.LoadMoviesInteractor
 import ru.chernakov.feature_app_movies.presentation.details.MovieDetailsViewModel
 import ru.chernakov.feature_app_movies.presentation.movies.MoviesViewModel
+import ru.chernakov.rocketscienceapp.util.data.GsonSerialization
 import java.util.concurrent.TimeUnit
 
 private const val TIMEOUT = 60L

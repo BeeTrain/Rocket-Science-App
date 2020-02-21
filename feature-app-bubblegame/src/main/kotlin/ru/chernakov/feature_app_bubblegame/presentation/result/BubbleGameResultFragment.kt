@@ -9,13 +9,13 @@ import android.view.ViewAnimationUtils
 import androidx.activity.OnBackPressedCallback
 import kotlinx.android.synthetic.main.fragment_bubble_game_result.*
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.core_ui.presentation.fragment.BaseFragment
 import ru.chernakov.feature_app_bubblegame.R
 import ru.chernakov.feature_app_bubblegame.data.GameStatus
 import ru.chernakov.feature_app_bubblegame.navigation.OnBackPressedListener
 import ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameHostFragment
 import ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameViewModel
 import ru.chernakov.feature_app_bubblegame.presentation.widget.BubbleGameStateListener
+import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
 import kotlin.math.hypot
 
 class BubbleGameResultFragment : BaseFragment() {

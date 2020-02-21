@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_appfeatures.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.core_base.util.lifecycle.SafeObserver
-import ru.chernakov.core_ui.presentation.fragment.BaseFragment
-import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
 import ru.chernakov.feature_appfeatures.R
 import ru.chernakov.feature_appfeatures.data.model.AppFeature
 import ru.chernakov.feature_appfeatures.navigation.AppFeaturesNavigation
 import ru.chernakov.feature_appfeatures.presentation.adapter.AppFeaturesAdapter
+import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
+import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
+import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 
 class AppFeaturesFragment : BaseFragment() {
     private val appFeaturesViewModel: AppFeaturesViewModel by viewModel()

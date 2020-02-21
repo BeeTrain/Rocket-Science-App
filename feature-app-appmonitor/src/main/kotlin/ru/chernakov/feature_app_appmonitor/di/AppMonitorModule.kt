@@ -1,6 +1,7 @@
 package ru.chernakov.feature_app_appmonitor.di
 
 import org.koin.android.ext.koin.androidContext
+import org.koin.android.viewmodel.compat.ScopeCompat.viewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import ru.chernakov.feature_app_appmonitor.data.repository.ApplicationsRepository

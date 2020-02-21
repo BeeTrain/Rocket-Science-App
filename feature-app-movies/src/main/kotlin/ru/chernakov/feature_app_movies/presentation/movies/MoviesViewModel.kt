@@ -2,10 +2,10 @@ package ru.chernakov.feature_app_movies.presentation.movies
 
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.delay
-import ru.chernakov.core_base.util.lifecycle.SingleLiveEvent
-import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
 import ru.chernakov.feature_app_movies.data.model.Movie
 import ru.chernakov.feature_app_movies.domain.LoadMoviesInteractor
+import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
+import ru.chernakov.rocketscienceapp.util.lifecycle.SingleLiveEvent
 
 class MoviesViewModel(private val loadMoviesInteractor: LoadMoviesInteractor) : BaseViewModel() {
     val moviesData = MutableLiveData<Set<Movie>>()

@@ -12,13 +12,13 @@ import kotlinx.android.synthetic.main.fragment_app_info.*
 import kotlinx.android.synthetic.main.toolbar_application_info.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import ru.chernakov.core_base.extension.java.lang.formatToDateString
-import ru.chernakov.core_base.extension.java.util.DD_MM_YYYY_HH_MM
-import ru.chernakov.core_base.util.lifecycle.SafeObserver
-import ru.chernakov.core_ui.presentation.fragment.BaseFragment
 import ru.chernakov.feature_app_appmonitor.R
 import ru.chernakov.feature_app_appmonitor.data.model.OptionItem
 import ru.chernakov.feature_app_appmonitor.presentation.info.adapter.OptionsAdapter
+import ru.chernakov.rocketscienceapp.extension.java.lang.formatToDateString
+import ru.chernakov.rocketscienceapp.extension.util.DD_MM_YYYY_HH_MM
+import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
+import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 
 class AppInfoFragment : BaseFragment() {
     private val appInfoViewModel: AppInfoViewModel by viewModel {

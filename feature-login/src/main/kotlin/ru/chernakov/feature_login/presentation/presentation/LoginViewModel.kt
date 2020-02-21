@@ -5,8 +5,8 @@ import android.text.Editable
 import android.util.Patterns
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
-import ru.chernakov.core_base.util.lifecycle.SingleLiveEvent
-import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
+import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
+import ru.chernakov.rocketscienceapp.util.lifecycle.SingleLiveEvent
 
 class LoginViewModel(
     val firebaseAuth: FirebaseAuth,

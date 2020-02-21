@@ -6,10 +6,10 @@ import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.d_fragment_bubble_game_settings.*
-import ru.chernakov.core_ui.presentation.fragment.BaseBottomSheetDialog
 import ru.chernakov.feature_app_bubblegame.R
 import ru.chernakov.feature_app_bubblegame.data.GameSpeed
 import ru.chernakov.feature_app_bubblegame.data.GameTime
+import ru.chernakov.rocketscienceapp.presentation.fragment.BaseBottomSheetDialog
 import java.util.concurrent.TimeUnit
 
 class BubbleGameSettingsDialog : BaseBottomSheetDialog(), SeekBar.OnSeekBarChangeListener {

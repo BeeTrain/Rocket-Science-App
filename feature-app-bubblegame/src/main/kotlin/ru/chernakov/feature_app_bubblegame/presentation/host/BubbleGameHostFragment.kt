@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.View
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.core_ui.presentation.fragment.BaseFragment
 import ru.chernakov.feature_app_bubblegame.R
 import ru.chernakov.feature_app_bubblegame.data.GameStatus
 import ru.chernakov.feature_app_bubblegame.navigation.BubbleGameNavigation
 import ru.chernakov.feature_app_bubblegame.navigation.OnBackPressedListener
 import ru.chernakov.feature_app_bubblegame.presentation.widget.BubbleGameStateListener
 import ru.chernakov.feature_app_bubblegame.presentation.widget.BubbleGameStatusListener
+import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
 
 class BubbleGameHostFragment : BaseFragment(), OnBackPressedListener, BubbleGameStatusListener,
     BubbleGameStateListener {

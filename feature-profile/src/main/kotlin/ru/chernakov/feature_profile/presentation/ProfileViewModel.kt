@@ -1,7 +1,7 @@
 package ru.chernakov.feature_profile.presentation
 
 import com.google.firebase.auth.FirebaseAuth
-import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
+import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
 
 class ProfileViewModel(private val firebaseAuth: FirebaseAuth) : BaseViewModel() {
 

@@ -6,11 +6,11 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import ru.chernakov.core_base.util.lifecycle.SafeObserver
-import ru.chernakov.core_ui.extension.android.view.visibleOrGone
-import ru.chernakov.core_ui.presentation.fragment.BaseFragment
 import ru.chernakov.feature_app_movies.R
 import ru.chernakov.feature_app_movies.data.model.Movie
+import ru.chernakov.rocketscienceapp.extension.android.view.visibleOrGone
+import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
+import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 
 class MovieDetailsFragment : BaseFragment() {
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModel {

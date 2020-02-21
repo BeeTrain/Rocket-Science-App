@@ -1,11 +1,11 @@
 package ru.chernakov.feature_app_appmonitor.presentation.info
 
 import androidx.lifecycle.MutableLiveData
-import ru.chernakov.core_ui.presentation.viewmodel.BaseViewModel
 import ru.chernakov.feature_app_appmonitor.data.model.ApplicationItem
 import ru.chernakov.feature_app_appmonitor.data.model.OptionItem
 import ru.chernakov.feature_app_appmonitor.domain.LoadAppInfoInteractor
 import ru.chernakov.feature_app_appmonitor.domain.PrepareOptionsInteractor
+import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
 import java.math.BigDecimal
 
 class AppInfoViewModel(

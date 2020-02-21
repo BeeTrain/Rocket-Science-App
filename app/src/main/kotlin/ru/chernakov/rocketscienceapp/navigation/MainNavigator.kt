@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
-import ru.chernakov.core_ui.extension.androidx.fragment.app.replaceFragment
 import ru.chernakov.feature_app_appmonitor.navigation.AppMonitorNavigation
 import ru.chernakov.feature_app_appmonitor.presentation.info.AppInfoFragment
 import ru.chernakov.feature_app_appmonitor.presentation.list.AppsListFragmentDirections
@@ -33,6 +32,7 @@ import ru.chernakov.feature_splash.navigation.SplashNavigation
 import ru.chernakov.feature_splash.presentation.SplashFragmentDirections
 import ru.chernakov.rocketscienceapp.NavGraphDirections
 import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.extension.androidx.fragment.app.replaceFragment
 import ru.chernakov.rocketscienceapp.presentation.MainActivity
 
 @Suppress("TooManyFunctions")
