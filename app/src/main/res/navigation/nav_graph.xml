@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/loginScreen"
-        android:name="ru.chernakov.feature_login.presentation.presentation.LoginFragment"
+        android:name="ru.chernakov.rocketscienceapp.presentation.presentation.LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/actionFromLoginToRegister"
@@ -49,7 +49,7 @@
 
     <fragment
         android:id="@+id/registerScreen"
-        android:name="ru.chernakov.feature_register.presentation.RegisterFragment"
+        android:name="ru.chernakov.rocketscienceapp.presentation.RegisterFragment"
         tools:layout="@layout/fragment_register">
         <action
             android:id="@+id/actionFromRegisterToAppFeatures"
@@ -58,7 +58,7 @@
 
     <fragment
         android:id="@+id/appfeaturesScreen"
-        android:name="ru.chernakov.feature_appfeatures.presentation.AppFeaturesFragment"
+        android:name="ru.chernakov.rocketscienceapp.presentation.AppFeaturesFragment"
         tools:layout="@layout/fragment_appfeatures">
         <action
             android:id="@+id/actionFromAppFeaturesToFavorite"
@@ -79,7 +79,7 @@
 
     <fragment
         android:id="@+id/favoriteScreen"
-        android:name="ru.chernakov.feature_favorite.presentation.FavoriteFragment"
+        android:name="ru.chernakov.rocketscienceapp.presentation.FavoriteFragment"
         tools:layout="@layout/fragment_favorite">
         <action
             android:id="@+id/actionFromFavoriteToProfile"
@@ -91,7 +91,7 @@
 
     <fragment
         android:id="@+id/profileScreen"
-        android:name="ru.chernakov.feature_profile.presentation.ProfileFragment"
+        android:name="ru.chernakov.rocketscienceapp.presentation.ProfileFragment"
         tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/actionFromProfileToFavorite"
@@ -111,7 +111,7 @@
 
     <fragment
         android:id="@+id/settingsScreen"
-        android:name="ru.chernakov.feature_settings.presentation.SettingsFragment"
+        android:name="ru.chernakov.rocketscienceapp.presentation.SettingsFragment"
         tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/actionLogoutFromSettings"
@@ -128,13 +128,13 @@
     <!-- Bubble game -->
     <fragment
         android:id="@+id/bubbleGameScreen"
-        android:name="ru.chernakov.feature_app_bubblegame.presentation.host.BubbleGameHostFragment"
+        android:name="ru.chernakov.rocketscienceapp.presentation.host.BubbleGameHostFragment"
         tools:layout="@layout/fragment_bubble_game_menu" />
 
     <!-- Movies -->
     <fragment
         android:id="@+id/moviesScreen"
-        android:name="ru.chernakov.feature_app_movies.presentation.movies.MoviesFragment"
+        android:name="ru.chernakov.rocketscienceapp.presentation.movies.MoviesFragment"
         tools:layout="@layout/fragment_movies">
         <action
             android:id="@+id/actionFromMoviesToDetails"
@@ -147,14 +147,14 @@
 
     <fragment
         android:id="@+id/movieDetailsScreen"
-        android:name="ru.chernakov.feature_app_movies.presentation.details.MovieDetailsFragment"
+        android:name="ru.chernakov.rocketscienceapp.presentation.details.MovieDetailsFragment"
         tools:layout="@layout/fragment_movie_details">
     </fragment>
 
     <!-- AppMonitor -->
     <fragment
         android:id="@+id/appMonitorScreen"
-        android:name="ru.chernakov.feature_app_appmonitor.presentation.list.AppsListFragment"
+        android:name="ru.chernakov.rocketscienceapp.presentation.list.AppsListFragment"
         tools:layout="@layout/fragment_apps_list">
         <action
             android:id="@+id/actionFromAppsListToAppInfo"
@@ -167,7 +167,7 @@
 
     <fragment
         android:id="@+id/appInfoScreen"
-        android:name="ru.chernakov.feature_app_appmonitor.presentation.info.AppInfoFragment"
+        android:name="ru.chernakov.rocketscienceapp.presentation.info.AppInfoFragment"
         tools:layout="@layout/fragment_app_info">
     </fragment>
 

@@ -1,15 +1,15 @@
 package ru.chernakov.rocketscienceapp.di
 
 import org.koin.dsl.module
-import ru.chernakov.feature_app_appmonitor.navigation.AppMonitorNavigation
-import ru.chernakov.feature_app_bubblegame.navigation.BubbleGameNavigation
-import ru.chernakov.feature_app_movies.navigation.MoviesNavigation
-import ru.chernakov.feature_appfeatures.navigation.AppFeaturesNavigation
-import ru.chernakov.feature_favorite.navigaton.FavoriteNavigation
-import ru.chernakov.feature_login.presentation.navigation.LoginNavigation
-import ru.chernakov.feature_profile.navigation.ProfileNavigation
-import ru.chernakov.feature_register.navigation.RegisterNavigation
-import ru.chernakov.feature_settings.navigation.SettingsNavigation
+import ru.chernakov.rocketscienceapp.navigation.AppMonitorNavigation
+import ru.chernakov.rocketscienceapp.navigation.BubbleGameNavigation
+import ru.chernakov.rocketscienceapp.navigation.MoviesNavigation
+import ru.chernakov.rocketscienceapp.navigation.AppFeaturesNavigation
+import ru.chernakov.rocketscienceapp.navigaton.FavoriteNavigation
+import ru.chernakov.rocketscienceapp.presentation.navigation.LoginNavigation
+import ru.chernakov.rocketscienceapp.navigation.ProfileNavigation
+import ru.chernakov.rocketscienceapp.navigation.RegisterNavigation
+import ru.chernakov.rocketscienceapp.navigation.SettingsNavigation
 import ru.chernakov.feature_splash.navigation.SplashNavigation
 import ru.chernakov.rocketscienceapp.navigation.BottomNavigation
 import ru.chernakov.rocketscienceapp.navigation.MainNavigator
