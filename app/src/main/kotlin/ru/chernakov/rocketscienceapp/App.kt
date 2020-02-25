@@ -14,7 +14,7 @@ import ru.chernakov.rocketscienceapp.di.loginModule
 import ru.chernakov.rocketscienceapp.di.profileModule
 import ru.chernakov.rocketscienceapp.di.registerModule
 import ru.chernakov.rocketscienceapp.di.settingsModule
-import ru.chernakov.feature_splash.di.splashModule
+import ru.chernakov.rocketscienceapp.di.splashModule
 import ru.chernakov.rocketscienceapp.di.appModule
 import ru.chernakov.rocketscienceapp.di.firebaseModule
 import ru.chernakov.rocketscienceapp.di.navigationModule

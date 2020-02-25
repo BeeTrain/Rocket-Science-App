@@ -3,7 +3,7 @@ package ru.chernakov.rocketscienceapp.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.appfeatures.R
 import ru.chernakov.rocketscienceapp.data.model.AppFeature
 import ru.chernakov.rocketscienceapp.presentation.adapter.holder.AppFeaturesViewHolder
 

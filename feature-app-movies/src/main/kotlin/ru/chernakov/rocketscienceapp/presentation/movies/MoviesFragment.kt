@@ -9,10 +9,10 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_movies.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.rocketscienceapp.R
 import ru.chernakov.rocketscienceapp.navigation.MoviesNavigation
 import ru.chernakov.rocketscienceapp.presentation.movies.adapter.MoviesAdapter
 import ru.chernakov.rocketscienceapp.extension.android.view.visibleOrGone
+import ru.chernakov.rocketscienceapp.movies.R
 import ru.chernakov.rocketscienceapp.presentation.adapter.AbstractPaginationAdapter
 import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
 import ru.chernakov.rocketscienceapp.util.data.GsonSerialization

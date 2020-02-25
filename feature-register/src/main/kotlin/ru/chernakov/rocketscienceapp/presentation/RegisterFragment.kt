@@ -9,12 +9,12 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import kotlinx.android.synthetic.main.fragment_register.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.rocketscienceapp.R
 import ru.chernakov.rocketscienceapp.data.model.PasswordStrength
 import ru.chernakov.rocketscienceapp.navigation.RegisterNavigation
 import ru.chernakov.rocketscienceapp.extension.android.widget.addTextChangedListener
 import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
 import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
+import ru.chernakov.rocketscienceapp.register.R
 import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 
 class RegisterFragment : BaseFragment() {

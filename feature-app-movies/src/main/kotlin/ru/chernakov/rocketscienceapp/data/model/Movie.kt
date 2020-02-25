@@ -1,7 +1,7 @@
 package ru.chernakov.rocketscienceapp.data.model
 
 import com.google.gson.annotations.SerializedName
-import ru.chernakov.rocketscienceapp.BuildConfig
+import ru.chernakov.rocketscienceapp.movies.BuildConfig
 
 data class Movie(
     @SerializedName("id") var id: Long,

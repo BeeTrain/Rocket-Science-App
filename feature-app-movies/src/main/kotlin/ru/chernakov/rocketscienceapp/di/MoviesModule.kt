@@ -10,11 +10,11 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.chernakov.rocketscienceapp.BuildConfig
-import ru.chernakov.rocketscienceapp.R
 import ru.chernakov.rocketscienceapp.data.repository.MoviesRepository
 import ru.chernakov.rocketscienceapp.data.repository.TheMovieDbRepository
 import ru.chernakov.rocketscienceapp.data.repository.UrlRepository
 import ru.chernakov.rocketscienceapp.domain.LoadMoviesInteractor
+import ru.chernakov.rocketscienceapp.movies.R
 import ru.chernakov.rocketscienceapp.presentation.details.MovieDetailsViewModel
 import ru.chernakov.rocketscienceapp.presentation.movies.MoviesViewModel
 import ru.chernakov.rocketscienceapp.util.data.GsonSerialization

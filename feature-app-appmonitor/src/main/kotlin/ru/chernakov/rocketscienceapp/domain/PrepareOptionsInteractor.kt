@@ -1,6 +1,6 @@
 package ru.chernakov.rocketscienceapp.domain
 
-import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.appmonitor.R
 import ru.chernakov.rocketscienceapp.data.model.ApplicationItem
 import ru.chernakov.rocketscienceapp.data.model.OptionItem
 import ru.chernakov.rocketscienceapp.data.repository.ApplicationsRepository

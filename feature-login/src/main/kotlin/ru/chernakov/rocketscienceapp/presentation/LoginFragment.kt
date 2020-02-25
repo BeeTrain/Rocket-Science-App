@@ -17,10 +17,10 @@ import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.rocketscienceapp.R
 import ru.chernakov.rocketscienceapp.navigation.LoginNavigation
 import ru.chernakov.rocketscienceapp.extension.android.app.hideKeyboard
 import ru.chernakov.rocketscienceapp.extension.android.widget.addTextChangedListener
+import ru.chernakov.rocketscienceapp.login.R
 import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
 import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
 import ru.chernakov.rocketscienceapp.util.RequestCodeGenerator

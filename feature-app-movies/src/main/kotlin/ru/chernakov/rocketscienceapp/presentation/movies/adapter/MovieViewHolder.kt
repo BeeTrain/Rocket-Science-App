@@ -4,8 +4,8 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_movie.view.*
-import ru.chernakov.rocketscienceapp.R
 import ru.chernakov.rocketscienceapp.data.model.Movie
+import ru.chernakov.rocketscienceapp.movies.R
 
 class MovieViewHolder(itemView: View, onItemClickListener: ((Movie) -> Unit)?) : RecyclerView.ViewHolder(itemView) {
 

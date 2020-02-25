@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_appfeatures.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.appfeatures.R
 import ru.chernakov.rocketscienceapp.data.model.AppFeature
 import ru.chernakov.rocketscienceapp.navigation.AppFeaturesNavigation
 import ru.chernakov.rocketscienceapp.presentation.adapter.AppFeaturesAdapter

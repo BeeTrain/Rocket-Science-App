@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/splashScreen"
-        android:name="ru.chernakov.feature_splash.presentation.SplashFragment"
+        android:name="ru.chernakov.rocketscienceapp.presentation.SplashFragment"
         tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/actionFromSplashToLogin"

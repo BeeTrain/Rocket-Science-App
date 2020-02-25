@@ -1,4 +1,4 @@
-package ru.chernakov.feature_splash.navigation
+package ru.chernakov.rocketscienceapp.navigation
 
 interface SplashNavigation {
     fun fromSplashToLogin()

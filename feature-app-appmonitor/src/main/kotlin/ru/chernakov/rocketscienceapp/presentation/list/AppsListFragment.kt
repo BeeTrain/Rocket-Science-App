@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_apps_list.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.appmonitor.R
 import ru.chernakov.rocketscienceapp.navigation.AppMonitorNavigation
 import ru.chernakov.rocketscienceapp.presentation.list.adapter.AppsListAdapter
 import ru.chernakov.rocketscienceapp.extension.android.view.visibleOrGone

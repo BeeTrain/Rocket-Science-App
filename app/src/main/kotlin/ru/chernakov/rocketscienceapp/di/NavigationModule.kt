@@ -10,7 +10,7 @@ import ru.chernakov.rocketscienceapp.navigation.LoginNavigation
 import ru.chernakov.rocketscienceapp.navigation.ProfileNavigation
 import ru.chernakov.rocketscienceapp.navigation.RegisterNavigation
 import ru.chernakov.rocketscienceapp.navigation.SettingsNavigation
-import ru.chernakov.feature_splash.navigation.SplashNavigation
+import ru.chernakov.rocketscienceapp.navigation.SplashNavigation
 import ru.chernakov.rocketscienceapp.navigation.BottomNavigation
 import ru.chernakov.rocketscienceapp.navigation.MainNavigator
 

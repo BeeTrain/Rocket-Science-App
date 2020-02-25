@@ -1,8 +1,8 @@
-package ru.chernakov.feature_splash.di
+package ru.chernakov.rocketscienceapp.di
 
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-import ru.chernakov.feature_splash.presentation.SplashViewModel
+import ru.chernakov.rocketscienceapp.presentation.SplashViewModel
 
 val splashModule = module {
     viewModel { SplashViewModel(get()) }

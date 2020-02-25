@@ -2,8 +2,8 @@ package ru.chernakov.rocketscienceapp.presentation.movies.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import ru.chernakov.rocketscienceapp.R
 import ru.chernakov.rocketscienceapp.data.model.Movie
+import ru.chernakov.rocketscienceapp.movies.R
 import ru.chernakov.rocketscienceapp.presentation.adapter.AbstractPaginationAdapter
 
 class MoviesAdapter(loadOffset: Int) : AbstractPaginationAdapter<Movie, MovieViewHolder>() {

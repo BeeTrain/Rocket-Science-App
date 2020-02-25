@@ -2,7 +2,7 @@ package ru.chernakov.rocketscienceapp.data.model
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.appfeatures.R
 
 data class AppFeature(
     var id: Long,

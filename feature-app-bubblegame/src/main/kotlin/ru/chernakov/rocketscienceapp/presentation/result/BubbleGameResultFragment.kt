@@ -9,7 +9,7 @@ import android.view.ViewAnimationUtils
 import androidx.activity.OnBackPressedCallback
 import kotlinx.android.synthetic.main.fragment_bubble_game_result.*
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.bubblegame.R
 import ru.chernakov.rocketscienceapp.data.GameStatus
 import ru.chernakov.rocketscienceapp.navigation.OnBackPressedListener
 import ru.chernakov.rocketscienceapp.presentation.host.BubbleGameHostFragment

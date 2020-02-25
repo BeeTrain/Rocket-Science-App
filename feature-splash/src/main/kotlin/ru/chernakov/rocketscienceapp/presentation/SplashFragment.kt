@@ -1,11 +1,11 @@
-package ru.chernakov.feature_splash.presentation
+package ru.chernakov.rocketscienceapp.presentation
 
 import android.os.Bundle
 import android.view.View
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.feature_splash.R
-import ru.chernakov.feature_splash.navigation.SplashNavigation
+import ru.chernakov.rocketscienceapp.navigation.SplashNavigation
+import ru.chernakov.rocketscienceapp.splash.R
 import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
 import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
 

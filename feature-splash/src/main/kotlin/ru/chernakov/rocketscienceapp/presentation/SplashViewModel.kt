@@ -1,4 +1,4 @@
-package ru.chernakov.feature_splash.presentation
+package ru.chernakov.rocketscienceapp.presentation
 
 import com.google.firebase.auth.FirebaseAuth
 import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel

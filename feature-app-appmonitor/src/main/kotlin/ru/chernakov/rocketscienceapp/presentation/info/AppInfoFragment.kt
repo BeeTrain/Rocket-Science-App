@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_app_info.*
 import kotlinx.android.synthetic.main.toolbar_application_info.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.appmonitor.R
 import ru.chernakov.rocketscienceapp.data.model.OptionItem
 import ru.chernakov.rocketscienceapp.presentation.info.adapter.OptionsAdapter
 import ru.chernakov.rocketscienceapp.extension.java.lang.formatToDateString

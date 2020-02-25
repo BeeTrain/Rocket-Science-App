@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.bubblegame.R
 import ru.chernakov.rocketscienceapp.data.GameStatus
 import ru.chernakov.rocketscienceapp.navigation.BubbleGameNavigation
 import ru.chernakov.rocketscienceapp.navigation.OnBackPressedListener

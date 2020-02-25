@@ -20,8 +20,7 @@ import ru.chernakov.rocketscienceapp.presentation.LoginFragmentDirections
 import ru.chernakov.rocketscienceapp.presentation.ProfileFragmentDirections
 import ru.chernakov.rocketscienceapp.presentation.RegisterFragmentDirections
 import ru.chernakov.rocketscienceapp.presentation.SettingsFragmentDirections
-import ru.chernakov.feature_splash.navigation.SplashNavigation
-import ru.chernakov.feature_splash.presentation.SplashFragmentDirections
+import ru.chernakov.rocketscienceapp.presentation.SplashFragmentDirections
 import ru.chernakov.rocketscienceapp.NavGraphDirections
 import ru.chernakov.rocketscienceapp.R
 import ru.chernakov.rocketscienceapp.extension.androidx.fragment.app.replaceFragment

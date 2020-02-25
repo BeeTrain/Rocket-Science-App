@@ -6,9 +6,9 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import ru.chernakov.rocketscienceapp.R
 import ru.chernakov.rocketscienceapp.data.model.Movie
 import ru.chernakov.rocketscienceapp.extension.android.view.visibleOrGone
+import ru.chernakov.rocketscienceapp.movies.R
 import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
 import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 

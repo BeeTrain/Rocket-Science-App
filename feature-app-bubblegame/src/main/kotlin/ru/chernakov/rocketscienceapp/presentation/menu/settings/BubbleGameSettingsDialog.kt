@@ -6,7 +6,7 @@ import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.d_fragment_bubble_game_settings.*
-import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.bubblegame.R
 import ru.chernakov.rocketscienceapp.data.GameSpeed
 import ru.chernakov.rocketscienceapp.data.GameTime
 import ru.chernakov.rocketscienceapp.presentation.fragment.BaseBottomSheetDialog

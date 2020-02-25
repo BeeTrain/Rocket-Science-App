@@ -1,6 +1,6 @@
 package ru.chernakov.rocketscienceapp.data.repository
 
-import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.appfeatures.R
 import ru.chernakov.rocketscienceapp.data.model.AppFeature
 
 class AppFeaturesRepository {
