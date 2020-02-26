@@ -1,4 +1,4 @@
-package ru.chernakov.rocketscienceapp.presentation
+package ru.chernakov.rocketscienceapp.presentation.login
 
 import android.os.CountDownTimer
 import android.text.Editable

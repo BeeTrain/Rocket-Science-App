@@ -1,4 +1,4 @@
-package ru.chernakov.rocketscienceapp.data.model
+package ru.chernakov.rocketscienceapp.data
 
 import ru.chernakov.rocketscienceapp.R
 

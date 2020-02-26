@@ -1,6 +1,8 @@
 package ru.chernakov.rocketscienceapp.navigation
 
-interface LoginNavigation {
+interface AuthNavigation {
     fun fromLoginToRegister()
     fun fromLoginToAppFeatures()
+    fun fromRegisterToAppFeatures()
+    fun fromRegisterToLogin()
 }

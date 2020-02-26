@@ -1,4 +1,4 @@
-package ru.chernakov.rocketscienceapp.presentation
+package ru.chernakov.rocketscienceapp.presentation.register
 
 import android.os.Bundle
 import android.view.View
@@ -9,17 +9,18 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import kotlinx.android.synthetic.main.fragment_register.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.rocketscienceapp.data.model.PasswordStrength
-import ru.chernakov.rocketscienceapp.navigation.RegisterNavigation
+import ru.chernakov.rocketscienceapp.auth.R
+import ru.chernakov.rocketscienceapp.data.PasswordStrength
 import ru.chernakov.rocketscienceapp.extension.android.widget.addTextChangedListener
+import ru.chernakov.rocketscienceapp.navigation.AuthNavigation
+import ru.chernakov.rocketscienceapp.presentation.RegisterViewModel
 import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
 import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
-import ru.chernakov.rocketscienceapp.register.R
 import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 
 class RegisterFragment : BaseFragment() {
     private val registerViewModel: RegisterViewModel by viewModel()
-    private val navigator: RegisterNavigation by inject()
+    private val navigator: AuthNavigation by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,7 +62,8 @@ class RegisterFragment : BaseFragment() {
                         tilPassword.error = null
                     }
                     val passStrength = PasswordStrength.calculate(it.toString())
-                    tilPassword.helperText = if (it.isNotEmpty()) getString(passStrength.message) else null
+                    tilPassword.helperText =
+                        if (it.isNotEmpty()) getString(passStrength.message) else null
                 }
             }
         }
@@ -76,10 +78,6 @@ class RegisterFragment : BaseFragment() {
         }
     }
 
-    override fun getLayout(): Int = R.layout.fragment_register
-
-    override fun obtainViewModel(): BaseViewModel = registerViewModel
-
     private fun registerUser() {
         val isEmailValid = registerViewModel.isEmailValid(titEmail.editableText)
         val isPasswordValid = registerViewModel.isPasswordValid(titPassword.editableText)
@@ -88,7 +86,10 @@ class RegisterFragment : BaseFragment() {
         )
         when {
             isEmailValid && isPasswordValid && isPassConfirmValid -> {
-                registerViewModel.registerUser(titEmail.text.toString(), titPassword.text.toString())
+                registerViewModel.registerUser(
+                    titEmail.text.toString(),
+                    titPassword.text.toString()
+                )
             }
             !isEmailValid -> {
                 titEmail.requestFocus()
@@ -117,4 +118,8 @@ class RegisterFragment : BaseFragment() {
     private fun goToNextScreen() {
         navigator.fromRegisterToAppFeatures()
     }
+
+    override fun getLayout(): Int = R.layout.fragment_register
+
+    override fun obtainViewModel(): BaseViewModel = registerViewModel
 }

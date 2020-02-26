@@ -29,8 +29,7 @@ dependencies {
     implementation project(Modules.APP_CORE)
 
     implementation project(Modules.FEATURE_SPLASH)
-    implementation project(Modules.FEATURE_LOGIN)
-    implementation project(Modules.FEATURE_REGISTER)
+    implementation project(Modules.FEATURE_AUTH)
     implementation project(Modules.FEATURE_FAVORITE)
     implementation project(Modules.FEATURE_PROFILE)
     implementation project(Modules.FEATURE_SETTINGS)

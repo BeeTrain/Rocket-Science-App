@@ -16,18 +16,18 @@ import ru.chernakov.rocketscienceapp.presentation.movies.MoviesFragmentDirection
 import ru.chernakov.rocketscienceapp.presentation.AppFeaturesFragmentDirections
 import ru.chernakov.rocketscienceapp.navigaton.FavoriteNavigation
 import ru.chernakov.rocketscienceapp.presentation.FavoriteFragmentDirections
-import ru.chernakov.rocketscienceapp.presentation.LoginFragmentDirections
 import ru.chernakov.rocketscienceapp.presentation.ProfileFragmentDirections
-import ru.chernakov.rocketscienceapp.presentation.RegisterFragmentDirections
 import ru.chernakov.rocketscienceapp.presentation.SettingsFragmentDirections
 import ru.chernakov.rocketscienceapp.presentation.SplashFragmentDirections
 import ru.chernakov.rocketscienceapp.NavGraphDirections
 import ru.chernakov.rocketscienceapp.R
 import ru.chernakov.rocketscienceapp.extension.androidx.fragment.app.replaceFragment
 import ru.chernakov.rocketscienceapp.presentation.MainActivity
+import ru.chernakov.rocketscienceapp.presentation.login.LoginFragmentDirections
+import ru.chernakov.rocketscienceapp.presentation.register.RegisterFragmentDirections
 
 @Suppress("TooManyFunctions")
-class MainNavigator : SplashNavigation, LoginNavigation, RegisterNavigation, BottomNavigation,
+class MainNavigator : SplashNavigation, AuthNavigation, BottomNavigation,
     ProfileNavigation, FavoriteNavigation, SettingsNavigation, AppFeaturesNavigation,
     BubbleGameNavigation, MoviesNavigation, AppMonitorNavigation {
 

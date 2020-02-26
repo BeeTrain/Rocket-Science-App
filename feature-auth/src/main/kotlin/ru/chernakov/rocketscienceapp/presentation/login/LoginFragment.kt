@@ -1,4 +1,4 @@
-package ru.chernakov.rocketscienceapp.presentation
+package ru.chernakov.rocketscienceapp.presentation.login
 
 import android.app.Activity
 import android.content.Intent
@@ -17,10 +17,10 @@ import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.rocketscienceapp.navigation.LoginNavigation
+import ru.chernakov.rocketscienceapp.auth.R
 import ru.chernakov.rocketscienceapp.extension.android.app.hideKeyboard
 import ru.chernakov.rocketscienceapp.extension.android.widget.addTextChangedListener
-import ru.chernakov.rocketscienceapp.login.R
+import ru.chernakov.rocketscienceapp.navigation.AuthNavigation
 import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
 import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
 import ru.chernakov.rocketscienceapp.util.RequestCodeGenerator
@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit
 
 class LoginFragment : BaseFragment() {
     private val loginViewModel: LoginViewModel by viewModel()
-    private val navigation: LoginNavigation by inject()
+    private val navigation: AuthNavigation by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

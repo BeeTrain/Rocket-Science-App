@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/loginScreen"
-        android:name="ru.chernakov.rocketscienceapp.presentation.LoginFragment"
+        android:name="ru.chernakov.rocketscienceapp.presentation.login.LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/actionFromLoginToRegister"
@@ -49,7 +49,7 @@
 
     <fragment
         android:id="@+id/registerScreen"
-        android:name="ru.chernakov.rocketscienceapp.presentation.RegisterFragment"
+        android:name="ru.chernakov.rocketscienceapp.presentation.register.RegisterFragment"
         tools:layout="@layout/fragment_register">
         <action
             android:id="@+id/actionFromRegisterToAppFeatures"

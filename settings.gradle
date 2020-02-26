@@ -8,8 +8,7 @@ include(
     Modules.APP_CORE,
 
     Modules.FEATURE_SPLASH,
-    Modules.FEATURE_LOGIN,
-    Modules.FEATURE_REGISTER,
+    Modules.FEATURE_AUTH,
     Modules.FEATURE_FAVORITE,
     Modules.FEATURE_PROFILE,
     Modules.FEATURE_SETTINGS,
