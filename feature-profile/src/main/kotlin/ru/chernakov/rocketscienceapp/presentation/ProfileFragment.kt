@@ -23,6 +23,7 @@ class ProfileFragment : BaseMenuPageFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ivSettings.setOnClickListener {
+            it.isClickable = false
             it.startAnimation(AnimationUtils.loadAnimation(context, R.anim.rotation))
             activity?.let { navigator.fromProfileToSettings() }
         }

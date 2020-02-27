@@ -1,6 +1,7 @@
 package ru.chernakov.rocketscienceapp.presentation
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -17,14 +18,25 @@ class SettingsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ivClose.setOnClickListener { navigator.fromSettingsToProfile() }
         btLogout.setOnClickListener { settingsViewModel.logoutUser() }
         settingsViewModel.logoutEvent.observe(viewLifecycleOwner, Observer {
             navigator.logoutFromSettings()
         })
+
+        initCloseButton()
+    }
+
+    private fun initCloseButton() {
+        ivClose.isClickable = false
+        ivClose.setOnClickListener { navigator.fromSettingsToProfile() }
+        Handler().postDelayed({ ivClose.isClickable = true }, INIT_CLOSE_DELAY)
     }
 
     override fun getLayout(): Int = R.layout.fragment_settings
 
     override fun obtainViewModel(): BaseViewModel = settingsViewModel
+
+    companion object {
+        private const val INIT_CLOSE_DELAY = 500L
+    }
 }
