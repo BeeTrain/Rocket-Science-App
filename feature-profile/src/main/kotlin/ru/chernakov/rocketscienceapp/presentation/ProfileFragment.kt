@@ -12,11 +12,11 @@ import kotlinx.android.synthetic.main.toolbar_profile.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import ru.chernakov.rocketscienceapp.navigation.ProfileNavigation
-import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
+import ru.chernakov.rocketscienceapp.presentation.fragment.BaseMenuPageFragment
 import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
 import ru.chernakov.rocketscienceapp.profile.R
 
-class ProfileFragment : BaseFragment() {
+class ProfileFragment : BaseMenuPageFragment() {
     private val profileViewModel: ProfileViewModel by viewModel()
     private val navigator: ProfileNavigation by inject()
 

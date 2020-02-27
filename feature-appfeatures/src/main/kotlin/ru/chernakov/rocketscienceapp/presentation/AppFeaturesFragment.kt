@@ -11,23 +11,22 @@ import ru.chernakov.rocketscienceapp.appfeatures.R
 import ru.chernakov.rocketscienceapp.data.model.AppFeature
 import ru.chernakov.rocketscienceapp.navigation.AppFeaturesNavigation
 import ru.chernakov.rocketscienceapp.presentation.adapter.AppFeaturesAdapter
-import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
+import ru.chernakov.rocketscienceapp.presentation.fragment.BaseMenuPageFragment
 import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
 import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 
-class AppFeaturesFragment : BaseFragment() {
+class AppFeaturesFragment : BaseMenuPageFragment() {
     private val appFeaturesViewModel: AppFeaturesViewModel by viewModel()
     private val navigator: AppFeaturesNavigation by inject()
 
-    private lateinit var appFeaturesAdapter: AppFeaturesAdapter
+    private val appFeaturesAdapter: AppFeaturesAdapter by lazy {
+        AppFeaturesAdapter().apply {
+            onClickListener = { navigateToAppFeature(it) }
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        appFeaturesAdapter = AppFeaturesAdapter().apply {
-            onClickListener = {
-                navigateToAppFeature(it)
-            }
-        }
         rvFeed.apply {
             adapter = appFeaturesAdapter
             layoutManager = LinearLayoutManager(requireContext())
