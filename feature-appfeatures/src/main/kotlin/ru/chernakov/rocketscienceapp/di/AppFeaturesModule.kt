@@ -7,7 +7,7 @@ import ru.chernakov.rocketscienceapp.data.repository.AppFeaturesRepository
 import ru.chernakov.rocketscienceapp.presentation.AppFeaturesViewModel
 
 val appFeaturesModule = module {
-    factory { AppFeaturesRepository() }
+    single { AppFeaturesRepository() }
     factory { AppFeaturesInteractor(get()) }
     viewModel { AppFeaturesViewModel(get()) }
 }

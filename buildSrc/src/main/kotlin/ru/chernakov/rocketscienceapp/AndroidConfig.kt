@@ -18,21 +18,3 @@ object AndroidConfig {
 
     const val isMultiDexEnabled = true
 }
-
-interface BuildType {
-    val isMinifyEnabled: Boolean
-
-    companion object {
-        const val RELEASE = "release"
-        const val DEBUG = "debug"
-
-    }
-}
-
-object BuildTypeDebug : BuildType {
-    override val isMinifyEnabled = false
-}
-
-object BuildTypeRelease : BuildType {
-    override val isMinifyEnabled = false
-}

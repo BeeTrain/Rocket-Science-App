@@ -12,7 +12,7 @@ import ru.chernakov.rocketscienceapp.presentation.list.AppsListViewModel
 
 val appMonitorModule = module {
 
-    factory { ApplicationsRepository(androidContext().packageManager) }
+    single { ApplicationsRepository(androidContext().packageManager) }
 
     factory { FetchAppsInteractor(get()) }
     factory { LoadAppInfoInteractor(get()) }

@@ -14,10 +14,10 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import ru.chernakov.rocketscienceapp.appmonitor.R
 import ru.chernakov.rocketscienceapp.data.model.OptionItem
-import ru.chernakov.rocketscienceapp.presentation.info.adapter.OptionsAdapter
 import ru.chernakov.rocketscienceapp.extension.java.lang.formatToDateString
 import ru.chernakov.rocketscienceapp.extension.util.DD_MM_YYYY_HH_MM
 import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
+import ru.chernakov.rocketscienceapp.presentation.info.adapter.OptionsAdapter
 import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 
 class AppInfoFragment : BaseFragment() {
@@ -32,9 +32,21 @@ class AppInfoFragment : BaseFragment() {
         toolbar.setNavigationOnClickListener {
             requireActivity().onBackPressed()
         }
+        rvOptions.apply {
+            adapter = optionsAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            itemAnimator = DefaultItemAnimator()
+        }
+        optionsAdapter.onItemClickListener = {
+            onOptionSelected(it)
+        }
 
+        observeLiveData()
+    }
+
+    private fun observeLiveData() {
         appInfoViewModel.appInfoLiveData.observe(viewLifecycleOwner, Observer {
-            if (it != null) {
+            it?.let {
                 ivAppIcon.setImageDrawable(it.icon)
                 toolbarTitle.text = it.name
                 tvAppPackage.text = it.appPackage
@@ -49,22 +61,8 @@ class AppInfoFragment : BaseFragment() {
             }
         })
         appInfoViewModel.optionsLiveData.observe(viewLifecycleOwner, SafeObserver {
-            initOptionsList(it)
+            optionsAdapter.setData(it)
         })
-    }
-
-    private fun initOptionsList(options: List<OptionItem>) {
-        rvOptions.apply {
-            adapter = optionsAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-            itemAnimator = DefaultItemAnimator()
-        }
-        optionsAdapter.apply {
-            onItemClickListener = {
-                onOptionSelected(it)
-            }
-            setData(options)
-        }
     }
 
     private fun onOptionSelected(optionItem: OptionItem) {
