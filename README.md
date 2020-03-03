@@ -14,6 +14,6 @@
 
 ## Features
 
-    - Bubble game - try to catch all the bubbles at once
-    - Movies - list of upcoming movies ([themoviedb.org API](https://www.themoviedb.org/documentation/api) usage)
-    - AppMonitor - manage your apps, save apk's, share and delete it easily, watch application history
+- Bubble game - try to catch all the bubbles at once
+- Movies - list of upcoming movies ([themoviedb.org API](https://www.themoviedb.org/documentation/api) usage)
+- AppMonitor - manage your apps, save apk's, share and delete it easily, watch application history
