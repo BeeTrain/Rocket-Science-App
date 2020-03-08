@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="ru.chernakov.core_ui.presentation.activity.BaseActivity"
+    tools:context="ru.chernakov.rocketscienceapp.presentation.activity.BaseActivity"
     android:orientation="vertical">
 
     <TextView

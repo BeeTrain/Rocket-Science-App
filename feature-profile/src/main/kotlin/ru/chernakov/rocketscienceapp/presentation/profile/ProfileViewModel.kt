@@ -1,4 +1,4 @@
-package ru.chernakov.rocketscienceapp.presentation
+package ru.chernakov.rocketscienceapp.presentation.profile
 
 import com.google.firebase.auth.FirebaseAuth
 import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel

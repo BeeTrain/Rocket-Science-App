@@ -1,4 +1,4 @@
-package ru.chernakov.rocketscienceapp.presentation
+package ru.chernakov.rocketscienceapp.presentation.profile
 
 import android.os.Bundle
 import android.view.View

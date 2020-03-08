@@ -32,7 +32,6 @@ dependencies {
     implementation project(Modules.FEATURE_AUTH)
     implementation project(Modules.FEATURE_FAVORITE)
     implementation project(Modules.FEATURE_PROFILE)
-    implementation project(Modules.FEATURE_SETTINGS)
     implementation project(Modules.FEATURE_APPFEATURES)
 
     implementation project(Modules.FEATURE_APP_BUBBLEGAME)

@@ -7,7 +7,6 @@ object Modules {
     const val FEATURE_AUTH = ":feature-auth"
     const val FEATURE_FAVORITE = ":feature-favorite"
     const val FEATURE_PROFILE = ":feature-profile"
-    const val FEATURE_SETTINGS = ":feature-settings"
     const val FEATURE_APPFEATURES = ":feature-appfeatures"
     const val FEATURE_APP_BUBBLEGAME = ":feature-app-bubblegame"
     const val FEATURE_APP_MOVIES = ":feature-app-movies"

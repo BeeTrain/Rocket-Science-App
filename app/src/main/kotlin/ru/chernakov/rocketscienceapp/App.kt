@@ -14,7 +14,6 @@ import ru.chernakov.rocketscienceapp.di.firebaseModule
 import ru.chernakov.rocketscienceapp.di.moviesModule
 import ru.chernakov.rocketscienceapp.di.navigationModule
 import ru.chernakov.rocketscienceapp.di.profileModule
-import ru.chernakov.rocketscienceapp.di.settingsModule
 import ru.chernakov.rocketscienceapp.di.splashModule
 import ru.chernakov.rocketscienceapp.util.lifecycle.Lifecycler
 import timber.log.Timber
@@ -44,7 +43,6 @@ class App : Application() {
                     authModule,
                     favoriteModule,
                     profileModule,
-                    settingsModule,
                     appFeaturesModule,
                     bubbleGameModule,
                     moviesModule,
