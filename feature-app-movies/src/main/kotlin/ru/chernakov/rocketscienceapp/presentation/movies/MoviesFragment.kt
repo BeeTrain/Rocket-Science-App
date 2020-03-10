@@ -3,18 +3,20 @@ package ru.chernakov.rocketscienceapp.presentation.movies
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_movies.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.chernakov.rocketscienceapp.navigation.MoviesNavigation
-import ru.chernakov.rocketscienceapp.presentation.movies.adapter.MoviesAdapter
+import ru.chernakov.rocketscienceapp.extension.android.view.toTransitionGroup
 import ru.chernakov.rocketscienceapp.extension.android.view.visibleOrGone
 import ru.chernakov.rocketscienceapp.movies.R
+import ru.chernakov.rocketscienceapp.navigation.MoviesNavigation
 import ru.chernakov.rocketscienceapp.presentation.adapter.AbstractPaginationAdapter
 import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
+import ru.chernakov.rocketscienceapp.presentation.movies.adapter.MoviesAdapter
 import ru.chernakov.rocketscienceapp.util.data.GsonSerialization
 import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 
@@ -49,8 +51,9 @@ class MoviesFragment : BaseFragment(), AbstractPaginationAdapter.Callback {
     private fun initList() {
         moviesAdapter.apply {
             callback = this@MoviesFragment
-            onItemClickListener = {
-                moviesViewModel.selectMovie(it)
+            onItemClickListener = { view, item ->
+                val navigationExtras = FragmentNavigatorExtras(view.toTransitionGroup())
+                navigator.fromMoviesToDetails(navigationExtras, GsonSerialization.gson.toJson(item))
                 setConnectionSnackbarVisible(false)
             }
         }
@@ -61,9 +64,6 @@ class MoviesFragment : BaseFragment(), AbstractPaginationAdapter.Callback {
         }
         moviesViewModel.moviesData.observe(viewLifecycleOwner, SafeObserver {
             moviesAdapter.setData(it.toList())
-        })
-        moviesViewModel.selectedMovieEvent.observe(viewLifecycleOwner, SafeObserver {
-            navigator.fromMoviesToDetails(GsonSerialization.gson.toJson(it))
         })
     }
 

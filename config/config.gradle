@@ -5,8 +5,10 @@ apply plugin: Plugins.kotlinAndroid
 apply plugin: Plugins.kotlinKapt
 apply plugin: Plugins.kotlinAndroidExtensions
 apply plugin: Plugins.timeTracker
+apply plugin: Plugins.navigationSafeArgsKotlin
 
 apply from: '../config/quality.gradle'
+apply from: '../config/dependencies.gradle'
 
 android {
     compileSdkVersion AndroidConfig.targetSdk
@@ -44,5 +46,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    dependencies {
+        navigation()
     }
 }

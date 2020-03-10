@@ -7,12 +7,14 @@ import kotlinx.android.synthetic.main.list_item_movie.view.*
 import ru.chernakov.rocketscienceapp.data.model.Movie
 import ru.chernakov.rocketscienceapp.movies.R
 
-class MovieViewHolder(itemView: View, onItemClickListener: ((Movie) -> Unit)?) : RecyclerView.ViewHolder(itemView) {
+class MovieViewHolder(
+    itemView: View, onItemClickListener: ((View, Movie) -> Unit)?
+) : RecyclerView.ViewHolder(itemView) {
 
     lateinit var item: Movie
 
     init {
-        itemView.setOnClickListener { onItemClickListener?.invoke(item) }
+        itemView.setOnClickListener { onItemClickListener?.invoke(it.ivPoster, item) }
     }
 
     fun bind(movie: Movie) {

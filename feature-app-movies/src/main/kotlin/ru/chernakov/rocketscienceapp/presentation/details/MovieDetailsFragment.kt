@@ -2,6 +2,7 @@ package ru.chernakov.rocketscienceapp.presentation.details
 
 import android.os.Bundle
 import android.view.View
+import androidx.transition.TransitionInflater
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -15,6 +16,11 @@ import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 class MovieDetailsFragment : BaseFragment() {
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModel {
         parametersOf(requireArguments().getString(KEY_MOVIE_JSON))
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.explode)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

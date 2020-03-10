@@ -5,11 +5,9 @@ import kotlinx.coroutines.delay
 import ru.chernakov.rocketscienceapp.data.model.Movie
 import ru.chernakov.rocketscienceapp.domain.LoadMoviesInteractor
 import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
-import ru.chernakov.rocketscienceapp.util.lifecycle.SingleLiveEvent
 
 class MoviesViewModel(private val loadMoviesInteractor: LoadMoviesInteractor) : BaseViewModel() {
     val moviesData = MutableLiveData<Set<Movie>>()
-    val selectedMovieEvent = SingleLiveEvent<Movie>()
     val networkErrorEvent = MutableLiveData<Boolean>()
 
     private var loadedPage = 1
@@ -37,10 +35,6 @@ class MoviesViewModel(private val loadMoviesInteractor: LoadMoviesInteractor) : 
 
     private fun handleLoadingException() {
         networkErrorEvent.value = true
-    }
-
-    fun selectMovie(movie: Movie) {
-        selectedMovieEvent.value = movie
     }
 
     companion object {

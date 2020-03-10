@@ -1,6 +1,7 @@
 package ru.chernakov.rocketscienceapp.presentation.movies.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import ru.chernakov.rocketscienceapp.data.model.Movie
 import ru.chernakov.rocketscienceapp.movies.R
@@ -8,7 +9,7 @@ import ru.chernakov.rocketscienceapp.presentation.adapter.AbstractPaginationAdap
 
 class MoviesAdapter(loadOffset: Int) : AbstractPaginationAdapter<Movie, MovieViewHolder>() {
     var items = mutableSetOf<Movie>()
-    var onItemClickListener: ((Movie) -> Unit)? = null
+    var onItemClickListener: ((View, Movie) -> Unit)? = null
 
     init {
         this.loadOffset = loadOffset

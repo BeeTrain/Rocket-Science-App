@@ -7,7 +7,6 @@ apply plugin: Plugins.firebaseCrashlytics
 
 apply from: '../config/config.gradle'
 apply from: '../config/dependencies.gradle'
-apply plugin: Plugins.navigationSafeArgsKotlin
 
 android {
     defaultConfig {

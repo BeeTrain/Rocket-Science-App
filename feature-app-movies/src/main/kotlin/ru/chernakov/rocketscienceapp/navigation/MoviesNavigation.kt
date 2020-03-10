@@ -1,6 +1,8 @@
 package ru.chernakov.rocketscienceapp.navigation
 
+import androidx.navigation.fragment.FragmentNavigator
+
 interface MoviesNavigation {
     fun fromMoviesToAppFeatures()
-    fun fromMoviesToDetails(movieJson: String)
+    fun fromMoviesToDetails(navigationExtras: FragmentNavigator.Extras, movieJson: String)
 }

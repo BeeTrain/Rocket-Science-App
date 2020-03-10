@@ -5,25 +5,26 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
-import ru.chernakov.rocketscienceapp.presentation.info.AppInfoFragment
-import ru.chernakov.rocketscienceapp.presentation.list.AppsListFragmentDirections
-import ru.chernakov.rocketscienceapp.presentation.host.BubbleGameHostFragment
-import ru.chernakov.rocketscienceapp.presentation.menu.BubbleGameMenuFragment
-import ru.chernakov.rocketscienceapp.presentation.result.BubbleGameResultFragment
-import ru.chernakov.rocketscienceapp.presentation.running.BubbleGameRunningFragment
-import ru.chernakov.rocketscienceapp.presentation.details.MovieDetailsFragment
-import ru.chernakov.rocketscienceapp.presentation.movies.MoviesFragmentDirections
-import ru.chernakov.rocketscienceapp.presentation.AppFeaturesFragmentDirections
-import ru.chernakov.rocketscienceapp.navigaton.FavoriteNavigation
-import ru.chernakov.rocketscienceapp.presentation.FavoriteFragmentDirections
-import ru.chernakov.rocketscienceapp.presentation.SplashFragmentDirections
+import androidx.navigation.fragment.FragmentNavigator
 import ru.chernakov.rocketscienceapp.NavGraphDirections
 import ru.chernakov.rocketscienceapp.R
 import ru.chernakov.rocketscienceapp.extension.androidx.fragment.app.replaceFragment
+import ru.chernakov.rocketscienceapp.navigaton.FavoriteNavigation
+import ru.chernakov.rocketscienceapp.presentation.AppFeaturesFragmentDirections
+import ru.chernakov.rocketscienceapp.presentation.FavoriteFragmentDirections
 import ru.chernakov.rocketscienceapp.presentation.MainActivity
+import ru.chernakov.rocketscienceapp.presentation.SplashFragmentDirections
+import ru.chernakov.rocketscienceapp.presentation.details.MovieDetailsFragment
+import ru.chernakov.rocketscienceapp.presentation.host.BubbleGameHostFragment
+import ru.chernakov.rocketscienceapp.presentation.info.AppInfoFragment
+import ru.chernakov.rocketscienceapp.presentation.list.AppsListFragmentDirections
 import ru.chernakov.rocketscienceapp.presentation.login.LoginFragmentDirections
+import ru.chernakov.rocketscienceapp.presentation.menu.BubbleGameMenuFragment
+import ru.chernakov.rocketscienceapp.presentation.movies.MoviesFragmentDirections
 import ru.chernakov.rocketscienceapp.presentation.profile.ProfileFragmentDirections
 import ru.chernakov.rocketscienceapp.presentation.register.RegisterFragmentDirections
+import ru.chernakov.rocketscienceapp.presentation.result.BubbleGameResultFragment
+import ru.chernakov.rocketscienceapp.presentation.running.BubbleGameRunningFragment
 import ru.chernakov.rocketscienceapp.presentation.settings.SettingsFragmentDirections
 
 @Suppress("TooManyFunctions")
@@ -34,12 +35,13 @@ class MainNavigator : SplashNavigation, AuthNavigation, BottomNavigation,
     private var activity: MainActivity? = null
     var navigation: NavController? = null
 
-    private fun navigate(action: NavDirections, showBottomNavigation: Boolean = false, args: Bundle? = null) {
-        if (args != null) {
-            navigation?.navigate(action.actionId, args)
-        } else {
-            navigation?.navigate(action)
-        }
+    private fun navigate(
+        action: NavDirections,
+        showBottomNavigation: Boolean = false,
+        args: Bundle? = null,
+        navExtras: FragmentNavigator.Extras? = null
+    ) {
+        navigation?.navigate(action.actionId, args, null, navExtras)
         activity?.setBottomNavigationVisibility(showBottomNavigation)
     }
 
@@ -170,10 +172,11 @@ class MainNavigator : SplashNavigation, AuthNavigation, BottomNavigation,
         openAppFeatures()
     }
 
-    override fun fromMoviesToDetails(movieJson: String) {
+    override fun fromMoviesToDetails(navigationExtras: FragmentNavigator.Extras, movieJson: String) {
         navigate(
             MoviesFragmentDirections.actionFromMoviesToDetails(),
-            args = MovieDetailsFragment.createArgs(movieJson)
+            args = MovieDetailsFragment.createArgs(movieJson),
+            navExtras = navigationExtras
         )
     }
 
