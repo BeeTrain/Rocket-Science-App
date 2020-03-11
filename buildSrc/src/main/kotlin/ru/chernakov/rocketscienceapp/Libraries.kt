@@ -72,6 +72,10 @@ object Libraries {
         const val canaryAndroid = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
     }
 
+    object Glide {
+        const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+        const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+    }
     const val playServicesAuth = "com.google.android.gms:play-services-auth:${Versions.gmsAuth}"
 
     const val picasso = "com.squareup.picasso:picasso:${Versions.picasso}"

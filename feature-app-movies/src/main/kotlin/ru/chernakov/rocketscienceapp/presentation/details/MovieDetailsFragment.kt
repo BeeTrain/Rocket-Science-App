@@ -3,7 +3,7 @@ package ru.chernakov.rocketscienceapp.presentation.details
 import android.os.Bundle
 import android.view.View
 import androidx.transition.ChangeBounds
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -38,7 +38,7 @@ class MovieDetailsFragment : BaseFragment() {
         tvVote.text = movie.voteAverage
         tvOverview.text = movie.overview
         tvReleaseDate.text = movie.releaseDate
-        Picasso.get()
+        Glide.with(requireContext())
             .load(movie.getPosterLoadingUrl())
             .error(R.drawable.img_movie_details_stub)
             .into(ivPoster)

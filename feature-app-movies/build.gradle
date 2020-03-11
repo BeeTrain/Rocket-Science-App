@@ -17,15 +17,10 @@ dependencies {
     implementation project(Modules.APP_CORE)
 
     kotlinLib()
-
     androidxCore()
     supportCore()
-
-    picasso()
-
+    glide()
     koin()
-
     viewModel()
-
     network()
 }

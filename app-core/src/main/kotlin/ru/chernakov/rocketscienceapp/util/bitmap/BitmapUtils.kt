@@ -139,27 +139,6 @@ object BitmapUtils {
         canvas.drawBitmap(src, rect, rect, paint)
     }
 
-    /**
-     * https://redmine.e-legion.com/issues/72294
-     *
-     *
-     * Picasso sometimes fails to load files in this case we use this function.
-     * Should be fixed in Picasso version > 2.5.2
-     */
-    @Synchronized
-    fun scaleImageFile(imageFileUri: Uri, newWidth: Int, newHeight: Int): Bitmap? {
-        if (!isFileUri(imageFileUri)) {
-            return null
-        }
-
-        val options = BitmapFactory.Options()
-        options.inJustDecodeBounds = true
-        BitmapFactory.decodeFile(imageFileUri.path, options)
-        options.inSampleSize = calculateInSampleSize(options, newWidth, newHeight)
-        options.inJustDecodeBounds = false
-        return BitmapFactory.decodeFile(imageFileUri.path, options)
-    }
-
     fun isFileUri(uri: Uri?): Boolean {
         return uri != null && "file".equals(uri.scheme, ignoreCase = true)
     }

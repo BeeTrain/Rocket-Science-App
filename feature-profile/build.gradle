@@ -10,15 +10,10 @@ dependencies {
     implementation project(Modules.APP_CORE)
 
     kotlinLib()
-
     supportCore()
     androidxCore()
-
-    picasso()
-
+    glide()
     koin()
-
     viewModel()
-
     firebaseAuth()
 }

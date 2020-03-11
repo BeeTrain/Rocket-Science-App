@@ -49,6 +49,7 @@ object Versions {
     const val timber = "4.7.1"
     const val leakCanary = "2.0-alpha-3"
     const val picasso = "2.71828"
+    const val glide = "4.11.0"
     const val pagination = "2.1.1"
 
     const val junit = "4.13"

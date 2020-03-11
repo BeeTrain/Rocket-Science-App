@@ -61,8 +61,9 @@ ext {
         implementation Libraries.Koin.viewModel
     }
 
-    picasso = Group {
-        implementation Libraries.picasso
+    glide = Group {
+        implementation Libraries.Glide.glide
+        kapt Libraries.Glide.glideCompiler
     }
 
     timber = Group {

@@ -13,8 +13,8 @@ dependencies {
     network()
     playServicesAuth()
     koin()
+    glide()
     navigation()
-    picasso()
     timber()
     tests()
 }

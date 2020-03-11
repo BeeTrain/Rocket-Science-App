@@ -2,7 +2,8 @@ package ru.chernakov.rocketscienceapp.presentation.movies.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import kotlinx.android.synthetic.main.list_item_movie.view.*
 import ru.chernakov.rocketscienceapp.data.model.Movie
 import ru.chernakov.rocketscienceapp.movies.R
@@ -21,9 +22,10 @@ class MovieViewHolder(
     fun bind(movie: Movie) {
         item = movie
         itemView.apply {
-            Picasso.get()
+            Glide.with(context)
                 .load(item.getPosterLoadingUrl())
                 .error(R.drawable.ic_movie_stub)
+                .transition(DrawableTransitionOptions.withCrossFade())
                 .into(ivPoster)
         }
     }

@@ -2,7 +2,8 @@ package ru.chernakov.rocketscienceapp.presentation.adapter.holder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import kotlinx.android.synthetic.main.list_item_appfeature.view.*
 import ru.chernakov.rocketscienceapp.data.model.AppFeature
 
@@ -21,7 +22,10 @@ class AppFeaturesViewHolder(
         item = feature
         itemView.apply {
             tvTitle.text = context.getString(item.name)
-            Picasso.get().load(item.iconRes).into(ivFeatureIcon)
+            Glide.with(context)
+                .load(item.iconRes)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(ivFeatureIcon)
         }
     }
 }

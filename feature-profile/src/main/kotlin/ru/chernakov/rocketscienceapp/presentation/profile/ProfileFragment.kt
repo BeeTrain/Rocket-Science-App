@@ -5,8 +5,9 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.firebase.auth.FirebaseUser
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.toolbar_profile.*
 import org.koin.android.ext.android.inject
@@ -42,11 +43,12 @@ class ProfileFragment : BaseMenuPageFragment() {
         user?.let {
             tvUsername.text = it.displayName
             tvUserNick.text = it.email
-            it.photoUrl?.let {
-                Picasso.get()
-                    .load(it)
+            it.photoUrl?.let { uri ->
+                Glide.with(requireContext())
+                    .load(uri)
                     .placeholder(R.drawable.img_user_avatar)
                     .error(R.drawable.img_user_avatar)
+                    .transition(DrawableTransitionOptions.withCrossFade())
                     .into(ivProfilePhoto)
             }
         }
