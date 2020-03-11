@@ -2,7 +2,7 @@ package ru.chernakov.rocketscienceapp.presentation.details
 
 import android.os.Bundle
 import android.view.View
-import androidx.transition.TransitionInflater
+import androidx.transition.ChangeBounds
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -20,7 +20,7 @@ class MovieDetailsFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.explode)
+        sharedElementEnterTransition = ChangeBounds()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

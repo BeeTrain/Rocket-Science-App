@@ -8,7 +8,8 @@ import ru.chernakov.rocketscienceapp.data.model.Movie
 import ru.chernakov.rocketscienceapp.movies.R
 
 class MovieViewHolder(
-    itemView: View, onItemClickListener: ((View, Movie) -> Unit)?
+    itemView: View,
+    onItemClickListener: ((View, Movie) -> Unit)?
 ) : RecyclerView.ViewHolder(itemView) {
 
     lateinit var item: Movie
