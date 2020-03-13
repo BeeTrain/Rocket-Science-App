@@ -25,16 +25,7 @@ class MovieDetailsFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        sharedElementEnterTransition = TransitionInflater.from(requireContext())
-            .inflateTransition(android.R.transition.move)
-            .addListener(object : TransitionListenerAdapter() {
-                override fun onTransitionEnd(transition: Transition) {
-                    super.onTransitionEnd(transition)
-                    content.visibleOrInvisible(true)
-                }
-            })
-        postponeEnterTransition()
+        setupTransitionAnimation()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,6 +53,18 @@ class MovieDetailsFragment : BaseFragment() {
                 .listener(TransitionRequestListener(this@MovieDetailsFragment))
                 .into(ivPoster)
         }
+    }
+
+    private fun setupTransitionAnimation() {
+        sharedElementEnterTransition = TransitionInflater.from(requireContext())
+            .inflateTransition(android.R.transition.move)
+            .addListener(object : TransitionListenerAdapter() {
+                override fun onTransitionEnd(transition: Transition) {
+                    super.onTransitionEnd(transition)
+                    content.visibleOrInvisible(true)
+                }
+            })
+        postponeEnterTransition()
     }
 
     override fun getLayout() = R.layout.fragment_movie_details
