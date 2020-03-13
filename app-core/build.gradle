@@ -13,7 +13,7 @@ dependencies {
     network()
     playServicesAuth()
     koin()
-    glide()
+    imageLoading()
     navigation()
     timber()
     tests()

@@ -19,7 +19,7 @@ dependencies {
     kotlinLib()
     androidxCore()
     supportCore()
-    glide()
+    imageLoading()
     koin()
     viewModel()
     network()

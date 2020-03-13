@@ -61,7 +61,7 @@ ext {
         implementation Libraries.Koin.viewModel
     }
 
-    glide = Group {
+    imageLoading = Group {
         implementation Libraries.Glide.glide
         kapt Libraries.Glide.glideCompiler
     }

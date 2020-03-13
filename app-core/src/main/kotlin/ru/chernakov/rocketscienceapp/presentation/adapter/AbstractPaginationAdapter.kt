@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class AbstractPaginationAdapter<T : Any, H : RecyclerView.ViewHolder> @JvmOverloads constructor(
     loadOffset: Int = LOAD_OFFSET,
-
     diffCallback: DiffUtil.ItemCallback<T> = EqualsDiffItemCallback<T>()
 ) : ListAdapter<T, H>(diffCallback) {
 

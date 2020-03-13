@@ -12,7 +12,7 @@ dependencies {
     kotlinLib()
     supportCore()
     androidxCore()
-    glide()
+    imageLoading()
     koin()
     viewModel()
     firebaseAuth()
