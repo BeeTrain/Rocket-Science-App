@@ -2,15 +2,20 @@ package ru.chernakov.rocketscienceapp.presentation.details
 
 import android.os.Bundle
 import android.view.View
-import androidx.transition.ChangeBounds
+import androidx.transition.Transition
+import androidx.transition.TransitionInflater
+import androidx.transition.TransitionListenerAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import ru.chernakov.rocketscienceapp.data.model.Movie
 import ru.chernakov.rocketscienceapp.extension.android.view.visibleOrGone
+import ru.chernakov.rocketscienceapp.extension.android.view.visibleOrInvisible
 import ru.chernakov.rocketscienceapp.movies.R
 import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
+import ru.chernakov.rocketscienceapp.util.glide.TransitionRequestListener
 import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 
 class MovieDetailsFragment : BaseFragment() {
@@ -20,7 +25,16 @@ class MovieDetailsFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedElementEnterTransition = ChangeBounds()
+
+        sharedElementEnterTransition = TransitionInflater.from(requireContext())
+            .inflateTransition(android.R.transition.move)
+            .addListener(object : TransitionListenerAdapter() {
+                override fun onTransitionEnd(transition: Transition) {
+                    super.onTransitionEnd(transition)
+                    content.visibleOrInvisible(true)
+                }
+            })
+        postponeEnterTransition()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,14 +48,20 @@ class MovieDetailsFragment : BaseFragment() {
     }
 
     private fun setData(movie: Movie) {
-        tvTitle.text = movie.title
-        tvVote.text = movie.voteAverage
-        tvOverview.text = movie.overview
-        tvReleaseDate.text = movie.releaseDate
-        Glide.with(requireContext())
-            .load(movie.getPosterLoadingUrl())
-            .error(R.drawable.img_movie_details_stub)
-            .into(ivPoster)
+        movie.run {
+            tvTitle.text = title
+            tvVote.text = voteAverage
+            tvOverview.text = overview
+            tvReleaseDate.text = releaseDate
+            ivPoster.transitionName = title
+
+            Glide.with(requireContext())
+                .load(movie.getPosterLoadingUrl())
+                .error(R.drawable.img_movie_details_stub)
+                .apply(RequestOptions().dontTransform())
+                .listener(TransitionRequestListener(this@MovieDetailsFragment))
+                .into(ivPoster)
+        }
     }
 
     override fun getLayout() = R.layout.fragment_movie_details

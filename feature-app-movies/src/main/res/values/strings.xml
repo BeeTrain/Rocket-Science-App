@@ -3,5 +3,5 @@
     <string name="overview_label">Overview</string>
     <string name="release_date_label">Release date:</string>
     <string name="movies_title">Upcoming movies</string>
-    <string name="poster_transition">poster_transition</string>
+    <string name="poster_transition" formatted="false">poster_transition</string>
 </resources>

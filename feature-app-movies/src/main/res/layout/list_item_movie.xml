@@ -14,9 +14,8 @@
     <ImageView
         android:id="@+id/ivPoster"
         style="@style/MoviePoster"
-        android:scaleType="center"
-        android:transitionName="@string/poster_transition"
         android:layout_height="@dimen/poster_height"
-        android:contentDescription="@string/content_description" />
+        android:contentDescription="@string/content_description"
+        android:scaleType="center" />
 
 </com.google.android.material.card.MaterialCardView>

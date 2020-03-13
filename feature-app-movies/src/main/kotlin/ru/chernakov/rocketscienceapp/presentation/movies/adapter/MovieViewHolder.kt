@@ -1,6 +1,7 @@
 package ru.chernakov.rocketscienceapp.presentation.movies.adapter
 
 import android.view.View
+import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -16,7 +17,7 @@ class MovieViewHolder(
     lateinit var item: Movie
 
     init {
-        itemView.setOnClickListener { onItemClickListener?.invoke(it.ivPoster, item) }
+        itemView.setOnClickListener { onItemClickListener?.invoke(itemView.ivPoster, item) }
     }
 
     fun bind(movie: Movie) {
@@ -27,6 +28,7 @@ class MovieViewHolder(
                 .error(R.drawable.ic_movie_stub)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(ivPoster)
+            ViewCompat.setTransitionName(ivPoster, item.title)
         }
     }
 }
