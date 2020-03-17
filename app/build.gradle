@@ -4,6 +4,7 @@ import ru.chernakov.rocketscienceapp.Plugins
 
 apply plugin: Plugins.application
 apply plugin: Plugins.firebaseCrashlytics
+apply plugin: Plugins.firebaseAppDistribution
 
 apply from: '../config/config.gradle'
 apply from: '../config/dependencies.gradle'
@@ -12,13 +13,32 @@ android {
     defaultConfig {
         applicationId AndroidConfig.ID
     }
+
+    signingConfigs {
+        debug {
+            storeFile file('debug.jks')
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
+        releaseQa {
+            signingConfig signingConfigs.debug
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            firebaseAppDistribution {
+                appId = System.getenv(AndroidConfig.GOOGLE_APP_ID)
+                groups = AndroidConfig.GROUP_QA
+            }
+        }
+
         debug {
+            signingConfig signingConfigs.debug
             minifyEnabled false
         }
     }
@@ -49,7 +69,6 @@ dependencies {
     playServicesAuth()
     koin()
     timber()
-    leakCanary()
     tests()
 }
 

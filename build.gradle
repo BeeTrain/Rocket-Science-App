@@ -1,6 +1,15 @@
 import ru.chernakov.rocketscienceapp.Plugins
+import ru.chernakov.rocketscienceapp.AndroidConfig
 
 apply plugin: Plugins.dependenciesVersions
+
+ext {
+    projectName = AndroidConfig.NAME
+    versionName = gitVersionName
+    versionCode = gitVersionCode
+    versionHash = gitRefHash
+    googleAppId = getProps("application.properties", "googleAppId")
+}
 
 buildscript {
 
@@ -20,6 +29,7 @@ buildscript {
         classpath Plugins.ClassPaths.dependenciesVersions
         classpath Plugins.ClassPaths.navigationSafeArgs
         classpath Plugins.ClassPaths.firebaseCrashlytics
+        classpath Plugins.ClassPaths.firebaseAppDistribution
     }
 }
 
@@ -53,4 +63,35 @@ dependencyUpdates {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+static def getGitVersionName() {
+    def tag = 'git describe --tags'.execute().text.split('-').first()?.trim()
+    if (tag =~ /^v.*$/ || tag =~ /^d.*$/) {
+        return tag.substring(1)
+    }
+    return '1.0.0'
+}
+
+static def getGitRefHash() {
+    return 'git rev-parse HEAD'.execute().text.substring(0, 8)
+}
+
+int getGitVersionCode() {
+    return (int) (((new Date().getTime() / 1000) - 1451606400) / 10)
+}
+
+def getProps(String fileName, String propName) {
+    return getProps(fileName, propName, "\"define config field: " + propName + "\"")
+}
+
+def getProps(String fileName, String propName, String defaultValue) {
+    def propsFile = rootProject.file(fileName)
+    if (propsFile.exists()) {
+        def props = new Properties()
+        props.load(new FileInputStream(propsFile))
+        return props[propName] != null ? props[propName] : defaultValue
+    } else {
+        return "\"define config file " + fileName + "\""
+    }
 }

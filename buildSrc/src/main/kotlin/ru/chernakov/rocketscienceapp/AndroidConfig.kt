@@ -4,6 +4,9 @@ object AndroidConfig {
     const val NAME = "RocketScienceApp"
     const val ID = "ru.chernakov.rocketscienceapp"
 
+    const val GOOGLE_APP_ID = "GOOGLE_APP_ID"
+    const val GROUP_QA = "Testers"
+
     const val compileSdk = 28
 
     const val minSdk = 21

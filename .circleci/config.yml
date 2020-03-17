@@ -42,3 +42,40 @@ jobs:
             - store_artifacts:
                   path: app/build/reports
                   destination: reports
+
+    deploy:
+
+        filters:
+            tags:
+                only: /^t.*$/
+            branches:
+                ignore: /.*/
+
+        docker:
+            - image: circleci/android:api-28
+
+        working_directory: ~/data
+
+        environment:
+            JVM_OPTS: -Xmx3g
+
+        steps:
+            - run:
+                  name: Chmod permissions
+                  command: sudo chmod +x ./gradlew
+
+            - run:
+                  name: Clean project
+                  command: .gradlew clean
+
+            - run:
+                  name: Assemble ReleaseQa
+                  command: assembleReleaseQa
+
+            - run:
+                  name: Upload ReleaseQa
+                  command: ./gradlew appDistributionUploadReleaseQa
+
+            -   store_artifacts:
+                    path: app/build/outputs/apk/releaseQa
+                    destination: apk

@@ -1,7 +1,6 @@
 package ru.chernakov.rocketscienceapp
 
 import android.app.Application
-import leakcanary.LeakSentry
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import ru.chernakov.rocketscienceapp.di.appFeaturesModule
@@ -27,7 +26,6 @@ class App : Application() {
             Timber.plant(Timber.DebugTree())
         }
         initKoin()
-        initLeakDetection()
         Lifecycler.register(this)
     }
 
@@ -49,12 +47,6 @@ class App : Application() {
                     appMonitorModule
                 )
             )
-        }
-    }
-
-    private fun initLeakDetection() {
-        if (BuildConfig.DEBUG) {
-            LeakSentry.config = LeakSentry.config.copy(watchFragmentViews = false)
         }
     }
 }
