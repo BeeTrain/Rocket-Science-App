@@ -4,7 +4,7 @@
 
 # Project description
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
-[![Kotlin Version](https://img.shields.io/badge/Kotlin-1.3.61-blue.svg)](https://kotlinlang.org)
+[![Kotlin Version](https://img.shields.io/badge/Kotlin-1.3.70-blue.svg)](https://kotlinlang.org)
 [![CircleCI](https://circleci.com/gh/BeeTrain/Rocket-Science-App.svg?style=shield)](https://circleci.com/gh/BeeTrain/Rocket-Science-App)
 [![CodeFactor](https://www.codefactor.io/repository/github/beetrain/rocket-science-app/badge)](https://www.codefactor.io/repository/github/beetrain/rocket-science-app)
 [![CodeBeat](https://codebeat.co/badges/25315d29-1ba0-4776-b2bf-8bc93cbdae26)](https://codebeat.co/projects/github-com-beetrain-rocket-science-app-master)
@@ -14,6 +14,6 @@
 
 ## Features
 
-- Bubble game - try to catch all the bubbles at once
+- Bubble game - try to catch all bubbles at once
 - Movies - list of upcoming movies ([themoviedb.org API](https://www.themoviedb.org/documentation/api) usage)
 - AppMonitor - manage your apps, save apk's, share and delete it easily, watch application history
