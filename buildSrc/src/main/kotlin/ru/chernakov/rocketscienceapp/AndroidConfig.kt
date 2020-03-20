@@ -5,7 +5,7 @@ object AndroidConfig {
     const val ID = "ru.chernakov.rocketscienceapp"
 
     const val GOOGLE_APP_ID = "GOOGLE_APP_ID"
-    const val GROUP_QA = "Testers"
+    const val GROUP_QA = "testers"
 
     const val compileSdk = 28
 
