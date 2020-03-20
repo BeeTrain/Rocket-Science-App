@@ -180,24 +180,20 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun runStartAnimation() {
-        vgHeader.animation = AnimationUtils.loadAnimation(context, R.anim.up_to_down)
-        vgFooter.animation = AnimationUtils.loadAnimation(context, R.anim.down_to_up)
-        tilEmail.animation = AnimationUtils.loadAnimation(context, R.anim.left_to_right)
-        tilPassword.animation = AnimationUtils.loadAnimation(context, R.anim.right_to_left)
+        vgHeader.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.up_to_down)
+        vgFooter.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.down_to_up)
+        tilEmail.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.left_to_right)
+        tilPassword.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.right_to_left)
     }
 
     private fun showMessage(message: String? = null) {
         val mes = message ?: getString(R.string.msg_error_auth)
-        view?.let { Snackbar.make(it, mes, Snackbar.LENGTH_LONG).show() }
+        Snackbar.make(requireView(), mes, Snackbar.LENGTH_LONG).show()
     }
 
-    private fun goToNextScreen() {
-        navigation.fromLoginToAppFeatures()
-    }
+    private fun goToNextScreen() = navigation.fromLoginToAppFeatures()
 
-    private fun goToRegister() {
-        navigation.fromLoginToRegister()
-    }
+    private fun goToRegister() = navigation.fromLoginToRegister()
 
     override fun getLayout(): Int = R.layout.fragment_login
 
