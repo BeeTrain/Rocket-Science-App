@@ -5,7 +5,7 @@ import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.core.R
 
 abstract class BaseMenuPageFragment : BaseFragment() {
     private var isBackPressedOnce = false

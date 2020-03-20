@@ -9,7 +9,7 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.chernakov.rocketscienceapp.BuildConfig
+import ru.chernakov.rocketscienceapp.movies.BuildConfig
 import ru.chernakov.rocketscienceapp.data.repository.MoviesRepository
 import ru.chernakov.rocketscienceapp.data.repository.TheMovieDbRepository
 import ru.chernakov.rocketscienceapp.data.repository.UrlRepository

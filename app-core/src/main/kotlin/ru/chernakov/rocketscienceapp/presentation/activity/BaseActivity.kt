@@ -3,7 +3,7 @@ package ru.chernakov.rocketscienceapp.presentation.activity
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.core.R
 
 abstract class BaseActivity : AppCompatActivity() {
 

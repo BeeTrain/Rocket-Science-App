@@ -27,7 +27,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatImageView
-import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.core.R
 import ru.chernakov.rocketscienceapp.extension.android.content.getColorKtx
 import kotlin.math.min
 import kotlin.math.pow

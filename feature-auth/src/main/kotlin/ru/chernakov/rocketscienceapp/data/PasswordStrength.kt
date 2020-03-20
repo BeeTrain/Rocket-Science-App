@@ -1,6 +1,6 @@
 package ru.chernakov.rocketscienceapp.data
 
-import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.auth.R
 
 enum class PasswordStrength(var message: Int) {
     WEAK(R.string.password_weak),

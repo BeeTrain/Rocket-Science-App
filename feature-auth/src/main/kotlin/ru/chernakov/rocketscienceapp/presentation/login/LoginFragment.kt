@@ -122,10 +122,14 @@ class LoginFragment : BaseFragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == RC_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            val account = task.getResult(ApiException::class.java)
-            account?.let { authWithGoogle(it) }
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == Activity.RESULT_OK) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+                val account = task.getResult(ApiException::class.java)
+                account?.let { authWithGoogle(it) }
+            } else {
+                showMessage()
+            }
         }
     }
 
@@ -151,12 +155,8 @@ class LoginFragment : BaseFragment() {
         }
     }
 
-    private fun googleSignIn() {
-        startActivityForResult(
-            loginViewModel.getGoogleSignInIntent(),
-            RC_SIGN_IN
-        )
-    }
+    private fun googleSignIn() = startActivityForResult(loginViewModel.getGoogleSignInIntent(), RC_SIGN_IN)
+
 
     private fun authWithGoogle(account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)

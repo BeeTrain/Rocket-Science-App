@@ -5,7 +5,7 @@ import android.widget.Toast
 import com.google.gson.stream.MalformedJsonException
 import org.koin.core.KoinComponent
 import retrofit2.HttpException
-import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.core.R
 import ru.chernakov.rocketscienceapp.data.model.ErrorBean
 import timber.log.Timber
 

@@ -4,7 +4,7 @@ import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import ru.chernakov.rocketscienceapp.R
+import ru.chernakov.rocketscienceapp.core.R
 
 fun AppCompatActivity.setupToolbar() {
     val toolbar = findViewById<View>(R.id.toolbar) as? Toolbar
