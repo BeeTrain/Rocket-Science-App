@@ -34,6 +34,7 @@ android {
             firebaseAppDistribution {
                 appId = System.getenv(AndroidConfig.GOOGLE_APP_ID)
                 groups = AndroidConfig.GROUP_QA
+                releaseNotesFile = file(AndroidConfig.VERSIONS_FILE_PATH).absolutePath
             }
         }
 
