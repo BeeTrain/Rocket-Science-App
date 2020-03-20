@@ -13,11 +13,6 @@ references:
             _JAVA_OPTIONS: "-Xmx3200m -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
             GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx3200m"'
 
-    get_permissions: &get_permissions
-        -   run:
-                name: Chmod permissions
-                command: sudo chmod +x ./gradlew
-
     gradle_key: &gradle_key
         jars-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
 
@@ -73,7 +68,9 @@ jobs:
     update_cache:
         <<: *android_config
         steps:
-            - *get_permissions
+            -   run:
+                    name: Chmod permissions
+                    command: sudo chmod +x ./gradlew
             - checkout
             - *restore_gradle_cache
             - *android_dependencies
@@ -82,7 +79,9 @@ jobs:
     build:
         <<: *android_config
         steps:
-            - *get_permissions
+            -   run:
+                    name: Chmod permissions
+                    command: sudo chmod +x ./gradlew
             - *ktlint
             - *detekt
             - *checkstyle
@@ -91,7 +90,9 @@ jobs:
     release_qa:
         <<: *android_config
         steps:
-            - *get_permissions
+            -   run:
+                    name: Chmod permissions
+                    command: sudo chmod +x ./gradlew
             - checkout
             - *restore_gradle_cache
             - *android_dependencies
