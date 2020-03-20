@@ -61,14 +61,6 @@ jobs:
 
         steps:
             -   run:
-                    name: Chmod permissions
-                    command: sudo chmod +x ./gradlew
-
-            -   run:
-                    name: Clean project
-                    command: .gradlew clean
-
-            -   run:
                     name: Assemble ReleaseQa
                     command: assembleReleaseQa
 
@@ -84,4 +76,6 @@ workflows:
     deploy_qa:
         jobs:
             - build
-            - deploy
+            - deploy:
+                  requires:
+                      - build
