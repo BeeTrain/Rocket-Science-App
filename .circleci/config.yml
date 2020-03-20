@@ -72,7 +72,6 @@ workflows:
                 only: /^t.*$/
             branches:
                 ignore: /.*/
-            -
         jobs:
             - build
             - deploy:
