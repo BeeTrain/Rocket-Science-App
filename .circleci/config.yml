@@ -68,9 +68,9 @@ jobs:
     update_cache:
         <<: *android_config
         steps:
-            -   run:
-                    name: Chmod permissions
-                    command: sudo chmod +x ./gradlew
+            - run:
+                name: Chmod permissions
+                command: sudo chmod +x ./gradlew
             - checkout
             - *restore_gradle_cache
             - *android_dependencies
@@ -79,9 +79,9 @@ jobs:
     build:
         <<: *android_config
         steps:
-            -   run:
-                    name: Chmod permissions
-                    command: sudo chmod +x ./gradlew
+            - run:
+                name: Chmod permissions
+                command: sudo chmod +x ./gradlew
             - *ktlint
             - *detekt
             - *checkstyle
@@ -90,17 +90,17 @@ jobs:
     release_qa:
         <<: *android_config
         steps:
-            -   run:
-                    name: Chmod permissions
-                    command: sudo chmod +x ./gradlew
+            - run:
+                name: Chmod permissions
+                command: sudo chmod +x ./gradlew
             - checkout
             - *restore_gradle_cache
             - *android_dependencies
             - *save_gradle_cache
             - *decode_gservices_key
             - run:
-                  name: Deploy latest version to Firebase App Distribution
-                  command: ./gradlew appDistributionUploadReleaseQa
+                name: Deploy latest version to Firebase App Distribution
+                command: ./gradlew appDistributionUploadReleaseQa
             - *save_qa_apk
 
 workflows:
