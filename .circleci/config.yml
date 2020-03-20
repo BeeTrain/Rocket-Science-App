@@ -44,6 +44,13 @@ jobs:
                     destination: reports
 
     deploy:
+
+        filters:
+            tags:
+                only: /^t.*$/
+            branches:
+                ignore: /.*/
+
         docker:
             -   image: circleci/android:api-28
 
@@ -67,11 +74,6 @@ jobs:
 workflows:
     version: 2
     deploy_qa:
-        triggers:
-            tags:
-                only: /^t.*$/
-            branches:
-                ignore: /.*/
         jobs:
             - build
             - deploy:
