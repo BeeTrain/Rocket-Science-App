@@ -83,4 +83,5 @@ jobs:
         version: 2
         deploy_qa:
             jobs:
+                - build
                 - deploy
