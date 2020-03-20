@@ -79,9 +79,9 @@ jobs:
             -   store_artifacts:
                     path: app/build/outputs/apk/releaseQa
                     destination: apk
-    workflows:
-        version: 2
-        deploy_qa:
-            jobs:
-                - build
-                - deploy
+workflows:
+    version: 2
+    deploy_qa:
+        jobs:
+            - build
+            - deploy
