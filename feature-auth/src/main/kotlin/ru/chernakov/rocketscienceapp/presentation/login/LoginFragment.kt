@@ -157,7 +157,6 @@ class LoginFragment : BaseFragment() {
 
     private fun googleSignIn() = startActivityForResult(loginViewModel.getGoogleSignInIntent(), RC_SIGN_IN)
 
-
     private fun authWithGoogle(account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         activity?.let {
