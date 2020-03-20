@@ -49,9 +49,30 @@ jobs:
             tags:
                 only: /^t.*$/
             branches:
-                ignore: /.*/
+                ignore:
+                    - /.*/
+                    - master
 
         steps:
+            - checkout
+
+            -   restore_cache:
+                    key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+
+            -   run:
+                    name: Chmod permissions
+                    command: sudo chmod +x ./gradlew
+
+            -   run:
+                    name: Download dependencies
+                    command: ./gradlew androidDependencies
+
+            -   save_cache:
+                    paths:
+                        - ~/.gradle
+                    key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+
+
             -   run:
                     name: Assemble ReleaseQa
                     command: ./gradlew assembleReleaseQa
@@ -65,7 +86,8 @@ jobs:
                     destination: apk
 workflows:
     version: 2
-    deploy_qa:
+
+    build_and_deploy_qa:
         jobs:
             - build
             - deploy:
