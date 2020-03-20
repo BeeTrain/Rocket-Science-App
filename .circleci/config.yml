@@ -44,13 +44,6 @@ jobs:
                     destination: reports
 
     deploy:
-
-        filters:
-            tags:
-                only: /^t.*$/
-            branches:
-                ignore: /.*/
-
         docker:
             -   image: circleci/android:api-28
 
@@ -62,7 +55,7 @@ jobs:
         steps:
             -   run:
                     name: Assemble ReleaseQa
-                    command: assembleReleaseQa
+                    command: ./gradlew assembleReleaseQa
 
             -   run:
                     name: Upload ReleaseQa
@@ -74,6 +67,12 @@ jobs:
 workflows:
     version: 2
     deploy_qa:
+        triggers:
+            tags:
+                only: /^t.*$/
+            branches:
+                ignore: /.*/
+            -
         jobs:
             - build
             - deploy:
