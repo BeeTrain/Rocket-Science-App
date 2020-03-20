@@ -51,14 +51,6 @@ jobs:
             branches:
                 ignore: /.*/
 
-        docker:
-            -   image: circleci/android:api-28
-
-        working_directory: ~/data
-
-        environment:
-            JVM_OPTS: -Xmx3g
-
         steps:
             -   run:
                     name: Assemble ReleaseQa
