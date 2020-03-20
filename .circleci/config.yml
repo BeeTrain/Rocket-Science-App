@@ -1,52 +1,119 @@
 version: 2
-jobs:
-    build:
+
+references:
+    workspace: &workspace
+        ~/data
+
+    android_config: &android_config
+        working_directory: *workspace
         docker:
-            -   image: circleci/android:api-28
-
-        working_directory: ~/data
-
+            - image: circleci/android:api-28
         environment:
-            JVM_OPTS: -Xmx3g
+            TERM: dumb
+            _JAVA_OPTIONS: "-Xmx3200m -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+            GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx3200m"'
 
+    gradle_key: &gradle_key
+        jars-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
+
+    restore_gradle_cache: &restore_gradle_cache
+        restore_cache:
+            key: *gradle_key
+
+    save_gradle_cache: &save_gradle_cache
+        save_cache:
+            paths:
+                - ~/.gradle
+                - ~/.m2
+            key: *gradle_key
+
+    android_dependencies: &android_dependencies
+        run:
+            name: Download Android Dependencies
+            command: ./gradlew androidDependencies
+
+    decode_gservices_key: &decode_gservices_key
+        run:
+            name: Decode Google Services JSON key
+            command: |
+                echo
+                 | base64 -d | tee app/google-services.json app/src/main/google-services.json >/dev/null
+
+    ktlint: &ktlint
+        run:
+            name: Ktlint
+            command: ./gradlew ktlint
+
+    detekt: &detekt
+        run:
+            name: Detekt
+            command: ./gradlew detekt
+
+    checkstyle: &checkstyle
+        run:
+            name: Checkstyle
+            command: ./gradlew checkstyle
+
+    save_reports: &save_reports
+        store_artifacs:
+            path: app/build/reports
+            destination: reports
+
+    save_qa_apk: &save_qa_apk
+        store_artifacs:
+            path: app/build/outputs/apk/releaseQa
+            destination: releaseQa
+
+jobs:
+    update_cache:
+        <<: *android_config
         steps:
             - checkout
-            -   restore_cache:
-                    key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+            - *restore_gradle_cache
+            - *android_dependencies
+            - *save_gradle_cache
 
-            -   run:
-                    name: Chmod permissions
-                    command: sudo chmod +x ./gradlew
+    build:
+        <<: *android_config
+        steps:
+            - *ktlint
+            - *detekt
+            - *checkstyle
+            - *save_reports
 
-            -   run:
-                    name: Download dependencies
-                    command: ./gradlew androidDependencies
+    release_qa:
+        <<: *android_config
+        steps:
+            - checkout
+            - *restore_gradle_cache
+            - *android_dependencies
+            - *save_gradle_cache
+            - *decode_gservices_key
+            - run:
+                  name: Deploy latest version to Firebase App Distribution
+                  command: ./gradlew appDistributionUploadReleaseQa
+            - *save_qa_apk
 
-            -   save_cache:
-                    paths:
-                        - ~/.gradle
-                    key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+workflows:
+    version: 2
+    workflow:
 
-            -   run:
-                    name: Ktlint
-                    command: ./gradlew ktlint
+        jobs:
+            - update_cache
+            - build:
+                  requires:
+                      - update_cache
 
-            -   run:
-                    name: Detekt
-                    command: ./gradlew detekt
+    deploy_qa:
 
-            -   run:
-                    name: Checkstyle
-                    command: ./gradlew checkstyle
-
-            -   store_artifacts:
-                    path: app/build/reports
-                    destination: reports
-
-            -   run:
-                    name: Assemble Qa
-                    command: ./gradlew assembleReleaseQa
-
-            -   run:
-                    name: Upload
-                    command: ./gradlew appDistributionUploadReleaseQa
+        jobs:
+            - update_cache
+            - release_qa:
+                  filters:
+                      tags:
+                          only: /^v.*/
+                      branches:
+                          ignore:
+                              - /.*/
+                  requires:
+                      - update_cache
