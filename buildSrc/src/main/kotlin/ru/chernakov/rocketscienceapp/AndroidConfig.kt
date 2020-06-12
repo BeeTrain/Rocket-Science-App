@@ -3,7 +3,7 @@ package ru.chernakov.rocketscienceapp
 object AndroidConfig {
     const val NAME = "RocketScienceApp"
     const val ID = "ru.chernakov.rocketscienceapp"
-    const val VERSIONS_FILE_PATH = "../versions.txt"
+    const val VERSIONS_FILE_PATH = "../changelog.txt"
 
     const val GOOGLE_APP_ID = "GOOGLE_APP_ID"
     const val GROUP_QA = "testers"
