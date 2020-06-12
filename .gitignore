@@ -58,3 +58,4 @@ target/**
 !/.idea/inspectionProfiles/
 /.idea/inspectionProfiles/*
 !/.idea/inspectionProfiles/Project_Default.xml
+/application.properties
