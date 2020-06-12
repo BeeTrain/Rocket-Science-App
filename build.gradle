@@ -9,6 +9,7 @@ ext {
     versionCode = gitVersionCode
     versionHash = gitRefHash
     googleAppId = getProps("application.properties", "googleAppId")
+    theMovieDbApiKey = getProps("application.properties", "theMovieDbApiKey")
 }
 
 buildscript {

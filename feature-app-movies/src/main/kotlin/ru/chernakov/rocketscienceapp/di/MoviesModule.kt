@@ -39,7 +39,7 @@ val moviesModule = module {
                 val newUrl = originalUrl.newBuilder()
                     .addQueryParameter(
                         TheMovieDbRepository.API_KEY,
-                        androidContext().resources.getString(R.string.themoviedb_api_key)
+                        BuildConfig.THE_MOVIEDB_API_KEY
                     )
                     .build()
 

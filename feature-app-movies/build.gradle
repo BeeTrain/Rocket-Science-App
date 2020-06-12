@@ -1,3 +1,4 @@
+import ru.chernakov.rocketscienceapp.AndroidConfig
 import ru.chernakov.rocketscienceapp.Modules
 import ru.chernakov.rocketscienceapp.Plugins
 
@@ -10,6 +11,13 @@ android {
     defaultConfig {
         buildConfigField 'String', 'API_BASE_URL', '"https://api.themoviedb.org/3/"'
         buildConfigField 'String', 'API_IMAGE_URL', '"https://image.tmdb.org/t/p/w500"'
+        buildConfigField 'String', 'THE_MOVIEDB_API_KEY', theMovieDbApiKey
+    }
+
+    buildTypes {
+        releaseQa {
+            buildConfigField 'String', 'THE_MOVIEDB_API_KEY', "${System.getenv(AndroidConfig.THE_MOVIEDB_API_KEY)}"
+        }
     }
 }
 
