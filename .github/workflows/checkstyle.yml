@@ -1,4 +1,4 @@
-name: RocketScienceAppCI
+name: Checkstyle
 
 on: [push]
 
