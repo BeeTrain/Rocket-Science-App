@@ -1,2 +1,3 @@
-v1.0.10
-- Set up AppDistribution
+v1.0.16
+- Update configs
+- Set up Firebase app distribution
