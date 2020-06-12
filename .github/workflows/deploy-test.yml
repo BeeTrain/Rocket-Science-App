@@ -17,16 +17,15 @@ jobs:
       with:
         java-version: 1.8
 
-    -   name: Chmod permissions
-        run: sudo chmod +x ./gradlew
-
-    -   name: Clone Repo
-        uses: actions/checkout@v1
+    - name: Chmod permissions
+      run: sudo chmod +x ./gradlew
 
     - name: Decode google-services.json
+      with:
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
       env:
-          $GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
-      run: echo tee $GOOGLE_SERVICES_JSON > app/google-services.json
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+      run: echo $GOOGLE_SERVICES_JSON > app/google-services.json
 
     - uses: actions/upload-artifact@v2
       with:
