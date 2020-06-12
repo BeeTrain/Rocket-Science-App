@@ -28,14 +28,8 @@ jobs:
     - name: Build release Qa
       run: ./gradlew assembleReleaseQa
 
-    - name: Upload artifact to Firebase App Distribution
-      uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
-      with:
-          appId: ${{secrets.GOOGLE_APP_ID}}
-          token: ${{secrets.FIREBASE_TOKEN}}
-          groups: ${{secrets.GROUP_QA}}
-          releaseNotesFile: changelog.txt
-          file: app/build/outputs/apk/releaseQa/app-releaseQa.apk
+    - name: Upoad to Firebase by gradle task
+      run: ./gradlew appDistributionUploadReleaseQa
 
     - uses: actions/upload-artifact@v2
       with:
