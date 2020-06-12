@@ -29,6 +29,8 @@ jobs:
       run: ./gradlew assembleReleaseQa
 
     - name: Upoad to Firebase by gradle task
+      env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
       run: ./gradlew appDistributionUploadReleaseQa
 
     - uses: actions/upload-artifact@v2
