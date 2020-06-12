@@ -12,6 +12,9 @@ apply from: '../config/dependencies.gradle'
 android {
     defaultConfig {
         applicationId AndroidConfig.ID
+
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
     }
 
     signingConfigs {
@@ -32,7 +35,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
             firebaseAppDistribution {
-                appId = "1:669560593311:android:3addd807d85832ce"
+                appId = System.getenv(AndroidConfig.GOOGLE_APP_ID)
                 groups = AndroidConfig.GROUP_QA
                 releaseNotesFile = file(AndroidConfig.VERSIONS_FILE_PATH).absolutePath
             }

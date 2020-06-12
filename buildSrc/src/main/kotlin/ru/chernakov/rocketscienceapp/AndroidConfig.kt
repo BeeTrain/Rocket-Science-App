@@ -14,8 +14,6 @@ object AndroidConfig {
     const val minSdk = 21
     const val targetSdk = 28
     const val buildTools = "29.0.0"
-    const val versionCode = 1
-    const val versionName = "1.0"
 
     const val testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     const val srcMain = "src/main/kotlin"
