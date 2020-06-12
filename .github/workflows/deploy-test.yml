@@ -16,12 +16,15 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-        
+
+    -   name: Chmod permissions
+        run: sudo chmod +x ./gradlew
+
     - name: Decode google-services.json
       env:
         FIREBASE_CONFIG: ${{ secrets.GOOGLE_SERVICES_JSON }}
-      run: echo $GOOGLE_SERVICES_JSON > app/google-services.json    
-    
+      run: echo $GOOGLE_SERVICES_JSON > app/google-services.json
+
     - name: Build release Qa
       run: ./gradlew assembleReleaseQa
     - name: upload artifact to Firebase App Distribution
@@ -31,7 +34,7 @@ jobs:
         token: ${{secrets.FIREBASE_TOKEN}}
         groups: ${{secrets.GROUP_QA}}
         file: app/build/outputs/apk/releaseQa/app-releaseQa.apk
-    
+
     - uses: actions/upload-artifact@v2
       with:
         name: Save apk
