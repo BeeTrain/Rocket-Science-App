@@ -4,7 +4,7 @@
 
 # Project description
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
-[![Kotlin Version](https://img.shields.io/badge/Kotlin-1.3.70-blue.svg)](https://kotlinlang.org)
+[![Kotlin Version](https://img.shields.io/badge/Kotlin-1.3.72-blue.svg)](https://kotlinlang.org)
 ![RocketScienceAppCI](https://github.com/BeeTrain/Rocket-Science-App/workflows/RocketScienceAppCI/badge.svg)
 [![CodeFactor](https://www.codefactor.io/repository/github/beetrain/rocket-science-app/badge)](https://www.codefactor.io/repository/github/beetrain/rocket-science-app)
 [![CodeBeat](https://codebeat.co/badges/25315d29-1ba0-4776-b2bf-8bc93cbdae26)](https://codebeat.co/projects/github-com-beetrain-rocket-science-app-master)

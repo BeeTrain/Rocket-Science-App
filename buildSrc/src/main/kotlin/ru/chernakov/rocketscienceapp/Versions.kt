@@ -10,7 +10,7 @@ object Versions {
     const val firebaseCrashlyticsPlugin = "2.0.0-beta02"
     const val googleServices = "4.3.3"
     const val gradleVersions = "0.28.0"
-    const val kotlin = "1.3.70"
+    const val kotlin = "1.3.72"
 
     const val ktLint = "0.36.0"
     const val detekt = "1.7.0-beta2"

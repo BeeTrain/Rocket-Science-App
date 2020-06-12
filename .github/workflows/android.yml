@@ -14,9 +14,6 @@ jobs:
       - name: Chmod permissions
         run: sudo chmod +x ./gradlew
 
-      - name: Download dependencies
-        run: ./gradlew androidDependencies
-
       - name: KtLint
         run: ./gradlew ktlint
 
