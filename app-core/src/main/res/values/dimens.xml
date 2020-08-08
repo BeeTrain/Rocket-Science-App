@@ -12,9 +12,19 @@
 
     <!-- Default margins -->
     <dimen name="default_elevation">8dp</dimen>
+    <dimen name="margin_zero">0dp</dimen>
+    <dimen name="margin_uno">1dp</dimen>
+    <dimen name="margin_xxsmall">2dp</dimen>
+    <dimen name="margin_xsmall">4dp</dimen>
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_medium">16dp</dimen>
-    <dimen name="margin_xlarge">24dp</dimen>
+    <dimen name="margin_medium_2">12dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+    <dimen name="margin_xlarge">32dp</dimen>
+    <dimen name="margin_xxlarge">48dp</dimen>
+    <dimen name="margin_super_large">128dp</dimen>
+    <dimen name="ward_divider_start_offset">108dp</dimen>
+    <dimen name="divider_size">1dp</dimen>
 
     <!-- Splash screen -->
     <dimen name="logo_size">64dp</dimen>
@@ -31,4 +41,8 @@
     <dimen name="bottom_sheet_top_padding">8dp</dimen>
     <dimen name="bottom_sheet_left_padding">8dp</dimen>
     <dimen name="bottom_sheet_right_padding">8dp</dimen>
+
+    <!-- ColorPicker -->
+    <dimen name="color_item_size">40dp</dimen>
+
 </resources>

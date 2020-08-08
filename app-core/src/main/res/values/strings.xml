@@ -10,6 +10,7 @@
     <string name="button_register">Register</string>
     <string name="button_apply">Apply</string>
     <string name="button_retry">Retry</string>
+    <string name="button_cancel">Cancel</string>
     <string name="hint_username">Username</string>
     <string name="hint_email">E-mail</string>
     <string name="hint_password">Password</string>
@@ -21,9 +22,12 @@
     <string name="navigation_appfeatures">appfeatures</string>
     <string name="navigation_favorite">favorite</string>
 
-    <!-- PasswordStrength-->
+    <!-- PasswordStrength -->
     <string name="password_weak">This is a weak Password, try harder!</string>
     <string name="password_medium">Not so bad, but could be better</string>
     <string name="password_strong">Quite strong</string>
     <string name="password_very_strong">Wow, don\'t forget it</string>
+
+    <!-- ColorPicker -->
+    <string name="color_picker_dialog_title">Choose the color</string>
 </resources>

@@ -31,13 +31,13 @@
     </style>
 
     <style name="Widget.RocketScienceApp.Button" parent="Widget.MaterialComponents.Button">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
         <item name="backgroundTint">?attr/colorSecondary</item>
         <item name="android:stateListAnimator" tools:ignore="NewApi">@animator/anim_next_button_state_list</item>
     </style>
 
     <style name="Widget.RocketScienceApp.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
 
     <style name="TextAppearance.RocketScienceApp.Title" parent="TextAppearance.MaterialComponents.Headline4">

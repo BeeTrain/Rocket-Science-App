@@ -14,5 +14,6 @@ data class AppFeature(
         const val BUBBLE_GAME_ID = 0L
         const val MOVIES_ID = 1L
         const val APPMONITOR_ID = 2L
+        const val PAINT_ID = 3L
     }
 }

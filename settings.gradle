@@ -15,5 +15,6 @@ include(
 
     Modules.FEATURE_APP_BUBBLEGAME,
     Modules.FEATURE_APP_MOVIES,
-    Modules.FEATURE_APP_APPMONITOR
+    Modules.FEATURE_APP_APPMONITOR,
+    Modules.FEATURE_APP_PAINT
 )

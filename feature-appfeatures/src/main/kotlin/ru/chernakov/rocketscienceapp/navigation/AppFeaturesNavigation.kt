@@ -6,4 +6,5 @@ interface AppFeaturesNavigation {
     fun openBubbleGame()
     fun openMovies()
     fun openAppMonitor()
+    fun openPaint()
 }

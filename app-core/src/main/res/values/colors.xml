@@ -18,4 +18,6 @@
     <color name="textColorSecondary">@color/white_1000</color>
 
     <color name="transparent">#00000000</color>
+
+    <color name="white">@color/white_1000</color>
 </resources>

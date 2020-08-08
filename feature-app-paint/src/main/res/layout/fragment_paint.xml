@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarPaint"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:contentInsetStart="0dp"
+        android:contentInsetEnd="0dp"
+        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp"
+        app:elevation="@dimen/default_elevation"
+        app:layout_collapseMode="pin"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/toolbarTitle"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:fontFamily="cursive"
+                android:gravity="start"
+                android:text="@string/app_name" />
+
+            <LinearLayout
+                android:id="@+id/btColorPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="@dimen/margin_medium"
+                android:background="@drawable/bg_round">
+
+                <View
+                    android:id="@+id/vSelectedColor"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_margin="@dimen/margin_xxsmall"
+                    android:background="@drawable/bg_round" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ru.chernakov.rocketscienceapp.presentation.widget.PaintView
+        android:id="@+id/vPaint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

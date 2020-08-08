@@ -75,6 +75,9 @@
         <action
             android:id="@+id/actionOpenAppMonitor"
             app:destination="@+id/appMonitorScreen" />
+        <action
+            android:id="@+id/actionOpenPaint"
+            app:destination="@+id/paintScreen" />
     </fragment>
 
     <fragment
@@ -167,6 +170,13 @@
         android:id="@+id/appInfoScreen"
         android:name="ru.chernakov.rocketscienceapp.presentation.info.AppInfoFragment"
         tools:layout="@layout/fragment_app_info">
+    </fragment>
+
+    <!-- Paint -->
+    <fragment
+        android:id="@+id/paintScreen"
+        android:name="ru.chernakov.rocketscienceapp.presentation.paint.PaintFragment"
+        tools:layout="@layout/fragment_paint">
     </fragment>
 
 </navigation>

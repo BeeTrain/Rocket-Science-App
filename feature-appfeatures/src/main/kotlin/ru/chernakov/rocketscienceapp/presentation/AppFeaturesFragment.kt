@@ -47,6 +47,7 @@ class AppFeaturesFragment : BaseMenuPageFragment() {
             AppFeature.BUBBLE_GAME_ID -> navigator.openBubbleGame()
             AppFeature.MOVIES_ID -> navigator.openMovies()
             AppFeature.APPMONITOR_ID -> navigator.openAppMonitor()
+            AppFeature.PAINT_ID -> navigator.openPaint()
         }
     }
 

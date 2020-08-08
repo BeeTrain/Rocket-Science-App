@@ -12,6 +12,7 @@ import ru.chernakov.rocketscienceapp.di.favoriteModule
 import ru.chernakov.rocketscienceapp.di.firebaseModule
 import ru.chernakov.rocketscienceapp.di.moviesModule
 import ru.chernakov.rocketscienceapp.di.navigationModule
+import ru.chernakov.rocketscienceapp.di.paintModule
 import ru.chernakov.rocketscienceapp.di.profileModule
 import ru.chernakov.rocketscienceapp.di.splashModule
 import ru.chernakov.rocketscienceapp.util.lifecycle.Lifecycler
@@ -44,7 +45,8 @@ class App : Application() {
                     appFeaturesModule,
                     bubbleGameModule,
                     moviesModule,
-                    appMonitorModule
+                    appMonitorModule,
+                    paintModule
                 )
             )
         }

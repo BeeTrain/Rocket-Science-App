@@ -1,0 +1,18 @@
+import ru.chernakov.rocketscienceapp.Modules
+import ru.chernakov.rocketscienceapp.Plugins
+
+apply plugin: Plugins.library
+
+apply from: '../config/config.gradle'
+apply from: '../config/dependencies.gradle'
+
+dependencies {
+    implementation project(Modules.APP_CORE)
+
+    kotlinLib()
+    androidxCore()
+    supportCore()
+    imageLoading()
+    koin()
+    viewModel()
+}

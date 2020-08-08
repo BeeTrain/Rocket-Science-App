@@ -19,6 +19,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
 
+    <!-- Bottom Sheet dialog theme -->
     <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/AppModalStyle</item>
     </style>

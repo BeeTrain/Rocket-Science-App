@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="color_picker_colors">
+        <item>@color/white_1000</item>
+        <item>@color/grey_200</item>
+        <item>@color/grey_400</item>
+        <item>@color/grey_600</item>
+        <item>@color/grey_800</item>
+        <item>@color/black_1000</item>
+
+        <item>@color/red_50</item>
+        <item>@color/red_300</item>
+        <item>@color/red_400</item>
+        <item>@color/red_500</item>
+        <item>@color/red_700</item>
+        <item>@color/red_900</item>
+
+        <item>@color/orange_50</item>
+        <item>@color/orange_100</item>
+        <item>@color/orange_300</item>
+        <item>@color/orange_500</item>
+        <item>@color/orange_700</item>
+        <item>@color/orange_900</item>
+
+        <item>@color/yellow_50</item>
+        <item>@color/yellow_100</item>
+        <item>@color/yellow_300</item>
+        <item>@color/yellow_500</item>
+        <item>@color/yellow_700</item>
+        <item>@color/yellow_900</item>
+
+        <item>@color/green_50</item>
+        <item>@color/green_100</item>
+        <item>@color/green_300</item>
+        <item>@color/green_500</item>
+        <item>@color/green_700</item>
+        <item>@color/green_900</item>
+
+        <item>@color/light_blue_50</item>
+        <item>@color/light_blue_100</item>
+        <item>@color/light_blue_300</item>
+        <item>@color/light_blue_500</item>
+        <item>@color/light_blue_700</item>
+        <item>@color/light_blue_900</item>
+
+        <item>@color/blue_50</item>
+        <item>@color/blue_100</item>
+        <item>@color/blue_300</item>
+        <item>@color/blue_500</item>
+        <item>@color/blue_700</item>
+        <item>@color/blue_900</item>
+
+        <item>@color/purple_50</item>
+        <item>@color/purple_100</item>
+        <item>@color/purple_300</item>
+        <item>@color/purple_500</item>
+        <item>@color/purple_700</item>
+        <item>@color/purple_900</item>
+    </array>
+</resources>

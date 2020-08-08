@@ -30,7 +30,7 @@ import ru.chernakov.rocketscienceapp.presentation.settings.SettingsFragmentDirec
 @Suppress("TooManyFunctions")
 class MainNavigator : SplashNavigation, AuthNavigation, BottomNavigation,
     ProfileNavigation, FavoriteNavigation, AppFeaturesNavigation,
-    BubbleGameNavigation, MoviesNavigation, AppMonitorNavigation {
+    BubbleGameNavigation, MoviesNavigation, AppMonitorNavigation, PaintNavigation {
 
     private var activity: MainActivity? = null
     var navigation: NavController? = null
@@ -190,5 +190,13 @@ class MainNavigator : SplashNavigation, AuthNavigation, BottomNavigation,
 
     override fun fromAppsListToInfo(packageId: String) {
         navigate(AppsListFragmentDirections.actionFromAppsListToAppInfo(), args = AppInfoFragment.createArgs(packageId))
+    }
+
+    override fun openPaint() {
+        navigate(AppFeaturesFragmentDirections.actionOpenPaint())
+    }
+
+    override fun fromPaintToAppFeatures() {
+        openAppFeatures()
     }
 }

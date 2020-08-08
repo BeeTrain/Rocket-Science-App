@@ -8,6 +8,7 @@ import ru.chernakov.rocketscienceapp.navigation.BottomNavigation
 import ru.chernakov.rocketscienceapp.navigation.BubbleGameNavigation
 import ru.chernakov.rocketscienceapp.navigation.MainNavigator
 import ru.chernakov.rocketscienceapp.navigation.MoviesNavigation
+import ru.chernakov.rocketscienceapp.navigation.PaintNavigation
 import ru.chernakov.rocketscienceapp.navigation.ProfileNavigation
 import ru.chernakov.rocketscienceapp.navigation.SplashNavigation
 import ru.chernakov.rocketscienceapp.navigaton.FavoriteNavigation
@@ -23,4 +24,5 @@ val navigationModule = module {
     single<BubbleGameNavigation> { get<MainNavigator>() }
     single<MoviesNavigation> { get<MainNavigator>() }
     single<AppMonitorNavigation> { get<MainNavigator>() }
+    single<PaintNavigation> { get<MainNavigator>() }
 }
