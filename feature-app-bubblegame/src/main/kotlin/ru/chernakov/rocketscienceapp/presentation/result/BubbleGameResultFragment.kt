@@ -2,7 +2,6 @@ package ru.chernakov.rocketscienceapp.presentation.result
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewAnimationUtils
@@ -12,10 +11,10 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import ru.chernakov.rocketscienceapp.bubblegame.R
 import ru.chernakov.rocketscienceapp.data.GameStatus
 import ru.chernakov.rocketscienceapp.navigation.OnBackPressedListener
+import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
 import ru.chernakov.rocketscienceapp.presentation.host.BubbleGameHostFragment
 import ru.chernakov.rocketscienceapp.presentation.host.BubbleGameViewModel
 import ru.chernakov.rocketscienceapp.presentation.widget.BubbleGameStateListener
-import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
 import kotlin.math.hypot
 
 class BubbleGameResultFragment : BaseFragment() {
@@ -51,39 +50,33 @@ class BubbleGameResultFragment : BaseFragment() {
     }
 
     private fun showFragmentView() {
-        if (view != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            view!!.post {
-                val cx = view!!.width / 2
-                val cy = view!!.height / 2
+        view?.let {
+            it.post {
+                val cx = it.width / 2
+                val cy = requireView().height / 2
                 val radius = hypot(cx.toDouble(), cy.toDouble())
                 val animator = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0f, radius.toFloat())
                 animator.duration = ANIMATION_DURATION
-                view!!.visibility = View.VISIBLE
+                it.visibility = View.VISIBLE
                 animator.start()
             }
-        } else {
-            view!!.visibility = View.VISIBLE
         }
     }
 
     private fun hideFragmentView() {
-        if (view != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val cx = view!!.width / 2
-            val cy = view!!.height / 2
+        view?.let {
+            val cx = it.width / 2
+            val cy = it.height / 2
             val radius = hypot(cx.toDouble(), cy.toDouble())
-            val animator = ViewAnimationUtils.createCircularReveal(view, cx, cy, radius.toFloat(), 0f)
+            val animator = ViewAnimationUtils.createCircularReveal(it, cx, cy, radius.toFloat(), 0f)
             animator.duration = ANIMATION_DURATION
             animator.addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
-                    if (view != null) {
-                        view!!.visibility = View.INVISIBLE
-                    }
+                    it.visibility = View.INVISIBLE
                     gameStateListener.onSettingsReset()
                 }
             })
             animator.start()
-        } else {
-            gameStateListener.onSettingsReset()
         }
     }
 

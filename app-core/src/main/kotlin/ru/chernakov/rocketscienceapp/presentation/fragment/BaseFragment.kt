@@ -71,5 +71,5 @@ abstract class BaseFragment : Fragment() {
 
     protected abstract fun obtainViewModel(): BaseViewModel
 
-    protected open fun createErrorObserver(): Observer<Throwable>? = ErrorHandler(ToastErrorView(activity!!))
+    protected open fun createErrorObserver(): Observer<Throwable>? = ErrorHandler(ToastErrorView(requireActivity()))
 }

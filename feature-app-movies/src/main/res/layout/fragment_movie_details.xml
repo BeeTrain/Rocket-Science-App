@@ -97,7 +97,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ru.chernakov.rocketscienceapp.presentation.widget.CircleImageView
+            <ru.chernakov.rocketscienceapp.widget.CircleImageView
                 android:id="@+id/ivVote"
                 android:layout_width="56dp"
                 android:layout_height="56dp"

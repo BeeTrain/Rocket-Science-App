@@ -45,4 +45,9 @@
     <!-- ColorPicker -->
     <dimen name="color_item_size">40dp</dimen>
 
+    <!-- Extended Floating Action Button -->
+    <dimen name="fab_size_normal">56dp</dimen>
+    <dimen name="fab_size_mini">40dp</dimen>
+    <dimen name="labels_text_size">14sp</dimen>
+
 </resources>

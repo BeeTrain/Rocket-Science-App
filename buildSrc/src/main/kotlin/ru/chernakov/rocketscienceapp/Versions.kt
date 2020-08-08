@@ -12,7 +12,7 @@ object Versions {
     const val gradleVersions = "0.29.0"
     const val kotlin = "1.3.72"
 
-    const val ktLint = "0.37.2"
+    const val ktLint = "0.36.0"
     const val detekt = "1.11.0-RC1"
     const val checkstyle = "8.34"
     const val jacocoTools = "0.7.6.201602180812"

@@ -31,11 +31,14 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
         }
 
         // Observe the internal MutableLiveData
-        super.observe(owner, Observer<T> {
-            if (pending.compareAndSet(true, false)) {
-                observer.onChanged(it)
+        super.observe(
+            owner,
+            Observer<T> {
+                if (pending.compareAndSet(true, false)) {
+                    observer.onChanged(it)
+                }
             }
-        })
+        )
     }
 
     @MainThread

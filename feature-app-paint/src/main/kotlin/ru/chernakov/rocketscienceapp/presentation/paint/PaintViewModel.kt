@@ -6,6 +6,11 @@ import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
 
 class PaintViewModel : BaseViewModel() {
     val selectedColorResData = MutableLiveData<Int>()
+    val menuVisibleLiveData = MutableLiveData<Boolean>()
+
+    init {
+        setMenuVisible(true)
+    }
 
     fun initColorDefaultValue(@ColorInt color: Int) {
         if (selectedColorResData.value == null) {
@@ -15,5 +20,14 @@ class PaintViewModel : BaseViewModel() {
 
     fun setSelectedColorRes(@ColorInt color: Int) {
         selectedColorResData.value = color
+    }
+
+    fun toggleMenu() {
+        val menuState = menuVisibleLiveData.value ?: false
+        setMenuVisible(!menuState)
+    }
+
+    private fun setMenuVisible(isVisible: Boolean) {
+        menuVisibleLiveData.value = isVisible
     }
 }

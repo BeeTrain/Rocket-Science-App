@@ -2,6 +2,7 @@ package ru.chernakov.rocketscienceapp.presentation.paint
 
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.lifecycle.observe
 import kotlinx.android.synthetic.main.fragment_paint.*
@@ -11,7 +12,7 @@ import ru.chernakov.rocketscienceapp.extension.android.content.getColorKtx
 import ru.chernakov.rocketscienceapp.navigation.PaintNavigation
 import ru.chernakov.rocketscienceapp.paint.R
 import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
-import ru.chernakov.rocketscienceapp.presentation.widget.colorpicker.ColorPicker
+import ru.chernakov.rocketscienceapp.widget.colorpicker.ColorPicker
 
 class PaintFragment : BaseFragment(), ColorPicker.OnColorSelectListener {
     private val paintViewModel: PaintViewModel by viewModel()
@@ -29,12 +30,22 @@ class PaintFragment : BaseFragment(), ColorPicker.OnColorSelectListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btColorPicker.setOnClickListener { ColorPicker.show(childFragmentManager) }
         setupToolbar()
+        setupListeners()
 
         paintViewModel.selectedColorResData.observe(viewLifecycleOwner) {
             vSelectedColor.background.setColorFilter(it, PorterDuff.Mode.SRC_IN)
             vPaint.setPaintColor(it)
+        }
+        paintViewModel.menuVisibleLiveData.observe(viewLifecycleOwner) {
+            if (it) {
+                btMenu.setImageResource(R.drawable.ic_edit_on)
+                fabMenu.showMenu(true)
+            } else {
+                btMenu.setImageResource(R.drawable.ic_edit_off)
+                fabMenu.close(true)
+                fabMenu.hideMenu(true)
+            }
         }
     }
 
@@ -52,5 +63,17 @@ class PaintFragment : BaseFragment(), ColorPicker.OnColorSelectListener {
             setNavigationIcon(R.drawable.ic_arrow_back_white)
             setNavigationOnClickListener { navigator.fromPaintToAppFeatures() }
         }
+    }
+
+    private fun setupListeners() {
+        btMenu.setOnClickListener { paintViewModel.toggleMenu() }
+        fabPalette.setOnClickListener {
+            fabMenu.close(true)
+            Handler().postDelayed({ ColorPicker.show(childFragmentManager) }, FAB_MENU_CLOSE_DELAY)
+        }
+    }
+
+    companion object {
+        private const val FAB_MENU_CLOSE_DELAY = 300L
     }
 }

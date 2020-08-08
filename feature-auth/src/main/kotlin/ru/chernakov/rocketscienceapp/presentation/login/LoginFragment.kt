@@ -161,7 +161,7 @@ class LoginFragment : BaseFragment() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         activity?.let {
             loginViewModel.firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(activity!!) { onAuthResult(it.isSuccessful) }
+                .addOnCompleteListener(it) { onAuthResult(it.isSuccessful) }
         }
     }
 

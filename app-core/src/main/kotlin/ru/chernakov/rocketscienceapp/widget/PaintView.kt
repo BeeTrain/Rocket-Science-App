@@ -1,4 +1,4 @@
-package ru.chernakov.rocketscienceapp.presentation.widget
+package ru.chernakov.rocketscienceapp.widget
 
 import android.annotation.SuppressLint
 import android.content.Context

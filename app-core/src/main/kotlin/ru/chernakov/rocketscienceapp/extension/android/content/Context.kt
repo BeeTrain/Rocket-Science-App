@@ -63,3 +63,7 @@ fun Context.sendEmail(subject: String?, message: String?, vararg recipients: Str
 fun Context.getColorKtx(@ColorRes id: Int): Int {
     return ContextCompat.getColor(this, id)
 }
+
+fun Context.dip(value: Int): Int = (value * resources.displayMetrics.density).toInt()
+
+fun Context.dip(value: Float): Int = (value * resources.displayMetrics.density).toInt()

@@ -22,7 +22,8 @@ abstract class BaseMenuPageFragment : BaseFragment() {
                         onBackPressedOnce()
                     }
                 }
-            })
+            }
+        )
     }
 
     private fun onBackPressedOnce() {

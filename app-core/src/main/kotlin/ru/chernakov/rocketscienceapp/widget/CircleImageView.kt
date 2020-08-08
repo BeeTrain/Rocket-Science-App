@@ -1,4 +1,4 @@
-package ru.chernakov.rocketscienceapp.presentation.widget
+package ru.chernakov.rocketscienceapp.widget
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -115,11 +115,9 @@ class CircleImageView : AppCompatImageView {
         defStyle
     ) {
         val a = context.obtainStyledAttributes(attrs, R.styleable.CircleImageView, defStyle, 0)
-        mBorderWidth =
-            a.getDimensionPixelSize(R.styleable.CircleImageView_border_width, DEFAULT_BORDER_WIDTH)
+        mBorderWidth = a.getDimensionPixelSize(R.styleable.CircleImageView_border_width, DEFAULT_BORDER_WIDTH)
         mBorderColor = a.getColor(R.styleable.CircleImageView_border_color, DEFAULT_BORDER_COLOR)
-        mBorderOverlay =
-            a.getBoolean(R.styleable.CircleImageView_border_overlay, DEFAULT_BORDER_OVERLAY)
+        mBorderOverlay = a.getBoolean(R.styleable.CircleImageView_border_overlay, DEFAULT_BORDER_OVERLAY)
         mCircleBackgroundColor = a.getColor(
             R.styleable.CircleImageView_circle_background_color,
             DEFAULT_CIRCLE_BACKGROUND_COLOR

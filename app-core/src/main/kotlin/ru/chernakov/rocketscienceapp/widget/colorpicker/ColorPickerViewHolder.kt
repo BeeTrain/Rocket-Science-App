@@ -1,4 +1,4 @@
-package ru.chernakov.rocketscienceapp.presentation.widget.colorpicker
+package ru.chernakov.rocketscienceapp.widget.colorpicker
 
 import android.graphics.PorterDuff
 import android.view.View

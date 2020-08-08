@@ -16,8 +16,10 @@
 
     <color name="textColorPrimary">@color/black_1000</color>
     <color name="textColorSecondary">@color/white_1000</color>
+    <color name="hintColor">@color/grey_500</color>
 
     <color name="transparent">#00000000</color>
 
     <color name="white">@color/white_1000</color>
+    <color name="black">@color/black_1000</color>
 </resources>

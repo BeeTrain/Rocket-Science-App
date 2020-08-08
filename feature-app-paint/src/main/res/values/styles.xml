@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="PaintFabMenuStyle">
+        <item name="menu_icon">@drawable/ic_edit</item>
+        <item name="menu_colorNormal">@color/colorPrimary</item>
+        <item name="menu_colorPressed">@color/colorPrimaryDark</item>
+        <item name="menu_openDirection">up</item>
+    </style>
+
+    <style name="PaintFabMenuItemStyle">
+        <item name="fab_colorNormal">@color/colorPrimary</item>
+        <item name="fab_colorPressed">@color/colorPrimaryDark</item>
+        <item name="fab_size">mini</item>
+    </style>
+</resources>

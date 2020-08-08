@@ -12,6 +12,6 @@ fun View?.visibleOrInvisible(visible: Boolean) {
 }
 
 fun View?.removeOnGlobalLayoutListener(listener: ViewTreeObserver.OnGlobalLayoutListener) =
-        this?.viewTreeObserver?.removeOnGlobalLayoutListener(listener)
+    this?.viewTreeObserver?.removeOnGlobalLayoutListener(listener)
 
 fun View.toTransitionGroup() = this to transitionName
