@@ -31,6 +31,7 @@ jobs:
     - name: Upload artifact to Firebase App Distribution
       env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          THE_MOVIEDB_API_KEY: ${{ secrets.THE_MOVIEDB_API_KEY }}
       run: ./gradlew appDistributionUploadReleaseQa
 
     - uses: actions/upload-artifact@v2
