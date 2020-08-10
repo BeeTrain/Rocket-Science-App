@@ -1,3 +1,2 @@
-v1.0.20
-- fix AppMovies error
-- fix AppMonitor navigation
+v1.0.21
+- AppFeatures: added search

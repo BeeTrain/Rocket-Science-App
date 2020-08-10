@@ -9,13 +9,15 @@ import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import ru.chernakov.rocketscienceapp.appfeatures.R
 import ru.chernakov.rocketscienceapp.data.model.AppFeature
+import ru.chernakov.rocketscienceapp.extension.android.view.visibleOrInvisible
 import ru.chernakov.rocketscienceapp.navigation.AppFeaturesNavigation
 import ru.chernakov.rocketscienceapp.presentation.adapter.AppFeaturesAdapter
 import ru.chernakov.rocketscienceapp.presentation.fragment.BaseMenuPageFragment
 import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
 import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
+import ru.chernakov.rocketscienceapp.widget.AppBarSearchLayout
 
-class AppFeaturesFragment : BaseMenuPageFragment() {
+class AppFeaturesFragment : BaseMenuPageFragment(), AppBarSearchLayout.OnSearchListener {
     private val appFeaturesViewModel: AppFeaturesViewModel by viewModel()
     private val navigator: AppFeaturesNavigation by inject()
 
@@ -25,9 +27,19 @@ class AppFeaturesFragment : BaseMenuPageFragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        toolbarSearch.onResume(this)
+    }
+
+    override fun onPause() {
+        toolbarSearch.onPause()
+        super.onPause()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvFeed.apply {
+        rvAppFeatures.apply {
             adapter = appFeaturesAdapter
             layoutManager = LinearLayoutManager(requireContext())
             itemAnimator = DefaultItemAnimator()
@@ -38,6 +50,11 @@ class AppFeaturesFragment : BaseMenuPageFragment() {
 
     private fun observeData() {
         appFeaturesViewModel.appFeaturesLiveData.observe(viewLifecycleOwner, SafeObserver {
+            appFeaturesViewModel.filterAppFeatures(requireContext(), "")
+        })
+        appFeaturesViewModel.appFeaturesFilteredLiveData.observe(viewLifecycleOwner, SafeObserver {
+            tvEmpty.visibleOrInvisible(it.isEmpty())
+            rvAppFeatures.visibleOrInvisible(it.isNotEmpty())
             appFeaturesAdapter.setData(it)
         })
     }
@@ -49,6 +66,10 @@ class AppFeaturesFragment : BaseMenuPageFragment() {
             AppFeature.APPMONITOR_ID -> navigator.openAppMonitor()
             AppFeature.PAINT_ID -> navigator.openPaint()
         }
+    }
+
+    override fun onSearchQueryChanged(query: String) {
+        appFeaturesViewModel.filterAppFeatures(requireContext(), query)
     }
 
     override fun getLayout(): Int = R.layout.fragment_appfeatures

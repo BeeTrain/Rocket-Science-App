@@ -32,7 +32,7 @@ class AppBarSearchLayout(context: Context, attrs: AttributeSet) : FrameLayout(co
             toolbar.setBackgroundColor(value)
         }
 
-    private var title: String = ""
+    private var title: String = context.getString(R.string.app_name)
         set(value) {
             field = value
             tvTitle.text = value
@@ -69,6 +69,8 @@ class AppBarSearchLayout(context: Context, attrs: AttributeSet) : FrameLayout(co
         etSearch.apply {
             setHint(R.string.hint_search)
             isEnabled = true
+            isFocusable = true
+            isFocusableInTouchMode = true
             requestFocus()
             (context as Activity).showKeyboard(this)
         }
@@ -82,8 +84,11 @@ class AppBarSearchLayout(context: Context, attrs: AttributeSet) : FrameLayout(co
         etSearch.apply {
             hint = ""
             setText("")
-            isEnabled = false
             context.hideKeyboard(this)
+            isEnabled = false
+            isFocusable = false
+            isFocusableInTouchMode = false
+            clearFocus()
         }
     }
 
