@@ -8,8 +8,6 @@ object AndroidConfig {
     const val GOOGLE_APP_ID = "GOOGLE_APP_ID"
     const val GROUP_QA = "testers"
 
-    const val THE_MOVIEDB_API_KEY = "THE_MOVIEDB_API_KEY"
-
     const val compileSdk = 28
     const val minSdk = 21
     const val targetSdk = 28

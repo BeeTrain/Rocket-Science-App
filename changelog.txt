@@ -1,2 +1,3 @@
-v1.0.18
-- Paint-feature: add new functions, update design
+v1.0.19
+- fix AppMovies error
+- fix AppMonitor navigation

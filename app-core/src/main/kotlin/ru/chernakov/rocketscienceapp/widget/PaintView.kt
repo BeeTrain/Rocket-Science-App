@@ -19,7 +19,6 @@ import kotlin.math.abs
 
 class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private val drawColor = context.getColorKtx(R.color.colorPrimary)
-    private val eraseColor = context.getColorKtx(R.color.transparent)
     private val backgroundColor = context.getColorKtx(R.color.white)
 
     private lateinit var extraCanvas: Canvas
