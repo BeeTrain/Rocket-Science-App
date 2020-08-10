@@ -2,4 +2,6 @@
 <resources>
     <string name="feature_title">Paint</string>
     <string name="palette_label">Palette</string>
+    <string name="eraser_label">Eraser</string>
+    <string name="new_picture_label">New picture</string>
 </resources>

@@ -668,12 +668,12 @@ public class FloatingActionButton extends AppCompatImageButton {
 
         @Override
         public void setAlpha(int alpha) {
-
+            // do Nothing
         }
 
         @Override
         public void setColorFilter(ColorFilter cf) {
-
+            // do Nothing
         }
 
         @SuppressLint("WrongConstant")

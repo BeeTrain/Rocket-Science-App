@@ -5,21 +5,27 @@ import androidx.lifecycle.MutableLiveData
 import ru.chernakov.rocketscienceapp.presentation.viewmodel.BaseViewModel
 
 class PaintViewModel : BaseViewModel() {
-    val selectedColorResData = MutableLiveData<Int>()
+    val selectedColorLiveData = MutableLiveData<Int>()
     val menuVisibleLiveData = MutableLiveData<Boolean>()
+    val selectedModeLiveData = MutableLiveData<PaintMode>()
 
     init {
         setMenuVisible(true)
     }
 
     fun initColorDefaultValue(@ColorInt color: Int) {
-        if (selectedColorResData.value == null) {
-            selectedColorResData.value = color
+        if (selectedColorLiveData.value == null) {
+            selectedColorLiveData.value = color
         }
     }
 
-    fun setSelectedColorRes(@ColorInt color: Int) {
-        selectedColorResData.value = color
+    fun setSelectedColor(@ColorInt color: Int) {
+        selectedColorLiveData.value = color
+        selectedModeLiveData.value = PaintMode.DRAW
+    }
+
+    fun setEraseMode() {
+        selectedModeLiveData.value = PaintMode.ERASE
     }
 
     fun toggleMenu() {
@@ -29,5 +35,9 @@ class PaintViewModel : BaseViewModel() {
 
     private fun setMenuVisible(isVisible: Boolean) {
         menuVisibleLiveData.value = isVisible
+    }
+
+    enum class PaintMode {
+        DRAW, ERASE
     }
 }

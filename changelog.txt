@@ -1,2 +1,2 @@
-v1.0.17
-- Add Paint app-feature
+v1.0.18
+- Paint-feature: add new functions, update design

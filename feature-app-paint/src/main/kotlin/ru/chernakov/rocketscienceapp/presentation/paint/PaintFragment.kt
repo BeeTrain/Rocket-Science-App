@@ -33,7 +33,7 @@ class PaintFragment : BaseFragment(), ColorPicker.OnColorSelectListener {
         setupToolbar()
         setupListeners()
 
-        paintViewModel.selectedColorResData.observe(viewLifecycleOwner) {
+        paintViewModel.selectedColorLiveData.observe(viewLifecycleOwner) {
             vSelectedColor.background.setColorFilter(it, PorterDuff.Mode.SRC_IN)
             vPaint.setPaintColor(it)
         }
@@ -47,10 +47,26 @@ class PaintFragment : BaseFragment(), ColorPicker.OnColorSelectListener {
                 fabMenu.hideMenu(true)
             }
         }
+        paintViewModel.selectedModeLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                PaintViewModel.PaintMode.DRAW -> {
+                    btColorPicker.visibility = View.VISIBLE
+                    ivEraser.visibility = View.GONE
+                }
+                PaintViewModel.PaintMode.ERASE -> {
+                    vPaint.setEraseMode()
+                    ivEraser.visibility = View.VISIBLE
+                    btColorPicker.visibility = View.GONE
+                }
+                else -> {
+                    // do Nothing
+                }
+            }
+        }
     }
 
     override fun onColorSelected(color: Int?) {
-        color?.let { paintViewModel.setSelectedColorRes(it) }
+        color?.let { paintViewModel.setSelectedColor(it) }
     }
 
     override fun onCancel() {
@@ -70,6 +86,14 @@ class PaintFragment : BaseFragment(), ColorPicker.OnColorSelectListener {
         fabPalette.setOnClickListener {
             fabMenu.close(true)
             Handler().postDelayed({ ColorPicker.show(childFragmentManager) }, FAB_MENU_CLOSE_DELAY)
+        }
+        fabEraser.setOnClickListener {
+            fabMenu.close(true)
+            Handler().postDelayed({ paintViewModel.setEraseMode() }, FAB_MENU_CLOSE_DELAY)
+        }
+        fabNewPicture.setOnClickListener {
+            fabMenu.close(true)
+            Handler().postDelayed({ vPaint.clearImage() }, FAB_MENU_CLOSE_DELAY)
         }
     }
 

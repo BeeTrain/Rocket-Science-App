@@ -1,7 +1,6 @@
 package ru.chernakov.rocketscienceapp.widget.fab;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Canvas;
@@ -18,7 +17,6 @@ import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -345,12 +343,12 @@ public class Label extends AppCompatTextView {
 
         @Override
         public void setAlpha(int alpha) {
-
+            // do Nothing
         }
 
         @Override
         public void setColorFilter(ColorFilter cf) {
-
+            // do Nothing
         }
 
         @SuppressLint("WrongConstant")

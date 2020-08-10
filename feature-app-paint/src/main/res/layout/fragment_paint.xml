@@ -39,6 +39,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/ivEraser"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="@string/eraser_label"
+                android:src="@drawable/ic_eraser"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btColorPicker"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <LinearLayout
                 android:id="@+id/btColorPicker"
                 android:layout_width="wrap_content"
@@ -66,9 +77,9 @@
                 android:layout_marginEnd="@dimen/margin_medium"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
-                android:padding="@dimen/margin_small"
                 android:contentDescription="@string/content_description"
                 android:focusable="true"
+                android:padding="@dimen/margin_small"
                 android:src="@drawable/ic_edit_off"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -94,6 +105,22 @@
         android:layout_margin="@dimen/margin_medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
+
+        <ru.chernakov.rocketscienceapp.widget.fab.FloatingActionButton
+            android:id="@+id/fabNewPicture"
+            style="@style/PaintFabMenuItemStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_new_picture"
+            app:fab_label="@string/new_picture_label" />
+
+        <ru.chernakov.rocketscienceapp.widget.fab.FloatingActionButton
+            android:id="@+id/fabEraser"
+            style="@style/PaintFabMenuItemStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_eraser"
+            app:fab_label="@string/eraser_label" />
 
         <ru.chernakov.rocketscienceapp.widget.fab.FloatingActionButton
             android:id="@+id/fabPalette"

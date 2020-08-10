@@ -6,6 +6,8 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
@@ -17,6 +19,7 @@ import kotlin.math.abs
 
 class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private val drawColor = context.getColorKtx(R.color.colorPrimary)
+    private val eraseColor = context.getColorKtx(R.color.transparent)
     private val backgroundColor = context.getColorKtx(R.color.white)
 
     private lateinit var extraCanvas: Canvas
@@ -93,9 +96,25 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     fun setPaintColor(@ColorInt color: Int) {
         paint.color = color
+        paint.strokeWidth = STROKE_WIDTH_DEFAULT
+        paint.xfermode = null
+    }
+
+    fun setEraseMode() {
+        paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
+        paint.strokeWidth = ERASE_WIDTH_DEFAULT
+    }
+
+    fun clearImage() {
+        extraBitmap.recycle()
+        extraBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        extraCanvas = Canvas(extraBitmap)
+        extraCanvas.drawColor(backgroundColor)
+        invalidate()
     }
 
     companion object {
         private const val STROKE_WIDTH_DEFAULT = 12f
+        private const val ERASE_WIDTH_DEFAULT = 24f
     }
 }
