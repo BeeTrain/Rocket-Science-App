@@ -9,11 +9,11 @@ import kotlinx.android.synthetic.main.fragment_apps_list.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import ru.chernakov.rocketscienceapp.appmonitor.R
-import ru.chernakov.rocketscienceapp.navigation.AppMonitorNavigation
-import ru.chernakov.rocketscienceapp.presentation.list.adapter.AppsListAdapter
 import ru.chernakov.rocketscienceapp.extension.android.view.visibleOrGone
 import ru.chernakov.rocketscienceapp.extension.android.view.visibleOrInvisible
+import ru.chernakov.rocketscienceapp.navigation.AppMonitorNavigation
 import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
+import ru.chernakov.rocketscienceapp.presentation.list.adapter.AppsListAdapter
 import ru.chernakov.rocketscienceapp.util.lifecycle.SafeObserver
 
 class AppsListFragment : BaseFragment() {
@@ -25,13 +25,11 @@ class AppsListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         toolbar.setNavigationOnClickListener { requireActivity().onBackPressed() }
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner, object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    navigator.fromAppMonitorToAppFeatures()
-                }
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                navigator.fromAppMonitorToAppFeatures()
             }
-        )
+        })
         appsAdapter.apply {
             onItemClickListener = {
                 navigator.fromAppsListToInfo(it.appPackage)

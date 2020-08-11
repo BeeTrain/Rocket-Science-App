@@ -7,10 +7,10 @@ import kotlinx.android.synthetic.main.fragment_bubble_game_running.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import ru.chernakov.rocketscienceapp.bubblegame.R
 import ru.chernakov.rocketscienceapp.navigation.OnBackPressedListener
+import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
 import ru.chernakov.rocketscienceapp.presentation.host.BubbleGameHostFragment
 import ru.chernakov.rocketscienceapp.presentation.host.BubbleGameViewModel
 import ru.chernakov.rocketscienceapp.presentation.widget.BubbleGameStateListener
-import ru.chernakov.rocketscienceapp.presentation.fragment.BaseFragment
 
 class BubbleGameRunningFragment : BaseFragment() {
     private val bubbleGameViewModel: BubbleGameViewModel by viewModel()
@@ -24,13 +24,11 @@ class BubbleGameRunningFragment : BaseFragment() {
         bubbleGameView.game = bubbleGameViewModel.gameInteractor
         bubbleGameView.setParamsCallback(gameStateListener)
 
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    onBackPressedListener.onRunningBackPressed()
-                }
-            })
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                onBackPressedListener.onRunningBackPressed()
+            }
+        })
     }
 
     override fun getLayout() = R.layout.fragment_bubble_game_running

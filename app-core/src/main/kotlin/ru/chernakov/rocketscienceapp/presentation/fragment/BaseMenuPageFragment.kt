@@ -12,18 +12,15 @@ abstract class BaseMenuPageFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    if (isBackPressedOnce) {
-                        requireActivity().finish()
-                    } else {
-                        onBackPressedOnce()
-                    }
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (isBackPressedOnce) {
+                    requireActivity().finish()
+                } else {
+                    onBackPressedOnce()
                 }
             }
-        )
+        })
     }
 
     private fun onBackPressedOnce() {

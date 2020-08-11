@@ -30,14 +30,12 @@ class MoviesFragment : BaseFragment(), AbstractPaginationAdapter.Callback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner, object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    navigator.fromMoviesToAppFeatures()
-                    setConnectionSnackbarVisible(false)
-                }
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                navigator.fromMoviesToAppFeatures()
+                setConnectionSnackbarVisible(false)
             }
-        )
+        })
         moviesViewModel.loading.observe(viewLifecycleOwner, SafeObserver {
             pbLoading.visibleOrGone(it)
         })
