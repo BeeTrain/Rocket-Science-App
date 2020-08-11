@@ -1,8 +1,10 @@
 package ru.chernakov.rocketscienceapp.presentation.paint
 
+import android.annotation.SuppressLint
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.os.Handler
+import android.view.MotionEvent
 import android.view.View
 import androidx.lifecycle.observe
 import kotlinx.android.synthetic.main.fragment_paint.*
@@ -49,11 +51,11 @@ class PaintFragment : BaseFragment(), ColorPicker.OnColorSelectListener {
         }
         paintViewModel.selectedModeLiveData.observe(viewLifecycleOwner) {
             when (it) {
-                PaintViewModel.PaintMode.DRAW -> {
+                PaintMode.DRAW -> {
                     btColorPicker.visibility = View.VISIBLE
                     ivEraser.visibility = View.GONE
                 }
-                PaintViewModel.PaintMode.ERASE -> {
+                PaintMode.ERASE -> {
                     vPaint.setEraseMode()
                     ivEraser.visibility = View.VISIBLE
                     btColorPicker.visibility = View.GONE
@@ -70,7 +72,7 @@ class PaintFragment : BaseFragment(), ColorPicker.OnColorSelectListener {
     }
 
     override fun onCancel() {
-        // do nothing
+        // do Nothing
     }
 
     private fun setupToolbar() {
@@ -81,8 +83,17 @@ class PaintFragment : BaseFragment(), ColorPicker.OnColorSelectListener {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupListeners() {
         btMenu.setOnClickListener { paintViewModel.toggleMenu() }
+        btColorPicker.setOnClickListener {
+            if (fabMenu.isOpened) {
+                fabMenu.close(true)
+                Handler().postDelayed({ ColorPicker.show(childFragmentManager) }, FAB_MENU_CLOSE_DELAY)
+            } else {
+                ColorPicker.show(childFragmentManager)
+            }
+        }
         fabPalette.setOnClickListener {
             fabMenu.close(true)
             Handler().postDelayed({ ColorPicker.show(childFragmentManager) }, FAB_MENU_CLOSE_DELAY)
@@ -94,6 +105,13 @@ class PaintFragment : BaseFragment(), ColorPicker.OnColorSelectListener {
         fabNewPicture.setOnClickListener {
             fabMenu.close(true)
             Handler().postDelayed({ vPaint.clearImage() }, FAB_MENU_CLOSE_DELAY)
+        }
+        vPaint.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                if (fabMenu.isOpened) fabMenu.close(false)
+            }
+
+            false
         }
     }
 

@@ -36,8 +36,4 @@ class PaintViewModel : BaseViewModel() {
     private fun setMenuVisible(isVisible: Boolean) {
         menuVisibleLiveData.value = isVisible
     }
-
-    enum class PaintMode {
-        DRAW, ERASE
-    }
 }

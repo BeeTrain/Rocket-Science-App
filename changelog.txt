@@ -1,2 +1,2 @@
-v1.0.21
-- AppFeatures: added search
+v1.0.22
+- PaintApp: update UX
