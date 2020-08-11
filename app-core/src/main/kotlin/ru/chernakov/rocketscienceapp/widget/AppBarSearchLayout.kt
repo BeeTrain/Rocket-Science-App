@@ -67,6 +67,7 @@ class AppBarSearchLayout(context: Context, attrs: AttributeSet) : FrameLayout(co
         ivClose.visibility = View.VISIBLE
         containerSearch.background = context.getDrawable(R.drawable.bg_search)
         etSearch.apply {
+            visibility = View.VISIBLE
             setHint(R.string.hint_search)
             isEnabled = true
             isFocusable = true
@@ -82,6 +83,7 @@ class AppBarSearchLayout(context: Context, attrs: AttributeSet) : FrameLayout(co
         ivSearch.visibility = View.VISIBLE
         containerSearch.background = null
         etSearch.apply {
+            visibility = View.INVISIBLE
             hint = ""
             setText("")
             context.hideKeyboard(this)
